@@ -22,6 +22,7 @@
     "email": "nikola@nikolahristov.tech",
     "url": "https://nikolahristov.tech"
   },
+  "publisher": "playform",
   "type": "module",
   "scripts": {
     "uglify": "uglifyjs assets/js/vendor/jquery/jquery-3.2.1.js assets/js/plugins/jquery.backstretch.js assets/js/plugins/jquery.fitvids.js assets/js/plugins/jquery.greedy-navigation.js assets/js/plugins/jquery.magnific-popup.js assets/js/plugins/jquery.smooth-scroll.js assets/js/plugins/jquery.devkit-extends.js assets/js/_main.js -o assets/js/main.min.js -c -m --source-map url=main.min.js.map",
