@@ -3,29 +3,46 @@ layout: new-home
 permalink: /
 title: "An all-in-one IoT kit built for the cloud"
 benefits_content:
-  - title: "Record-breaking Performance"
-    url: https://aka.ms/iot-devkit-purchase
-    icon: "icon puzzle"
-    content: "Wifi, OLED display, headphone, microphone, sensors like temperature, humidity, motion, pressure, you will love how much time and money you save to build your best IoT project."
-    more_content: "Learn more about IoT DevKit hardware spec"
-  - title: "Simplify Development"
-    icon: "icon vscode"
-    content: "Visual Studio Code is lightweight and your goto editor of choice. It is your all-in-one tool from coding the first line to deploying to the cloud."
-  - title: "Cloud Empowers Your IoT Solutions"
-    icon: "icon cloud"
-    content: "Visual Studio Code is lightweight and your goto editor of choice. It is your all-in-one tool from coding the first line to deploying to the cloud."
+    - title: "Record-breaking Performance"
+      url: https://aka.ms/iot-devkit-purchase
+      icon: "icon puzzle"
+      content:
+          "Wifi, OLED display, headphone, microphone, sensors like temperature,
+          humidity, motion, pressure, you will love how much time and money you
+          save to build your best IoT project."
+      more_content: "Learn more about IoT DevKit hardware spec"
+    - title: "Simplify Development"
+      icon: "icon vscode"
+      content:
+          "Visual Studio Code is lightweight and your goto editor of choice. It
+          is your all-in-one tool from coding the first line to deploying to the
+          cloud."
+    - title: "Cloud Empowers Your IoT Solutions"
+      icon: "icon cloud"
+      content:
+          "Visual Studio Code is lightweight and your goto editor of choice. It
+          is your all-in-one tool from coding the first line to deploying to the
+          cloud."
 comments_content:
-  - words: "This eliminates the need to have electronics knowledge and the need to do any wiring or soldering in order to get started prototyping IoT solutions."
-    photo: assets/images/testimony-chris-pietschmann.jpg
-    name: Chris Pietschmann
-    title: BuildAzure.com
-  - words: "The sample code included scripts taking advantage of Visual Studio Code’s built-in terminal, so I didn’t have to leave my IDE to use the Azure Portal."
-    photo: assets/images/testimony-simon-bisson.jpg
-    name: Simon Bisson
-    title: InfoWorld
-  - words: "Getting excited about this awesome new product from @MicrosoftIoT build a #Cloud powered #IoT app in mins!"
-    photo: assets/images/testimony-sciencescope.jpg
-    name: ScienceScope
+    - words:
+          "This eliminates the need to have electronics knowledge and the need
+          to do any wiring or soldering in order to get started prototyping IoT
+          solutions."
+      photo: assets/images/testimony-chris-pietschmann.jpg
+      name: Chris Pietschmann
+      title: BuildAzure.com
+    - words:
+          "The sample code included scripts taking advantage of Visual Studio
+          Code’s built-in terminal, so I didn’t have to leave my IDE to use the
+          Azure Portal."
+      photo: assets/images/testimony-simon-bisson.jpg
+      name: Simon Bisson
+      title: InfoWorld
+    - words:
+          "Getting excited about this awesome new product from @MicrosoftIoT
+          build a #Cloud powered #IoT app in mins!"
+      photo: assets/images/testimony-sciencescope.jpg
+      name: ScienceScope
 projects: "0, 3, 10"
 ---
 

@@ -1,15 +1,15 @@
 # Authors
 
 Liya Du:
-  name        : "Liya Du"
-  email       : "liydu@microsoft.com"
-  bio         : "Cogito, ergo sum."
-  avatar      : "/assets/images/photo-liki.jpg"
-  twitter     : "likidu"
+    name: "Liya Du"
+    email: "liydu@microsoft.com"
+    bio: "Cogito, ergo sum."
+    avatar: "/assets/images/photo-liki.jpg"
+    twitter: "likidu"
 
 Arthur Ma:
-  name        : "Arthur Ma"
-  email       : "arthma@microsoft.com"
-  bio         : "Engine behind IoT DevKit"
-  avatar      : "/assets/images/photo-arthur.jpg"
-  twitter     : "arthurma1978"
+    name: "Arthur Ma"
+    email: "arthma@microsoft.com"
+    bio: "Engine behind IoT DevKit"
+    avatar: "/assets/images/photo-arthur.jpg"
+    twitter: "arthurma1978"

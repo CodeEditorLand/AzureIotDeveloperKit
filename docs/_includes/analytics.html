@@ -1,14 +1,6 @@
-{% if site.analytics.provider and page.analytics != false %}
-
-{% case site.analytics.provider %}
-{% when "google" %}
-  {% include /analytics-providers/google.html %}
-{% when "google-universal" %}
-  {% include /analytics-providers/google-universal.html %}
-{% when "custom" %}
-  {% include /analytics-providers/custom.html %}
-{% when "google-tag-manager" %}
-  {% include /analytics-providers/google-tag-manager.html %}
-{% endcase %}
-
-{% endif %}
+{% if site.analytics.provider and page.analytics != false %} {% case
+site.analytics.provider %} {% when "google" %} {% include
+/analytics-providers/google.html %} {% when "google-universal" %} {% include
+/analytics-providers/google-universal.html %} {% when "custom" %} {% include
+/analytics-providers/custom.html %} {% when "google-tag-manager" %} {% include
+/analytics-providers/google-tag-manager.html %} {% endcase %} {% endif %}

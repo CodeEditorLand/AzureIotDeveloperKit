@@ -3,278 +3,279 @@
    ========================================================================== */
 
 #main {
-  @include clearfix;
-  margin-left: auto;
-  margin-top: 2em;
-  margin-right: auto;
-  padding-left: 1em;
-  padding-right: 1em;
-  -webkit-animation: $intro-transition;
-  animation: $intro-transition;
-  max-width: 100%;
-  -webkit-animation-delay: 0.15s;
-  animation-delay: 0.15s;
+	@include clearfix;
+	margin-left: auto;
+	margin-top: 2em;
+	margin-right: auto;
+	padding-left: 1em;
+	padding-right: 1em;
+	-webkit-animation: $intro-transition;
+	animation: $intro-transition;
+	max-width: 100%;
+	-webkit-animation-delay: 0.15s;
+	animation-delay: 0.15s;
 
-  @include breakpoint($x-large) {
-    max-width: $x-large;
-  }
+	@include breakpoint($x-large) {
+		max-width: $x-large;
+	}
 }
 
 .masthead + #main {
-  margin-top: 6.2em;
+	margin-top: 6.2em;
 }
 
 .page {
-  @include breakpoint($large) {
-    float: right;
-    width: calc(100% - #{$right-sidebar-width-narrow});
-    padding-right: $right-sidebar-width-narrow;
-  }
+	@include breakpoint($large) {
+		float: right;
+		width: calc(100% - #{$right-sidebar-width-narrow});
+		padding-right: $right-sidebar-width-narrow;
+	}
 
-  @include breakpoint($x-large) {
-    width: calc(100% - #{$right-sidebar-width});
-    padding-right: $right-sidebar-width;
-  }
+	@include breakpoint($x-large) {
+		width: calc(100% - #{$right-sidebar-width});
+		padding-right: $right-sidebar-width;
+	}
 
-  .page__inner-wrap {
-    float: left;
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
-    clear: both;
+	.page__inner-wrap {
+		float: left;
+		margin-left: 0;
+		margin-right: 0;
+		width: 100%;
+		clear: both;
 
-    .page__content,
-    .page__meta,
-    .page__share {
-      position: relative;
-      float: left;
-      margin-left: 0;
-      margin-right: 0;
-      width: 100%;
-      clear: both;
-    }
-  }
+		.page__content,
+		.page__meta,
+		.page__share {
+			position: relative;
+			float: left;
+			margin-left: 0;
+			margin-right: 0;
+			width: 100%;
+			clear: both;
+		}
+	}
 }
 
 .page__title {
-  margin-top: 0;
-  line-height: 1;
+	margin-top: 0;
+	line-height: 1;
 
-  & + .page__meta {
-    margin-top: -0.5em;
-  }
+	& + .page__meta {
+		margin-top: -0.5em;
+	}
 }
 
 .page__lead {
-  font-family: $global-font-family;
-  font-size: $type-size-4;
-  opacity: 0.7;
+	font-family: $global-font-family;
+	font-size: $type-size-4;
+	opacity: 0.7;
 }
 
 .page__content {
+	h2 {
+		padding-bottom: 0.5em;
+		// border-bottom: 1px solid $border-color;
+	}
 
-  h2 {
-    padding-bottom: 0.5em;
-    // border-bottom: 1px solid $border-color;
-  }
+	p,
+	li,
+	dl {
+		font-size: 1em;
+	}
 
-  p, li, dl {
-    font-size: 1em;
-  }
+	/* paragraph indents */
+	p {
+		margin: 0 0 $indent-var;
 
-  /* paragraph indents */
-  p {
-    margin: 0 0 $indent-var;
+		/* sibling indentation*/
+		@if $paragraph-indent == true {
+			& + p {
+				text-indent: $indent-var;
+				margin-top: -($indent-var);
+			}
+		}
+	}
 
-    /* sibling indentation*/
-    @if $paragraph-indent == true {
-      & + p {
-        text-indent: $indent-var;
-        margin-top: -($indent-var);
-      }
-    }
-  }
+	a {
+		text-decoration: none;
 
-  a {
-    text-decoration: none;
+		&:hover {
+			text-decoration: underline;
 
-    &:hover {
-      text-decoration: underline;
+			img {
+				box-shadow: 0 0 10px rgba(#000, 0.25);
+			}
+		}
+	}
 
-      img {
-        box-shadow: 0 0 10px rgba(#000, 0.25);
-      }
-    }
-  }
+	dt {
+		margin-top: 1em;
+		font-family: $sans-serif;
+		font-weight: bold;
+	}
 
-  dt {
-    margin-top: 1em;
-    font-family: $sans-serif;
-    font-weight: bold;
-  }
+	dd {
+		margin-left: 1em;
+		font-family: $sans-serif;
+		font-size: $type-size-6;
+	}
 
-  dd {
-    margin-left: 1em;
-    font-family: $sans-serif;
-    font-size: $type-size-6;
-  }
+	.small {
+		font-size: $type-size-6;
+	}
 
-  .small {
-    font-size: $type-size-6;
-  }
-
-  /* blockquote citations */
-  blockquote + .small {
-    margin-top: -1.5em;
-    padding-left: 1.25rem;
-  }
+	/* blockquote citations */
+	blockquote + .small {
+		margin-top: -1.5em;
+		padding-left: 1.25rem;
+	}
 }
 
 .page__hero {
-  position: relative;
-  margin-bottom: 2em;
-  @include clearfix;
-  -webkit-animation: intro 0.3s both;
-          animation: intro 0.3s both;
-  -webkit-animation-delay: 0.25s;
-          animation-delay: 0.25s;
+	position: relative;
+	margin-bottom: 2em;
+	@include clearfix;
+	-webkit-animation: intro 0.3s both;
+	animation: intro 0.3s both;
+	-webkit-animation-delay: 0.25s;
+	animation-delay: 0.25s;
 
-  &--overlay,
-  &--overlay-full {
-    .wrapper {
-      position: relative;
-      padding-left: 2em;
-      padding-right: 2em;
+	&--overlay,
+	&--overlay-full {
+		.wrapper {
+			position: relative;
+			padding-left: 2em;
+			padding-right: 2em;
 
-      @include breakpoint($x-large) {
-        max-width: $x-large;
-      }
-    }
+			@include breakpoint($x-large) {
+				max-width: $x-large;
+			}
+		}
 
-    a {
-      color: #fff;
-    }
+		a {
+			color: #fff;
+		}
 
-    .page__title,
-    .page__meta,
-    .page__lead,
-    .btn {
-      color: #fff;
-      // text-shadow: 1px 1px 4px rgba(#000, 0.5); // Original
-    }
+		.page__title,
+		.page__meta,
+		.page__lead,
+		.btn {
+			color: #fff;
+			// text-shadow: 1px 1px 4px rgba(#000, 0.5); // Original
+		}
 
-    .page__lead {
-      max-width: $medium;
-      margin: 1.3em auto 2em; // Modified: center aligned
-    }
+		.page__lead {
+			max-width: $medium;
+			margin: 1.3em auto 2em; // Modified: center aligned
+		}
 
-    .page__title {
-      font-size: $type-size-2;
+		.page__title {
+			font-size: $type-size-2;
 
-      sup {
-        color: rgba(255, 255, 255, 0.45);
-        top: -0.7em;
-        font-size: 50%;
-      }
+			sup {
+				color: rgba(255, 255, 255, 0.45);
+				top: -0.7em;
+				font-size: 50%;
+			}
 
-      @include breakpoint($small) {
-        font-size: $type-size-1;
-      }
-    }
-  }
+			@include breakpoint($small) {
+				font-size: $type-size-1;
+			}
+		}
+	}
 
-  &--overlay {
-    position: relative;
-    margin-bottom: 2em;
-    padding: 2em 0;
-    @include clearfix;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    -webkit-animation: intro 0.3s both;
-            animation: intro 0.3s both;
-    -webkit-animation-delay: 0.25s;
-            animation-delay: 0.25s;
+	&--overlay {
+		position: relative;
+		margin-bottom: 2em;
+		padding: 2em 0;
+		@include clearfix;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+		-webkit-animation: intro 0.3s both;
+		animation: intro 0.3s both;
+		-webkit-animation-delay: 0.25s;
+		animation-delay: 0.25s;
 
-    .page__extra-logo {
-      display: inline-block;
-      width: 128px;
-      height: 128px;
-      margin-top: 2rem;
+		.page__extra-logo {
+			display: inline-block;
+			width: 128px;
+			height: 128px;
+			margin-top: 2rem;
 
-      @include breakpoint($small) {
-        position: absolute;
-        top: 50%;
-        right: 2em;
-        width: 96px;
-        height: 96px;
-        margin-top: -78px;
-      }
-    }
-  }
+			@include breakpoint($small) {
+				position: absolute;
+				top: 50%;
+				right: 2em;
+				width: 96px;
+				height: 96px;
+				margin-top: -78px;
+			}
+		}
+	}
 
-  &--overlay-full {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height:100vh;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+	&--overlay-full {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 100vh;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
 
-    .backstretch {
-      background-color: #000;
-  
-      img {
-        opacity: 0.5;
-        -webkit-animation: zoom 0.7s both;
-        animation: zoom 0.7s both;
-        -webkit-animation-delay: 0.25s;
-        animation-delay: 0.25s;
-        -webkit-transition: none;
-        transition: none;
-      }
-    }
-  }
+		.backstretch {
+			background-color: #000;
+
+			img {
+				opacity: 0.5;
+				-webkit-animation: zoom 0.7s both;
+				animation: zoom 0.7s both;
+				-webkit-animation-delay: 0.25s;
+				animation-delay: 0.25s;
+				-webkit-transition: none;
+				transition: none;
+			}
+		}
+	}
 }
 
 .masthead + .page__hero--overlay {
-  padding-top: 6.8em;
+	padding-top: 6.8em;
 }
 
 .page_hero-image {
-  width: 100%;
-  height: auto;
+	width: 100%;
+	height: auto;
 }
 
 .page__hero-caption {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 0 auto;
-  padding: 2px 5px;
-  color: #fff;
-  font-family: $caption-font-family;
-  font-size: $type-size-7;
-  background: #000;
-  text-align: right;
-  z-index: 5;
-  opacity: 0.5;
-  border-radius: $border-radius 0 0 0;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: 0 auto;
+	padding: 2px 5px;
+	color: #fff;
+	font-family: $caption-font-family;
+	font-size: $type-size-7;
+	background: #000;
+	text-align: right;
+	z-index: 5;
+	opacity: 0.5;
+	border-radius: $border-radius 0 0 0;
 
-  @include breakpoint($large) {
-    padding: 5px 10px;
-  }
+	@include breakpoint($large) {
+		padding: 5px 10px;
+	}
 
-  a {
-    color: #fff;
-    text-decoration: none;
-  }
+	a {
+		color: #fff;
+		text-decoration: none;
+	}
 }
 
 .page__cta_secondary {
-  opacity: 0.65;
-  margin-bottom: 0;
+	opacity: 0.65;
+	margin-bottom: 0;
 }
 
 /*
@@ -282,77 +283,78 @@
    ========================================================================== */
 
 .page__share {
-  text-align: left;
-  margin-top: 20px;
-  padding-top: 40px;
-  border-top: 1px solid $border-color;
+	text-align: left;
+	margin-top: 20px;
+	padding-top: 40px;
+	border-top: 1px solid $border-color;
 
-  @include breakpoint(max-width $small) {
-    .btn span {
-      border: 0;
-      clip: rect(0 0 0 0);
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-      padding: 0;
-      position: absolute;
-      width: 1px;
-    }
-  }
+	@include breakpoint(max-width $small) {
+		.btn span {
+			border: 0;
+			clip: rect(0 0 0 0);
+			height: 1px;
+			margin: -1px;
+			overflow: hidden;
+			padding: 0;
+			position: absolute;
+			width: 1px;
+		}
+	}
 }
 
-.page__share a,.page__share p {
-    margin: 0 5px;
-    display: inline-block;
+.page__share a,
+.page__share p {
+	margin: 0 5px;
+	display: inline-block;
 }
 
 .page__share > div:not(:first-child) {
-  margin-top: 0.8rem;
+	margin-top: 0.8rem;
 }
 
 .page__share-title {
-  margin-bottom: 10px;
-  font-size: $type-size-6;
-  text-transform: uppercase;
+	margin-bottom: 10px;
+	font-size: $type-size-6;
+	text-transform: uppercase;
 }
 
 .page__share__inline {
-  padding-bottom: 40px;
+	padding-bottom: 40px;
 
-  @include breakpoint(max-width $small) {
-    .btn span {
-      border: 0;
-      clip: rect(0 0 0 0);
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-      padding: 0;
-      position: absolute;
-      width: 1px;
-    }
-  }
+	@include breakpoint(max-width $small) {
+		.btn span {
+			border: 0;
+			clip: rect(0 0 0 0);
+			height: 1px;
+			margin: -1px;
+			overflow: hidden;
+			padding: 0;
+			position: absolute;
+			width: 1px;
+		}
+	}
 }
 
 .page__share__inline,
 .page__share {
-  p {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    margin: 0 5px;
-  }
-  a {
-    margin: 0 5px;
-    display: inline-block;
-    vertical-align: center;
-  }
-  .social-icons-list {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 5px;
-  }
+	p {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		margin: 0 5px;
+	}
+	a {
+		margin: 0 5px;
+		display: inline-block;
+		vertical-align: center;
+	}
+	.social-icons-list {
+		display: flex;
+		justify-content: space-between;
+		margin-left: 5px;
+	}
 }
 
 /*
@@ -360,186 +362,183 @@
    ========================================================================== */
 
 .page__meta {
-  margin-top: 2em;
-  color: mix(#fff, $gray, 25%);
-  font-family: $sans-serif;
-  font-size: $type-size-6;
+	margin-top: 2em;
+	color: mix(#fff, $gray, 25%);
+	font-family: $sans-serif;
+	font-size: $type-size-6;
 
-  p {
-    margin: 0;
-  }
+	p {
+		margin: 0;
+	}
 
-  a {
-    color: inherit;
-  }
+	a {
+		color: inherit;
+	}
 }
 
 .page__meta-title {
-  margin-bottom: 10px;
-  font-size: $type-size-6;
-  text-transform: uppercase;
+	margin-bottom: 10px;
+	font-size: $type-size-6;
+	text-transform: uppercase;
 }
-
 
 /*
    Page taxonomy
    ========================================================================== */
 
 .page__taxonomy {
-  .sep {
-    display: none;
-  }
+	.sep {
+		display: none;
+	}
 
-  strong {
-    margin-right: 10px;
-  }
+	strong {
+		margin-right: 10px;
+	}
 }
 
 .page__taxonomy-item {
-  display: inline-block;
-  margin-right: 5px;
-  margin-bottom: 8px;
-  padding: 5px 10px;
-  text-decoration: none;
-  border: 1px solid $light-gray;
-  border-radius: $border-radius;
+	display: inline-block;
+	margin-right: 5px;
+	margin-bottom: 8px;
+	padding: 5px 10px;
+	text-decoration: none;
+	border: 1px solid $light-gray;
+	border-radius: $border-radius;
 
-  &:hover {
-    text-decoration: none;
-    color: $link-color-hover;
-  }
+	&:hover {
+		text-decoration: none;
+		color: $link-color-hover;
+	}
 }
-
 
 /*
    Comments
    ========================================================================== */
 
 .page__comments {
-  float: left;
-  margin-left: 0;
-  margin-right: 0;
-  width: 100%;
-  clear: both;
+	float: left;
+	margin-left: 0;
+	margin-right: 0;
+	width: 100%;
+	clear: both;
 }
 
 .page__comments-title {
-  margin-top: 2rem;
-  margin-bottom: 10px;
-  padding-top: 2rem;
-  font-size: $type-size-6;
-  border-top: 1px solid $border-color;
-  text-transform: uppercase;
+	margin-top: 2rem;
+	margin-bottom: 10px;
+	padding-top: 2rem;
+	font-size: $type-size-6;
+	border-top: 1px solid $border-color;
+	text-transform: uppercase;
 }
 
 .page__comments-form {
-  padding: 1em;
-  background: $lighter-gray;
-  -webkit-transition: $global-transition;
-  transition: $global-transition;
+	padding: 1em;
+	background: $lighter-gray;
+	-webkit-transition: $global-transition;
+	transition: $global-transition;
 
-  &.disabled {
-    input,
-    button,
-    textarea,
-    label {
-      pointer-events: none;
-      cursor: not-allowed;
-      filter: alpha(opacity=65);
-      box-shadow: none;
-      opacity: 0.65;
-    }
-  }
+	&.disabled {
+		input,
+		button,
+		textarea,
+		label {
+			pointer-events: none;
+			cursor: not-allowed;
+			filter: alpha(opacity=65);
+			box-shadow: none;
+			opacity: 0.65;
+		}
+	}
 }
 
 .comment {
-  @include clearfix();
-  margin: 1em 0;
+	@include clearfix();
+	margin: 1em 0;
 
-  &:not(:last-child) {
-    border-bottom: 1px solid $border-color;
-  }
+	&:not(:last-child) {
+		border-bottom: 1px solid $border-color;
+	}
 }
 
 .comment__avatar-wrapper {
-  float: left;
-  width: 60px;
-  height: 60px;
+	float: left;
+	width: 60px;
+	height: 60px;
 
-  @include breakpoint($large) {
-    width: 100px;
-    height: 100px;
-  }
+	@include breakpoint($large) {
+		width: 100px;
+		height: 100px;
+	}
 }
 
 .comment__avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
 
-  @include breakpoint($large) {
-    width: 80px;
-    height: 80px;
-    padding: 5px;
-    border: 1px solid $border-color;
-  }
+	@include breakpoint($large) {
+		width: 80px;
+		height: 80px;
+		padding: 5px;
+		border: 1px solid $border-color;
+	}
 }
 
 .comment__content-wrapper {
-  float: right;
-  width: calc(100% - 60px);
+	float: right;
+	width: calc(100% - 60px);
 
-  @include breakpoint($large) {
-    width: calc(100% - 100px);
-  }
+	@include breakpoint($large) {
+		width: calc(100% - 100px);
+	}
 }
 
 .comment__author {
-  margin: 0;
+	margin: 0;
 
-  a {
-    text-decoration: none;
-  }
+	a {
+		text-decoration: none;
+	}
 }
 
 .comment__date {
-  @extend .page__meta;
-  margin: 0;
+	@extend .page__meta;
+	margin: 0;
 
-  a {
-    text-decoration: none;
-  }
+	a {
+		text-decoration: none;
+	}
 }
-
 
 /*
    Related
    ========================================================================== */
 
-   .page__related {
-    @include clearfix();
-    float: left;
-    margin-top: 2em;
-    padding-top: 1em;
-    border-top: 1px solid $border-color;
-  
-    @include breakpoint($large) {
-      float: right;
-      width: calc(100% - #{$right-sidebar-width-narrow});
-    }
-  
-    @include breakpoint($x-large) {
-      width: calc(100% - #{$right-sidebar-width});
-    }
-  
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-  }
-  
-  .page__related-title {
-    margin-bottom: 10px;
-    font-size: $type-size-6;
-    text-transform: uppercase;
-  }
+.page__related {
+	@include clearfix();
+	float: left;
+	margin-top: 2em;
+	padding-top: 1em;
+	border-top: 1px solid $border-color;
+
+	@include breakpoint($large) {
+		float: right;
+		width: calc(100% - #{$right-sidebar-width-narrow});
+	}
+
+	@include breakpoint($x-large) {
+		width: calc(100% - #{$right-sidebar-width});
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+}
+
+.page__related-title {
+	margin-bottom: 10px;
+	font-size: $type-size-6;
+	text-transform: uppercase;
+}

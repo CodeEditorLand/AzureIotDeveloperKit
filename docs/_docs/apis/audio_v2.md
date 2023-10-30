@@ -5,7 +5,12 @@ excerpt: "The Audio module for AZ3166"
 last_modified_at: 2017-11-22T10:16:34-04:00
 ---
 
-Audio class version 2. There are two ways to use `AudioClass` recording and playing music : by callback or by WAV format data. In callback scenario, it records / plays audio data to / from a 512 bytes data inside audio class. Application can control the data on play callback called or read the data on record callback called. In WAV format data scenario, it records / plays audio data to / from WAV format data.
+Audio class version 2. There are two ways to use `AudioClass` recording and
+playing music : by callback or by WAV format data. In callback scenario, it
+records / plays audio data to / from a 512 bytes data inside audio class.
+Application can control the data on play callback called or read the data on
+record callback called. In WAV format data scenario, it records / plays audio
+data to / from WAV format data.
 
 ## Assembly
 
@@ -13,37 +18,36 @@ AudioClassV2.h
 
 ## Summary
 
-| Types |
-| :---- |
-| [WaveHeader](#waveheader) |
+| Types                                       |
+| :------------------------------------------ |
+| [WaveHeader](#waveheader)                   |
 | [AUDIO_STATE_TypeDef](#audio_state_typedef) |
 
-
-| Common methods |
-| :------ |
-| [getInstance](#getinstance) - `static AudioClass& getInstance()` |
-| [format](#format) - `void format(unsigned int sampleRate, unsigned short sampleBitLength)` |
-| [stop](#stop) - `void stop()` |
-| [getAudioState](#getaudiostate) - `int getAudioState()` |
-| [setVolume](#setVolume) - `bool setVolume(uint8_t volume)` |
-| [readRegister](#readRegister) - `uint16_t readRegister(uint16_t registerAddress)` |
-| [writeRegister](#writeRegister) - `void writeRegister(uint16_t registerAddress, uint16_t value)` |
+| Common methods                                                                                          |
+| :------------------------------------------------------------------------------------------------------ |
+| [getInstance](#getinstance) - `static AudioClass& getInstance()`                                        |
+| [format](#format) - `void format(unsigned int sampleRate, unsigned short sampleBitLength)`              |
+| [stop](#stop) - `void stop()`                                                                           |
+| [getAudioState](#getaudiostate) - `int getAudioState()`                                                 |
+| [setVolume](#setVolume) - `bool setVolume(uint8_t volume)`                                              |
+| [readRegister](#readRegister) - `uint16_t readRegister(uint16_t registerAddress)`                       |
+| [writeRegister](#writeRegister) - `void writeRegister(uint16_t registerAddress, uint16_t value)`        |
 | [enableLevelControl](#enableLevelControl) - `void enableLevelControl(uint8_t maxGain, uint8_t minGain)` |
-| [disableLevelControl](#disableLevelControl) - `void disableLevelControl()` |
-| [setPGAGain](#setPGAGain) - `void setPGAGain(uint8_t gain)` |
+| [disableLevelControl](#disableLevelControl) - `void disableLevelControl()`                              |
+| [setPGAGain](#setPGAGain) - `void setPGAGain(uint8_t gain)`                                             |
 
-| Callback scenario methods |
-| :------ |
-| [startRecord](#startrecord) - `int startRecord(callbackFunc func = NULL)` |
-| [startPlay](#startplay) - `int startPlay(callbackFunc func = NULL)` |
+| Callback scenario methods                                                                            |
+| :--------------------------------------------------------------------------------------------------- |
+| [startRecord](#startrecord) - `int startRecord(callbackFunc func = NULL)`                            |
+| [startPlay](#startplay) - `int startPlay(callbackFunc func = NULL)`                                  |
 | [readFromRecordBuffer](#readfromrecordbuffer) - `int readFromRecordBuffer(char* buffer, int length)` |
-| [writeToPlayBuffer](#writetoplaybuffer) - `int writeToPlayBuffer(char* buffer, int length)` |
+| [writeToPlayBuffer](#writetoplaybuffer) - `int writeToPlayBuffer(char* buffer, int length)`          |
 
-| WAV format data scenario methods |
-| :------ |
-| [startRecord](#startrecord-1) - `int startRecord(char* audioBuffer, int size)` |
-| [startPlay](#startplay-1) - `int startPlay(char* audioBuffer, int size)` |
-| [getCurrentSize](#getcurrentsize) - `int getCurrentSize()` |
+| WAV format data scenario methods                                                                        |
+| :------------------------------------------------------------------------------------------------------ |
+| [startRecord](#startrecord-1) - `int startRecord(char* audioBuffer, int size)`                          |
+| [startPlay](#startplay-1) - `int startPlay(char* audioBuffer, int size)`                                |
+| [getCurrentSize](#getcurrentsize) - `int getCurrentSize()`                                              |
 | [convertToMono](#converttomono) - `int convertToMono(char* audioBuffer, int size, int sampleBitLength)` |
 
 ## Types
@@ -71,12 +75,12 @@ typedef struct
 } WaveHeader;
 ```
 
-### AUDIO\_STATE\_TypeDef
+### AUDIO_STATE_TypeDef
 
 > Enum for audio status
 
 ```cpp
-typedef enum 
+typedef enum
 {
   AUDIO_STATE_IDLE = 0,
   AUDIO_STATE_INIT,
@@ -96,17 +100,16 @@ static AudioClass& getInstance()
 ```
 
 > Get the single instance of AudioClass.
-> 
+>
 > #### Parameters
-> 
+>
 > None.
-> 
+>
 > #### Return value
-> 
-> | Type | Description |
-> | :--- | :---------- |
+>
+> | Type        | Description                       |
+> | :---------- | :-------------------------------- |
 > | AudioClass& | Reference to the single instance. |
-
 
 ### format
 
@@ -115,18 +118,17 @@ void format(unsigned int sampleRate, unsigned short sampleBitLength)
 ```
 
 > Configure the audio data format.
-> 
+>
 > #### Parameters
-> 
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | unsigned int | sampleRate | Sample rate. |
+>
+> | Type           | Name            | Description        |
+> | :------------- | :-------------- | :----------------- |
+> | unsigned int   | sampleRate      | Sample rate.       |
 > | unsigned short | sampleBitLength | Sample bit length. |
-> 
+>
 > #### Return value
-> 
+>
 > `void`
-
 
 ### stop
 
@@ -135,15 +137,14 @@ void stop()
 ```
 
 > Stop audio data transmition.
-> 
+>
 > #### Parameters
-> 
+>
 > None.
-> 
+>
 > #### Return value
-> 
+>
 > `void`
-
 
 ### getAudioState
 
@@ -151,17 +152,18 @@ void stop()
 int getAudioState();
 ```
 
-> Get status of the audio driver. Please use this API to query whether the playing/recoding process is completed.
+> Get status of the audio driver. Please use this API to query whether the
+> playing/recoding process is completed.
 >
 > #### Parameters
-> 
+>
 > None.
 >
 > #### Return value
-> 
-> | Type | Description |
-> | :--- | :---------- |
-> | int | Value of AUDIO_STATE_TypeDef. |
+>
+> | Type | Description                   |
+> | :--- | :---------------------------- |
+> | int  | Value of AUDIO_STATE_TypeDef. |
 
 ### setVolume
 
@@ -173,14 +175,14 @@ int getAudioState();
 >
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
+> | Type    | Name   | Description                                                                                     |
+> | :------ | :----- | :---------------------------------------------------------------------------------------------- |
 > | uint8_t | volume | Volume level to be set in percentage from 0% to 100% (0 for Mute and 100 for Max volume level). |
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
+> | Type | Description                                  |
+> | :--- | :------------------------------------------- |
 > | bool | returns true on success, or false on failure |
 
 ### readRegister
@@ -190,17 +192,17 @@ uint16_t readRegister(uint16_t registerAddress)
 ```
 
 > Read the given nau88c10 register.
-> 
+>
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
+> | Type     | Name            | Description      |
+> | :------- | :-------------- | :--------------- |
 > | uint16_t | registerAddress | Register address |
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
+> | Type     | Description                       |
+> | :------- | :-------------------------------- |
 > | uint16_t | the integer value in the register |
 
 ### writeRegister
@@ -210,13 +212,13 @@ void writeRegister(uint16_t registerAddress, uint16_t value)
 ```
 
 > Write the given nau88c10 register.
-> 
+>
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | uint16_t | registerAddress | Register address |
-> | uint16_t | value | The value to write |
+> | Type     | Name            | Description        |
+> | :------- | :-------------- | :----------------- |
+> | uint16_t | registerAddress | Register address   |
+> | uint16_t | value           | The value to write |
 >
 > #### Return value
 >
@@ -228,12 +230,13 @@ void writeRegister(uint16_t registerAddress, uint16_t value)
 void enableLevelControl(uint8_t maxGain, uint8_t minGain)
 ```
 
-> Enable automatic level control with given min and max gain as per ALCMXGAIN and ALCMNGAIN (register 0x20).
-> 
+> Enable automatic level control with given min and max gain as per ALCMXGAIN
+> and ALCMNGAIN (register 0x20).
+>
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
+> | Type    | Name    | Description             |
+> | :------ | :------ | :---------------------- |
 > | uint8_t | maxGain | A value between 0 and 7 |
 > | uint8_t | minGain | A value between 0 and 7 |
 >
@@ -247,9 +250,10 @@ void enableLevelControl(uint8_t maxGain, uint8_t minGain)
 void disableLevelControl()
 ```
 
->  Disable automatic level control (register 0x20).
-> 
+> Disable automatic level control (register 0x20).
+>
 > #### Parameters
+>
 > None
 >
 > #### Return value
@@ -262,12 +266,13 @@ void disableLevelControl()
 void setPGAGain(uint8_t gain)
 ```
 
-> set the Programmable Gain Amplifier directly (this will disable automatic level control).
-> 
+> set the Programmable Gain Amplifier directly (this will disable automatic
+> level control).
+>
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
+> | Type    | Name | Description                |
+> | :------ | :--- | :------------------------- |
 > | uint8_t | gain | A value between 0 and 0x3F |
 >
 > #### Return value
@@ -275,26 +280,27 @@ void setPGAGain(uint8_t gain)
 > None
 
 ## Callback scenario methods
+
 ### startRecord
 
 ```cpp
 int startRecord(callbackFunc func = NULL);
 ```
 
-> Start recording audio data and call func after every 512 bytes buffer was recorded.
-> 
+> Start recording audio data and call func after every 512 bytes buffer was
+> recorded.
+>
 > #### Parameters
-> 
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
+>
+> | Type         | Name | Description               |
+> | :----------- | :--- | :------------------------ |
 > | callbackFunc | func | Record callback function. |
-> 
+>
 > #### Return value
-> 
-> | Type | Description |
-> | :--- | :---------- |
-> | int | Result code, 0 (AUDIO_OK) in case of success, error code otherwise. |
-
+>
+> | Type | Description                                                         |
+> | :--- | :------------------------------------------------------------------ |
+> | int  | Result code, 0 (AUDIO_OK) in case of success, error code otherwise. |
 
 ### startPlay
 
@@ -302,20 +308,20 @@ int startRecord(callbackFunc func = NULL);
 int startPlay(callbackFunc func = NULL);
 ```
 
-> Start playing audio data and call func after every 512 bytes buffer was played.
-> 
+> Start playing audio data and call func after every 512 bytes buffer was
+> played.
+>
 > #### Parameters
-> 
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
+>
+> | Type         | Name | Description             |
+> | :----------- | :--- | :---------------------- |
 > | callbackFunc | func | Play callback function. |
-> 
+>
 > #### Return value
-> 
-> | Type | Description |
-> | :--- | :---------- |
-> | int | Result code, 0 (AUDIO_OK) in case of success, error code otherwise. |
-
+>
+> | Type | Description                                                         |
+> | :--- | :------------------------------------------------------------------ |
+> | int  | Result code, 0 (AUDIO_OK) in case of success, error code otherwise. |
 
 ### readFromRecordBuffer
 
@@ -324,20 +330,19 @@ int readFromRecordBuffer(char* buffer, int length);
 ```
 
 > Read recorded data from buffer inside AudioClass to given buffer.
-> 
+>
 > #### Parameters
-> 
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | char * | buffer | Pointer to write recorded data to. |
-> | int | size | Size of buffer. |
-> 
+>
+> | Type    | Name   | Description                        |
+> | :------ | :----- | :--------------------------------- |
+> | char \* | buffer | Pointer to write recorded data to. |
+> | int     | size   | Size of buffer.                    |
+>
 > #### Return value
-> 
-> | Type | Description |
-> | :--- | :---------- |
-> | int | Size of data copied. |
-
+>
+> | Type | Description          |
+> | :--- | :------------------- |
+> | int  | Size of data copied. |
 
 ### writeToPlayBuffer
 
@@ -346,20 +351,19 @@ int writeToPlayBuffer(char* buffer, int length);
 ```
 
 > Write played data from given buffer to buffer inside AudioClass.
-> 
+>
 > #### Parameters
-> 
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | char * | buffer | Pointer to read played data from. |
-> | int | size | Size of buffer. |
-> 
+>
+> | Type    | Name   | Description                       |
+> | :------ | :----- | :-------------------------------- |
+> | char \* | buffer | Pointer to read played data from. |
+> | int     | size   | Size of buffer.                   |
+>
 > #### Return value
-> 
-> | Type | Description |
-> | :--- | :---------- |
-> | int | Size of data copied. |
-
+>
+> | Type | Description          |
+> | :--- | :------------------- |
+> | int  | Size of data copied. |
 
 ## WAV format data scenario methods
 
@@ -370,20 +374,19 @@ int startRecord(char* audioBuffer, int size);
 ```
 
 > Start recording audio data and save WAV format data to audioBuffer.
-> 
+>
 > #### Parameters
-> 
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | char * | audioBuffer | Pointer to write WAV format data. |
-> | int | size | Size of audioBuffer. Maximus recorded WAV format data. |
-> 
+>
+> | Type    | Name        | Description                                            |
+> | :------ | :---------- | :----------------------------------------------------- |
+> | char \* | audioBuffer | Pointer to write WAV format data.                      |
+> | int     | size        | Size of audioBuffer. Maximus recorded WAV format data. |
+>
 > #### Return value
-> 
-> | Type | Description |
-> | :--- | :---------- |
-> | int | Result code, 0 (AUDIO_OK) in case of success, error code otherwise. |
-
+>
+> | Type | Description                                                         |
+> | :--- | :------------------------------------------------------------------ |
+> | int  | Result code, 0 (AUDIO_OK) in case of success, error code otherwise. |
 
 ### startPlay
 
@@ -392,20 +395,19 @@ int startPlay(char* audioBuffer, int size);
 ```
 
 > Start playing WAV format data in audioBuffer.
-> 
+>
 > #### Parameters
-> 
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | char * | audioBuffer | Pointer to the WAV format data buffer. |
-> | int | size |  size of audioBuffer. |
-> 
+>
+> | Type    | Name        | Description                            |
+> | :------ | :---------- | :------------------------------------- |
+> | char \* | audioBuffer | Pointer to the WAV format data buffer. |
+> | int     | size        | size of audioBuffer.                   |
+>
 > #### Return value
-> 
-> | Type | Description |
-> | :--- | :---------- |
-> | int | Result code, 0 (AUDIO_OK) if correct playing, else wrong playing. |
-
+>
+> | Type | Description                                                       |
+> | :--- | :---------------------------------------------------------------- |
+> | int  | Result code, 0 (AUDIO_OK) if correct playing, else wrong playing. |
 
 ### getCurrentSize
 
@@ -414,17 +416,16 @@ int getCurrentSize()
 ```
 
 > Get current recorded or played WAV format data size in byte.
-> 
+>
 > #### Parameters
-> 
+>
 > None.
-> 
+>
 > #### Return value
-> 
-> | Type | Description |
-> | :--- | :---------- |
-> | int | Current recorded or played WAV format data size. |
-
+>
+> | Type | Description                                      |
+> | :--- | :----------------------------------------------- |
+> | int  | Current recorded or played WAV format data size. |
 
 ### convertToMono
 
@@ -433,24 +434,25 @@ int convertToMono(char * audioBuffer, int size, int sampleBitLength);
 ```
 
 > Convert the given stereo WAV format data to mono WAV format data.
-> 
+>
 > #### Parameters
-> 
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | char * | audioBuffer | Pointer to the WAV format data. |
-> | int | size |  size of WAV format data. |
-> | int | sampleBitLength |  Sample bit depth of the given audio data. |
+>
+> | Type    | Name            | Description                               |
+> | :------ | :-------------- | :---------------------------------------- |
+> | char \* | audioBuffer     | Pointer to the WAV format data.           |
+> | int     | size            | size of WAV format data.                  |
+> | int     | sampleBitLength | Sample bit depth of the given audio data. |
 >
 > #### Return value
-> 
-> | Type | Description |
-> | :--- | :---------- |
-> | int | Size of mono WAV format data after convert. |
-
+>
+> | Type | Description                                 |
+> | :--- | :------------------------------------------ |
+> | int  | Size of mono WAV format data after convert. |
 
 ## Sample code
+
 ### Callback scenario
+
 ```cpp
 #include "Arduino.h"
 #include "OledDisplay.h"
@@ -490,7 +492,7 @@ void loop(void)
 {
   buttonAState = digitalRead(USER_BUTTON_A);
   buttonBState = digitalRead(USER_BUTTON_B);
-    
+
   if (buttonAState == LOW && lastButtonAState == HIGH)
   {
     Screen.clean();
@@ -578,6 +580,7 @@ void recordCallback(void)
 ```
 
 ### WAV format data scenario
+
 ```cpp
 #include "Arduino.h"
 #include "OledDisplay.h"
@@ -620,7 +623,7 @@ void loop(void)
   {
     buttonAState = digitalRead(USER_BUTTON_A);
     buttonBState = digitalRead(USER_BUTTON_B);
-    
+
     if (buttonAState == LOW && lastButtonAState == HIGH)
     {
       record();
@@ -630,7 +633,7 @@ void loop(void)
     {
       play();
     }
-    
+
     lastButtonAState = buttonAState;
     lastButtonBState = buttonBState;
   }
@@ -665,7 +668,7 @@ void record()
     delay(10);
   }
   Audio.stop();
-  
+
   Screen.clean();
   Screen.print(0, "Finish recording");
   totalSize = Audio.getCurrentSize();
@@ -680,12 +683,12 @@ void play()
   Screen.clean();
   Screen.print(0, "Start playing");
   Audio.startPlay(audioBuffer, totalSize);
-  
+
   while (Audio.getAudioState() == AUDIO_STATE_PLAYING)
   {
     delay(10);
   }
-  
+
   Screen.print(0, "Stop playing");
   printIdleMessage();
 }

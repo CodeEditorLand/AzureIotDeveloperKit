@@ -1,19 +1,18 @@
 .sidebar__right_fix {
+	@include breakpoint($large) {
+		position: fixed;
+	}
 
-  @include breakpoint($large) {
-    position: fixed;
-  }
+	@include breakpoint($x-large) {
+		width: $right-sidebar-width-narrow;
+	}
 
-  @include breakpoint($x-large) {
-    width: $right-sidebar-width-narrow;
-  }
-
-  @include breakpoint(1440px) {
-    width: $right-sidebar-width;
-  }
+	@include breakpoint(1440px) {
+		width: $right-sidebar-width;
+	}
 }
 
 .toc__menu_active {
-  color: #000;
-  background: #f2f3f3;
+	color: #000;
+	background: #f2f3f3;
 }
