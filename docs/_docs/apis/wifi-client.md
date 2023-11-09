@@ -13,27 +13,27 @@ AZ3166WiFiClient.h
 
 ## Summary
 
-| Types                   |
-| :---------------------- |
+| Types |
+| :---- |
 | [IPAddress](#ipaddress) |
 
-| Constructors                               |
-| :----------------------------------------- |
+| Constructors |
+| :----------- |
 | [WiFiClient](#wificlient) - `WiFiClient()` |
 
-| Methods                                                                               |
-| :------------------------------------------------------------------------------------ |
-| [peek](#peek) - `int peek()`                                                          |
-| [connect](#connect) - `int connect(const char *host, unsigned short port)`            |
-| [connect](#connect-1) - `int connect(IPAddress ip, unsigned short port)`              |
-| [available](#available) - `int available()`                                           |
-| [write](#write) - `unsigned int write(unsigned char b)`                               |
+| Methods |
+| :------ |
+| [peek](#peek) - `int peek()` |
+| [connect](#connect) - `int connect(const char *host, unsigned short port)` |
+| [connect](#connect-1) - `int connect(IPAddress ip, unsigned short port)` |
+| [available](#available) - `int available()` |
+| [write](#write) - `unsigned int write(unsigned char b)` |
 | [write](#write-1) - `unsigned int write(const unsigned char *buf, unsigned int size)` |
-| [read](#read) - `int read()`                                                          |
-| [read](#read-1) - `int read(unsigned char *buf, unsigned int size)`                   |
-| [flush](#flush) - `void flush()`                                                      |
-| [stop](#stop) - `void stop()`                                                         |
-| [connected](#connected) - `int connected()`                                           |
+| [read](#read) - `int read()` |
+| [read](#read-1) - `int read(unsigned char *buf, unsigned int size)` |
+| [flush](#flush) - `void flush()` |
+| [stop](#stop) - `void stop()` |
+| [connected](#connected) - `int connected()` |
 
 ## Types
 
@@ -53,6 +53,7 @@ WiFiClient()
 >
 > None.
 
+
 ## Methods
 
 ### peek
@@ -61,8 +62,7 @@ WiFiClient()
 int peek()
 ```
 
-> Returns the next byte (character) of incoming serial data without removing it
-> from the internal serial buffer.
+> Returns the next byte (character) of incoming serial data without removing it from the internal serial buffer.
 >
 > #### Parameters
 >
@@ -72,7 +72,7 @@ int peek()
 >
 > | Type | Description |
 > | :--- | :---------- |
-> | int  | Always 0.   |
+> | int | Always 0. |
 
 ### connect
 
@@ -84,16 +84,16 @@ int connect(const char *host, unsigned short port)
 >
 > #### Parameters
 >
-> | Type           | Name | Description                               |
-> | :------------- | :--- | :---------------------------------------- |
-> | char \*        | host | The host name of the server.              |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | char * | host | The host name of the server. |
 > | unsigned short | port | The port that the client will connect to. |
 >
 > #### Return value
 >
-> | Type | Description                |
-> | :--- | :------------------------- |
-> | int  | 1 for success, 0 for fail. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | 1 for success, 0 for fail. |
 
 ### connect
 
@@ -105,16 +105,16 @@ int connect(IPAddress ip, unsigned short port)
 >
 > #### Parameters
 >
-> | Type           | Name | Description                               |
-> | :------------- | :--- | :---------------------------------------- |
-> | IPAddress      | ip   | The IP of the server.                     |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | IPAddress | ip | The IP of the server. |
 > | unsigned short | port | The port that the client will connect to. |
 >
 > #### Return value
 >
-> | Type | Description                |
-> | :--- | :------------------------- |
-> | int  | 1 for success, 0 for fail. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | 1 for success, 0 for fail. |
 
 ### available
 
@@ -130,9 +130,9 @@ int available()
 >
 > #### Return value
 >
-> | Type | Description                    |
-> | :--- | :----------------------------- |
-> | int  | The number of bytes available. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | The number of bytes available. |
 
 ### write
 
@@ -144,14 +144,14 @@ size_t write(unsigned char b)
 >
 > #### Parameters
 >
-> | Type          | Name | Description    |
-> | :------------ | :--- | :------------- |
-> | unsigned char | b    | Data to write. |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | unsigned char | b | Data to write. |
 >
 > #### Return value
 >
-> | Type   | Description           |
-> | :----- | :-------------------- |
+> | Type | Description |
+> | :--- | :---------- |
 > | size_t | Size of data written. |
 
 ### write
@@ -164,15 +164,15 @@ size_t write(const unsigned char *buf, unsigned int size)
 >
 > #### Parameters
 >
-> | Type                   | Name | Description               |
-> | :--------------------- | :--- | :------------------------ |
-> | const unsigned char \* | buf  | Pointer to data to write. |
-> | unsigned int           | size | Size of data to write.    |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | const unsigned char * | buf | Pointer to data to write. |
+> | unsigned int | size | Size of data to write. |
 >
 > #### Return value
 >
-> | Type   | Description           |
-> | :----- | :-------------------- |
+> | Type | Description |
+> | :--- | :---------- |
 > | size_t | Size of data written. |
 
 ### read
@@ -189,9 +189,9 @@ int read()
 >
 > #### Return value
 >
-> | Type | Description                                |
-> | :--- | :----------------------------------------- |
-> | int  | The next byte, or -1 if none is available. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | The next byte, or -1 if none is available. |
 
 ### read
 
@@ -203,16 +203,16 @@ int read(unsigned char *buf, unsigned int size)
 >
 > #### Parameters
 >
-> | Type             | Name | Description                    |
-> | :--------------- | :--- | :----------------------------- |
-> | unsigned char \* | buf  | Pointer to the received data.  |
-> | unsigned int     | size | Size of data received to read. |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | unsigned char * | buf | Pointer to the received data. |
+> | unsigned int | size | Size of data received to read. |
 >
 > #### Return value
 >
-> | Type | Description                                        |
-> | :--- | :------------------------------------------------- |
-> | int  | The size of byte read, or -1 if none is available. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | The size of byte read, or -1 if none is available. |
 
 ### flush
 
@@ -220,8 +220,7 @@ int read(unsigned char *buf, unsigned int size)
 void flush()
 ```
 
-> [Not implemented] Discard any bytes that have been written to the client but
-> not yet read.
+> [Not implemented] Discard any bytes that have been written to the client but not yet read.
 >
 > #### Parameters
 >
@@ -261,9 +260,9 @@ int connected()
 >
 > #### Return value
 >
-> | Type | Description                           |
-> | :--- | :------------------------------------ |
-> | int  | 0 for not connected, 1 for connected. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | 0 for not connected, 1 for connected. |
 
 ## Sample code
 

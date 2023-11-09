@@ -5,9 +5,7 @@ excerpt: "Library for external interrupts on IoT DevKit"
 last_modified_at: 2018-04-26T08:08:30-04:00
 ---
 
-Interrupts are useful for making things happen automatically in microcontroller
-programs, and can help solve timing problems. Good tasks for using an interrupt
-may include reading a rotary encoder, or monitoring user input.
+Interrupts are useful for making things happen automatically in microcontroller programs, and can help solve timing problems. Good tasks for using an interrupt may include reading a rotary encoder, or monitoring user input.
 
 ## Assembly
 
@@ -15,10 +13,11 @@ Arduino.h
 
 ## Summary
 
-| Methods                                                                                                  |
-| :------------------------------------------------------------------------------------------------------- |
+
+| Methods |
+| :------ |
 | [attachInterrupt](#attachinterrupt) - `int attachInterrupt(PinName pin, Callback<void()> ISR, int mode)` |
-| [detachInterrupt](#detachinterrupt) - `int detachInterrupt(PinName pin)`                                 |
+| [detachInterrupt](#detachinterrupt) - `int detachInterrupt(PinName pin)` |
 
 ## Methods
 
@@ -29,40 +28,40 @@ int attachInterrupt(PinName pin, Callback<void()> ISR, int mode);
 ```
 
 > Attach interrupt callback to digital pin.
->
+> 
 > #### Parameters
->
-> | Type             | Name | Description                                                                                           |
-> | :--------------- | :--- | :---------------------------------------------------------------------------------------------------- |
-> | PinName          | pin  | Valid PinNames are: PA_4, PA_5, PA_10, PB_0, PB_2, PB_3, PB_6, PB_7, PB_8, PB_9, PB_13, PB_14, PB_15. |
-> | Callback<void()> | ISR  | The callback function.                                                                                |
-> | int              | mode | Triggered event type, support CHANGE, RISING, FALLING now.                                            |
->
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | PinName | pin | Valid PinNames are: PA_4, PA_5, PA_10, PB_0, PB_2, PB_3, PB_6, PB_7, PB_8, PB_9, PB_13, PB_14, PB_15. |
+> | Callback<void()> | ISR | The callback function. |
+> | int | mode | Triggered event type, support CHANGE, RISING, FALLING now. |
+> 
 > #### Return value
->
-> | Type | Description                                              |
-> | :--- | :------------------------------------------------------- |
-> | int  | Result code, 0 in case of success, error code otherwise. |
+> 
+> | Type | Description |
+> | :--- | :---------- |
+> | int | Result code, 0 in case of success, error code otherwise.  |
+
 
 ### detachInterrupt
 
 ```cpp
 int detachInterrupt(PinName pin);
 ```
-
 > Detach interrupt callback from digital pin.
->
+> 
 > #### Parameters
->
-> | Type    | Name | Description                                                                                           |
-> | :------ | :--- | :---------------------------------------------------------------------------------------------------- |
-> | PinName | pin  | Valid PinNames are: PA_4, PA_5, PA_10, PB_0, PB_2, PB_3, PB_6, PB_7, PB_8, PB_9, PB_13, PB_14, PB_15. |
->
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | PinName | pin | Valid PinNames are: PA_4, PA_5, PA_10, PB_0, PB_2, PB_3, PB_6, PB_7, PB_8, PB_9, PB_13, PB_14, PB_15. |
+> 
 > #### Return value
->
-> | Type | Description                                              |
-> | :--- | :------------------------------------------------------- |
-> | int  | Result code, 0 in case of success, error code otherwise. |
+> 
+> | Type | Description |
+> | :--- | :---------- |
+> | int | Result code, 0 in case of success, error code otherwise.  |
 
 ## Sample code
 

@@ -1,6 +1,6 @@
 ---
 title: "Audio-retired"
-permalink: /docs/apis/retired/audio-v1/
+permalink: /docs/apis/retired/audio-v1/ 
 excerpt: "The retired Audio module for AZ3166"
 last_modified_at: 2017-11-22T10:16:34-04:00
 ---
@@ -13,22 +13,23 @@ AudioClass.h
 
 ## Summary
 
-| Types                     |
-| :------------------------ |
+| Types |
+| :---- |
 | [WaveHeader](#waveheader) |
 
-| Methods                                                                                                |
-| :----------------------------------------------------------------------------------------------------- |
-| [getInstance](#getInstance) - `static AudioClass& getInstance()`                                       |
-| [format](#format) - `void format(unsigned int sampleRate, unsigned short sampleBitLength)`             |
+
+| Methods |
+| :------ |
+| [getInstance](#getInstance) - `static AudioClass& getInstance()` |
+| [format](#format) - `void format(unsigned int sampleRate, unsigned short sampleBitLength)` |
 | [startRecord](#startrecord) - `int startRecord(char * audioFile, int fileSize, int durationInSeconds)` |
-| [startPlay](#startPlay) - `int startPlay(char * audioFile, int size)`                                  |
-| [stop](#stop) - `void stop()`                                                                          |
+| [startPlay](#startPlay) - `int startPlay(char * audioFile, int size)` |
+| [stop](#stop) - `void stop()` |
 | [convertToMono](#convertToMono) - `int convertToMono(char * audioFile, int size, int sampleBitLength)` |
-| [getWav](#getwav) - `char *getWav(int *file_size)`                                                     |
-| [getAudioState](#getAudioState) - `int getAudioState();`                                               |
-| [getRecordedDuration](#getrecordedduration) - `double getRecordedDuration()`                           |
-| [getCurrentSize](#getcurrentsize) - `int getCurrentSize()`                                             |
+| [getWav](#getwav) - `char *getWav(int *file_size)` |
+| [getAudioState](#getAudioState) - `int getAudioState();` |
+| [getRecordedDuration](#getrecordedduration) - `double getRecordedDuration()` |
+| [getCurrentSize](#getcurrentsize) - `int getCurrentSize()` |
 
 ## Types
 
@@ -37,7 +38,7 @@ AudioClass.h
 > Enum for audio status
 
 ```cpp
-typedef enum
+typedef enum 
 {
   AUDIO_STATE_IDLE = 0,
   AUDIO_STATE_INIT,
@@ -80,12 +81,15 @@ char *getInstance()
 ```
 
 > Get the single instance of AudioClass
+> 
 
+> 
 > #### Return value
->
-> | Type        | Description                       |
-> | :---------- | :-------------------------------- |
+> 
+> | Type | Description |
+> | :--- | :---------- |
 > | AudioClass& | Reference to the single instance. |
+
 
 ### format
 
@@ -94,16 +98,16 @@ void format(unsigned int sampleRate, unsigned short sampleBitLength)
 ```
 
 > Configure the audio data format.
->
+> 
 > #### Parameters
->
-> | Type           | Name            | Description        |
-> | :------------- | :-------------- | :----------------- |
-> | unsigned int   | sampleRate      | Sample rate.       |
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | unsigned int | sampleRate | Sample rate. |
 > | unsigned short | sampleBitLength | Sample bit length. |
->
+> 
 > #### Return value
->
+> 
 > `void`
 
 ### startRecord
@@ -113,20 +117,21 @@ int startRecord(char * audioFile, int fileSize, int durationInSeconds);
 ```
 
 > Start recording audio data usine underlying codec
->
+> 
 > #### Parameters
->
-> | Type    | Name              | Description                 |
-> | :------ | :---------------- | :-------------------------- |
-> | char \* | audioFile         | Pointer to record file.     |
-> | int     | fileSize          | Record file size.           |
-> | int     | durationInSeconds | Record duration in seconds. |
->
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | char * | audioFile | Pointer to record file. |
+> | int | fileSize | Record file size. |
+> | int | durationInSeconds | Record duration in seconds. |
+> 
 > #### Return value
->
-> | Type | Description                                                         |
-> | :--- | :------------------------------------------------------------------ |
-> | int  | Result code, 0 (AUDIO_OK) in case of success, error code otherwise. |
+> 
+> | Type | Description |
+> | :--- | :---------- |
+> | int | Result code, 0 (AUDIO_OK) in case of success, error code otherwise. |
+
 
 ### startPlay
 
@@ -135,19 +140,20 @@ int startPlay(char * audioFile, int size);
 ```
 
 > Start playing audio data usine underlying codec
->
+> 
 > #### Parameters
->
-> | Type    | Name      | Description                       |
-> | :------ | :-------- | :-------------------------------- |
-> | char \* | audioFile | Pointer to the audio data buffer. |
-> | int     | fileSize  | fileSize Size of audio file.      |
->
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | char * | audioFile | Pointer to the audio data buffer. |
+> | int | fileSize |  fileSize Size of audio file. |
+> 
 > #### Return value
->
-> | Type | Description                                                       |
-> | :--- | :---------------------------------------------------------------- |
-> | int  | Result code, 0 (AUDIO_OK) if correct playing, else wrong playing. |
+> 
+> | Type | Description |
+> | :--- | :---------- |
+> | int | Result code, 0 (AUDIO_OK) if correct playing, else wrong playing. |
+
 
 ### stop
 
@@ -156,13 +162,13 @@ void stop()
 ```
 
 > Stop audio data transmition.
->
+> 
 > #### Parameters
->
+> 
 > None.
->
+> 
 > #### Return value
->
+> 
 > `void`
 
 ### convertToMono
@@ -172,20 +178,21 @@ int convertToMono(char * audioFile, int size, int sampleBitLength);
 ```
 
 > Convert the given stereo audio data to mono audio
->
+> 
 > #### Parameters
->
-> | Type    | Name            | Description                               |
-> | :------ | :-------------- | :---------------------------------------- |
-> | char \* | audioFile       | Pointer to the audio data buffer.         |
-> | int     | fileSize        | fileSize Size of audio file.              |
-> | int     | sampleBitLength | Sample bit depth of the given audio data. |
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | char * | audioFile | Pointer to the audio data buffer. |
+> | int | fileSize |  fileSize Size of audio file. |
+> | int | sampleBitLength |  Sample bit depth of the given audio data. |
 
 > #### Return value
->
-> | Type | Description                                                 |
-> | :--- | :---------------------------------------------------------- |
-> | int  | Result code, 0 in case of success, an error code otherwise. |
+> 
+> | Type | Description |
+> | :--- | :---------- |
+> | int | Result code, 0 in case of success, an error code otherwise. |
+
 
 ### getAudioState
 
@@ -193,14 +200,15 @@ int convertToMono(char * audioFile, int size, int sampleBitLength);
 int getAudioState();
 ```
 
-> Get status of the audio driver. Please use this API to query whether the
-> playing/recoding process is completed.
+> Get status of the audio driver. Please use this API to query whether the playing/recoding process is completed.
+> 
 
 > #### Return value
->
-> | Type | Description                  |
-> | :--- | :--------------------------- |
-> | int  | value of AUDIO_STATE_TypeDef |
+> 
+> | Type | Description |
+> | :--- | :---------- |
+> | int | value of AUDIO_STATE_TypeDef |
+
 
 ### getWav
 
@@ -209,18 +217,19 @@ char *getWav(int *file_size)
 ```
 
 > Get wave file.
->
+> 
 > #### Parameters
->
-> | Type   | Name      | Description           |
-> | :----- | :-------- | :-------------------- |
-> | int \* | file_size | Pointer to file size. |
->
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | int * | file_size | Pointer to file size. |
+> 
 > #### Return value
->
-> | Type    | Description               |
-> | :------ | :------------------------ |
-> | char \* | Pointer to the wave file. |
+> 
+> | Type | Description |
+> | :--- | :---------- |
+> | char * | Pointer to the wave file. |
+
 
 ### getRecordedDuration
 
@@ -229,15 +238,15 @@ double getRecordedDuration()
 ```
 
 > Get recorded duration in seconds.
->
+> 
 > #### Parameters
->
+> 
 > None.
->
+> 
 > #### Return value
->
-> | Type   | Description                   |
-> | :----- | :---------------------------- |
+> 
+> | Type | Description |
+> | :--- | :---------- |
 > | double | Recorded duration in seconds. |
 
 ### getCurrentSize
@@ -247,16 +256,16 @@ int getCurrentSize()
 ```
 
 > Get current record size in byte.
->
+> 
 > #### Parameters
->
+> 
 > None.
->
+> 
 > #### Return value
->
-> | Type | Description                  |
-> | :--- | :--------------------------- |
-> | int  | Current record size in byte. |
+> 
+> | Type | Description |
+> | :--- | :---------- |
+> | int | Current record size in byte. |
 
 ## Sample code
 
@@ -302,7 +311,7 @@ void loop(void)
   {
     buttonAState = digitalRead(USER_BUTTON_A);
     buttonBState = digitalRead(USER_BUTTON_B);
-
+    
     if (buttonAState == LOW && lastButtonAState == HIGH)
     {
       record();
@@ -312,7 +321,7 @@ void loop(void)
     {
       play();
     }
-
+    
     lastButtonAState = buttonAState;
     lastButtonBState = buttonBState;
   }
@@ -345,7 +354,7 @@ void record()
   {
     delay(100);
   }
-
+  
   Screen.clean();
   Screen.print(0, "Finish recording");
   Audio.getWav(&totalSize);
@@ -360,12 +369,12 @@ void play()
   Screen.clean();
   Screen.print(0, "Start playing");
   Audio.startPlay(waveFile, totalSize);
-
+  
   while (Audio.getAudioState() == AUDIO_STATE_PLAYING)
   {
     delay(100);
   }
-
+  
   Screen.print(0, "Stop playing");
   printIdleMessage();
 }

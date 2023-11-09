@@ -1,7 +1,7 @@
 # main links
 main:
-    - title: "Get Started"
-      url: https://aka.ms/iot-devkit
+  - title: "Get Started"
+    url: https://aka.ms/iot-devkit
 #  - title: "Docs"
 #    url: /docs/projects/
 #  - title: "Projects"
@@ -12,79 +12,80 @@ main:
 #    url: https://github.com/microsoft/devkit-sdk/releases/
 #    class: "masthead-circle"
 
+
 # documentation links
 docs:
-    - title: Projects Catalog
-      url: /docs/projects/
-    - title: How-to Guides
-      children:
-          - title: "Firmware upgrading"
-            url: /docs/firmware-upgrading/
-          - title: "Use configure mode"
-            url: /docs/use-configuration-mode/
-          - title: "Understand security chip"
-            url: /docs/understand-security-chip/
-          - title: "Disable data collection"
-            url: /docs/disable-data-collection/
-          - title: "Serial communications"
-            url: /docs/serial-communications/
-    - title: "FAQ"
-      url: /docs/faq/
-    - title: API Reference
-      children:
-          - title: "Arduino"
-            url: /docs/apis/arduino-language-reference/
-          - title: "AudioV2"
-            url: /docs/apis/audio-v2/
-          - title: "Display"
-            url: /docs/apis/display/
-          - title: "EEPROMInterface"
-            url: /docs/apis/eeprom-interface/
-          - title: "FileSystem"
-            url: /docs/apis/file-system/
-          - title: "HTTP Client"
-            url: /docs/apis/http-client/
-          - title: "External Interrupts"
-            url: /docs/apis/external-interrupts/
-          - title: "IrDA"
-            url: /docs/apis/irda/
-          - title: "LED"
-            url: /docs/apis/led/
-          - title: "MemoryPool"
-            url: /docs/apis/memory-pool/
-          - title: "Memory Status"
-            url: /docs/apis/memory-status/
-          - title: "Mutex"
-            url: /docs/apis/mutex/
-          - title: "OTA Programing"
-            url: /docs/apis/ota/
-          - title: "Queue"
-            url: /docs/apis/queue/
-          - title: "Semaphore"
-            url: /docs/apis/semaphore/
-          - title: "Sensor: Humidity & Temperature (HTS221)"
-            url: /docs/apis/hts221/
-          - title: "Sensor: Magnetic (LIS2MDL)"
-            url: /docs/apis/lis2mdl/
-          - title: "Sensor: Pressure  (LPS22HB)"
-            url: /docs/apis/lps22hb/
-          - title: "Sensor: Accelerometer & Gyroscope (LSM6DSL)"
-            url: /docs/apis/lsm6dsl/
-          - title: "System Function"
-            url: /docs/apis/system-function/
-          - title: "Thread"
-            url: /docs/apis/thread/
-          - title: "Timer"
-            url: /docs/apis/timer/
-          - title: "Watchdog Timer"
-            url: /docs/apis/watchdog-timer/
-          - title: "WebSocket Client"
-            url: /docs/apis/websocket-client/
-          - title: "WiFi"
-            url: /docs/apis/wifi/
-          - title: "WiFiClient"
-            url: /docs/apis/wifi-client/
-          - title: "WiFiServer"
-            url: /docs/apis/wifi-server/
-          - title: "WiFiUDP"
-            url: /docs/apis/wifi-udp/
+  - title: Projects Catalog
+    url: /docs/projects/
+  - title: How-to Guides
+    children:
+      - title: "Firmware upgrading"
+        url: /docs/firmware-upgrading/
+      - title: "Use configure mode"
+        url: /docs/use-configuration-mode/
+      - title: "Understand security chip"
+        url: /docs/understand-security-chip/
+      - title: "Disable data collection"
+        url: /docs/disable-data-collection/
+      - title: "Serial communications"
+        url: /docs/serial-communications/
+  - title: "FAQ"
+    url: /docs/faq/
+  - title: API Reference
+    children:
+      - title: "Arduino"
+        url: /docs/apis/arduino-language-reference/
+      - title: "AudioV2"
+        url: /docs/apis/audio-v2/
+      - title: "Display"
+        url: /docs/apis/display/
+      - title: "EEPROMInterface"
+        url: /docs/apis/eeprom-interface/
+      - title: "FileSystem"
+        url: /docs/apis/file-system/
+      - title: "HTTP Client"
+        url: /docs/apis/http-client/
+      - title: "External Interrupts"
+        url: /docs/apis/external-interrupts/
+      - title: "IrDA"
+        url: /docs/apis/irda/
+      - title: "LED"
+        url: /docs/apis/led/
+      - title: "MemoryPool"
+        url: /docs/apis/memory-pool/
+      - title: "Memory Status"
+        url: /docs/apis/memory-status/
+      - title: "Mutex"
+        url: /docs/apis/mutex/
+      - title: "OTA Programing"
+        url: /docs/apis/ota/
+      - title: "Queue"
+        url: /docs/apis/queue/
+      - title: "Semaphore"
+        url: /docs/apis/semaphore/
+      - title: "Sensor: Humidity & Temperature (HTS221)"
+        url: /docs/apis/hts221/
+      - title: "Sensor: Magnetic (LIS2MDL)"
+        url: /docs/apis/lis2mdl/
+      - title: "Sensor: Pressure  (LPS22HB)"
+        url: /docs/apis/lps22hb/
+      - title: "Sensor: Accelerometer & Gyroscope (LSM6DSL)"
+        url: /docs/apis/lsm6dsl/
+      - title: "System Function"
+        url: /docs/apis/system-function/
+      - title: "Thread"
+        url: /docs/apis/thread/
+      - title: "Timer"
+        url: /docs/apis/timer/
+      - title: "Watchdog Timer"
+        url: /docs/apis/watchdog-timer/
+      - title: "WebSocket Client"
+        url: /docs/apis/websocket-client/
+      - title: "WiFi"
+        url: /docs/apis/wifi/
+      - title: "WiFiClient"
+        url: /docs/apis/wifi-client/
+      - title: "WiFiServer"
+        url: /docs/apis/wifi-server/
+      - title: "WiFiUDP"
+        url: /docs/apis/wifi-udp/

@@ -1,29 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
-<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
-	xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" id="svg21" width="296.95999"
-	height="297.60001" viewBox="0 0 296.95999 297.60001" sodipodi:docname="icon-azure-functions.svg"
-	inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
-	<metadata id="metadata27">
-		<rdf:RDF>
-			<cc:Work rdf:about="">
-				<dc:format>image/svg+xml</dc:format>
-				<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-				<dc:title></dc:title>
-			</cc:Work>
-		</rdf:RDF>
-	</metadata>
-	<defs id="defs25" />
-	<sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10"
-		gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2"
-		inkscape:window-width="2560" inkscape:window-height="1377" id="namedview23" showgrid="false"
-		inkscape:zoom="0.79301074" inkscape:cx="148.48" inkscape:cy="148.8" inkscape:window-x="1432"
-		inkscape:window-y="-8" inkscape:window-maximized="1" inkscape:current-layer="svg21" />
-	<image width="296.95999" height="297.60001" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdAAAAHRCAYAAAGtBtgzAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg21"
+   width="296.95999"
+   height="297.60001"
+   viewBox="0 0 296.95999 297.60001"
+   sodipodi:docname="icon-azure-functions.svg"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
+  <metadata
+     id="metadata27">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs25" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     id="namedview23"
+     showgrid="false"
+     inkscape:zoom="0.79301074"
+     inkscape:cx="148.48"
+     inkscape:cy="148.8"
+     inkscape:window-x="1432"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg21" />
+  <image
+     width="296.95999"
+     height="297.60001"
+     preserveAspectRatio="none"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdAAAAHRCAYAAAGtBtgzAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
 jwv8YQUAAAAJcEhZcwAAFxEAABcRAcom8z8AAH9/SURBVHhe7Z0HfBzVtf8TSkKxBLjg3rENBkLH
 6pIl944x1SR0eCkQUl8KL0qB5L2X5CUkIVi9V9sUk5CAi6y2XdslWXKXcRwCfwIkFGtn5/znrs+a
 tXy1ZXZndmf3fD+f3we8mr1z79w5e2499zMEQRAM0TZ2alDtCi6AO87FpBIbwXE5jCbv3kvBu+uS
@@ -598,5 +630,8 @@ DEcmAwxMAm/3Lf+HHxMEQRAEMRpwfM14T++UDzw9U//1SfcaimNLEARBEOEg2Ka3C8brnPhPgiAI
 giBC4XFk/VKwZn0Z/0kQBEEQRCiguPgc/F+CIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiC
 IAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiC
 IFKSz3zm/wPK2nesmnxAJwAAAABJRU5ErkJggg==
-" id="image29" x="0" y="0" />
+"
+     id="image29"
+     x="0"
+     y="0" />
 </svg>

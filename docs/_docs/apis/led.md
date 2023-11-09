@@ -13,18 +13,18 @@ RGB_LED.h
 
 ## Summary
 
-| Types               |
-| :------------------ |
+| Types |
+| :---- |
 | [PinName](#pinname) |
 
-| Constructors                                                              |
-| :------------------------------------------------------------------------ |
+| Constructors |
+| :----------- |
 | [RGB_LED](#rgb_led) - `RGB_LED(PinName red, PinName green, PinName blue)` |
 
-| Methods                                                               |
-| :-------------------------------------------------------------------- |
+| Methods |
+| :------ |
 | [setColor](#setcolor) - `void setColor(int red, int green, int blue)` |
-| [turnOff](#turnoff) - `void turnOff()`                                |
+| [turnOff](#turnoff) - `void turnOff()` |
 
 ## Types
 
@@ -41,12 +41,12 @@ RGB_LED(PinName red, PinName green, PinName blue)
 ```
 
 > #### Parameters
->
-> | Type    | Name  | Description         |
-> | :------ | :---- | :------------------ |
-> | PinName | red   | Red LED pin name.   |
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | PinName | red | Red LED pin name. |
 > | PinName | green | Green LED pin name. |
-> | PinName | blue  | Blue LED pin name.  |
+> | PinName | blue | Blue LED pin name. |
 
 ## Methods
 
@@ -56,19 +56,18 @@ RGB_LED(PinName red, PinName green, PinName blue)
 void setColor(int red, int green, int blue)
 ```
 
-> Set LED color with an RGB color value, each parameter is an integer between 0
-> and 255.
->
+> Set LED color with an RGB color value, each parameter is an integer between 0 and 255.
+> 
 > #### Parameters
->
-> | Type | Name  | Description                                                               |
-> | :--- | :---- | :------------------------------------------------------------------------ |
-> | int  | red   | Defines red color intensity, the value is an integer between 0 and 255.   |
-> | int  | green | Defines green color intensity, the value is an integer between 0 and 255. |
-> | int  | blue  | Defines blue color intensity, the value is an integer between 0 and 255.  |
->
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | int | red | Defines red color intensity, the value is an integer between 0 and 255. |
+> | int | green | Defines green color intensity, the value is an integer between 0 and 255. |
+> | int | blue | Defines blue color intensity, the value is an integer between 0 and 255. |
+> 
 > #### Return value
->
+> 
 > `void`
 
 ### turnOff
@@ -78,13 +77,13 @@ void turnOff()
 ```
 
 > Turn off LED. Set red, green and blue intensity to 0.
->
+> 
 > #### Parameters
->
+> 
 > None.
->
+> 
 > #### Return value
->
+> 
 > `void`
 
 ## Sample code
@@ -116,3 +115,4 @@ uint8_t color[][3] = {
         delay(1000);
     }
 ```
+
