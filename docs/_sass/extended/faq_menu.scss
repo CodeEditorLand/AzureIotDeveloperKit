@@ -1,51 +1,51 @@
 .page__content {
-  h2.faq-menu-h2 {
-    padding: 0;
-    margin: 30px 0 10px 0;
-  }
+	h2.faq-menu-h2 {
+		padding: 0;
+		margin: 30px 0 10px 0;
+	}
 
-  li.faq-menu-li {
-    font-size: 16px;
-    color: $primary-color;
-  }
+	li.faq-menu-li {
+		font-size: 16px;
+		color: $primary-color;
+	}
 
-  a.faq-menu-a {
-  }
+	a.faq-menu-a {
+	}
 
-  hr.faq-menu-hr {
-    visibility: hidden;
+	hr.faq-menu-hr {
+		visibility: hidden;
 
-    @include breakpoint($large) {
-      visibility: visible;
-      margin: 26px 0 0 0;
-      border-top: 1px solid $primary-color;
-    }
-  }
+		@include breakpoint($large) {
+			visibility: visible;
+			margin: 26px 0 0 0;
+			border-top: 1px solid $primary-color;
+		}
+	}
 
-  a.faq-back-to-top {
-    $size: 52px;
-    display: none;
-    position: fixed;
-    height: $size;
-    width: $size;
-    bottom: $size;
-    right: $size;
-    // hit area round image
-    padding: $size/8;
-    box-sizing: content-box;
-    // slightly off-color by default
-    img {
-      opacity: .8;
-      transition: none;
-    }
-    // remove squared shadow from the circle shape
-    &:hover img {
-      box-shadow: none;
-      opacity: 1.0;
-    }
+	a.faq-back-to-top {
+		$size: 52px;
+		display: none;
+		position: fixed;
+		height: $size;
+		width: $size;
+		bottom: $size;
+		right: $size;
+		// hit area round image
+		padding: $size/8;
+		box-sizing: content-box;
+		// slightly off-color by default
+		img {
+			opacity: 0.8;
+			transition: none;
+		}
+		// remove squared shadow from the circle shape
+		&:hover img {
+			box-shadow: none;
+			opacity: 1;
+		}
 
-    @include breakpoint($large) {
-      display: block;
-    }
-  }
+		@include breakpoint($large) {
+			display: block;
+		}
+	}
 }

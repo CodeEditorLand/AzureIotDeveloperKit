@@ -3,11 +3,11 @@
    ========================================================================== */
 
 %tab-focus {
-  /* Default*/
-  outline: thin dotted $warning-color;
-  /* Webkit*/
-  outline: 5px auto $warning-color;
-  outline-offset: -2px;
+	/* Default*/
+	outline: thin dotted $warning-color;
+	/* Webkit*/
+	outline: 5px auto $warning-color;
+	outline-offset: -2px;
 }
 
 /*
@@ -15,9 +15,8 @@
    ========================================================================== */
 
 @function em($target, $context: $doc-font-size) {
-  @return ($target / $context) * 1em;
+	@return ($target / $context) * 1em;
 }
-
 
 /*
    Bourbon clearfix
@@ -43,11 +42,11 @@
 */
 
 @mixin clearfix {
-  clear: both;
+	clear: both;
 
-  &::after {
-    clear: both;
-    content: "";
-    display: table;
-  }
+	&::after {
+		clear: both;
+		content: "";
+		display: table;
+	}
 }

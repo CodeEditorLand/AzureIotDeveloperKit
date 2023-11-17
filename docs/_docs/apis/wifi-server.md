@@ -13,21 +13,21 @@ AZ3166WiFiServer.h
 
 ## Summary
 
-| Types |
-| :---- |
+| Types                     |
+| :------------------------ |
 | [WiFiClient](#wificlient) |
 
-| Constructors |
-| :----------- |
+| Constructors                                                  |
+| :------------------------------------------------------------ |
 | [WiFiServer](#wifiserver) - `WiFiServer(unsigned short port)` |
 
-| Methods |
-| :------ |
-| [begin](#begin) - void begin() |
-| [available](#available) - WiFiClient available(byte *status) |
-| [write](#write) - size_t write(unsigned char b) |
-| [write](#write-1) - size_t write(const unsigned char *buffer, size_t size) |
-| [close](#close) - void close() |
+| Methods                                                                     |
+| :-------------------------------------------------------------------------- |
+| [begin](#begin) - void begin()                                              |
+| [available](#available) - WiFiClient available(byte \*status)               |
+| [write](#write) - size_t write(unsigned char b)                             |
+| [write](#write-1) - size_t write(const unsigned char \*buffer, size_t size) |
+| [close](#close) - void close()                                              |
 
 ## Types
 
@@ -45,8 +45,8 @@ WiFiServer(uint16_t port)
 
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
+> | Type     | Name | Description            |
+> | :------- | :--- | :--------------------- |
 > | uint16_t | port | The port to listen on. |
 
 ## Methods
@@ -73,18 +73,19 @@ void begin()
 WiFiClient available(byte *status)
 ```
 
-> Gets a client that is connected to the server and has data available for reading.
+> Gets a client that is connected to the server and has data available for
+> reading.
 >
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | byte * | status | Not used. |
+> | Type    | Name   | Description |
+> | :------ | :----- | :---------- |
+> | byte \* | status | Not used.   |
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
+> | Type       | Description                                    |
+> | :--------- | :--------------------------------------------- |
 > | WiFiClient | A Client object or -1 if no clients available. |
 
 ### write
@@ -97,14 +98,14 @@ size_t write(unsigned char b)
 >
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | unsigned char | b | Data to write. |
+> | Type          | Name | Description    |
+> | :------------ | :--- | :------------- |
+> | unsigned char | b    | Data to write. |
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
+> | Type   | Description           |
+> | :----- | :-------------------- |
 > | size_t | Size of data written. |
 
 ### write
@@ -117,15 +118,15 @@ size_t write(const unsigned char *buffer, size_t size)
 >
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | const unsigned char * | buffer | Data to write. |
-> | size_t | size | Size of data to write. |
+> | Type                   | Name   | Description            |
+> | :--------------------- | :----- | :--------------------- |
+> | const unsigned char \* | buffer | Data to write.         |
+> | size_t                 | size   | Size of data to write. |
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
+> | Type   | Description           |
+> | :----- | :-------------------- |
 > | size_t | Size of data written. |
 
 ### close

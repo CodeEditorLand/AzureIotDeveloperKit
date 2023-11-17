@@ -3,11 +3,11 @@
 url: http://localhost:4000
 
 analytics:
-  provider: false
+    provider: false
 
 comments:
-  disqus:
-    shortname: "devkit-dev"
+    disqus:
+        shortname: "devkit-dev"
 
 sass:
-  style: expanded
+    style: expanded

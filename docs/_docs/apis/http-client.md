@@ -5,37 +5,39 @@ excerpt: "Library for HTTP Client on AZ3166"
 last_modified_at: 2018-05-24T05:16:34-04:00
 ---
 
-`HTTPClient` class is a simple library that implements the logic for interacting with HTTP servers.
+`HTTPClient` class is a simple library that implements the logic for interacting
+with HTTP servers.
 
 ## Assembly
+
 http_client.h
 
 ## Summary
 
-| Types |
-| :---- |
-| [Http_Response](#Http_Response)|
+| Types                           |
+| :------------------------------ |
+| [Http_Response](#Http_Response) |
 
-| Constructors |
-| :----------- |
-| [HTTPClient](#HTTPClient) - `HTTPClient(http_method method, const char* url, Callback<void(const char *at, size_t length)> body_callback = 0)` |
+| Constructors                                                                                                                                                           |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [HTTPClient](#HTTPClient) - `HTTPClient(http_method method, const char* url, Callback<void(const char *at, size_t length)> body_callback = 0)`                         |
 | [HTTPClient](#HTTPClient) - `HTTPClient(const char* ssl_ca_pem, http_method method, const char* url, Callback<void(const char *at, size_t length)> body_callback = 0)` |
 
-| Destructors |
-| :----------- |
+| Destructors                                               |
+| :-------------------------------------------------------- |
 | [~HTTPClient](#~HTTPClient) - `virtual ~HTTPClient(void)` |
 
-| Methods |
-| :------ |
+| Methods                                                                                 |
+| :-------------------------------------------------------------------------------------- |
 | [send](#send) - `const Http_Response* send(const void* body = NULL, int body_size = 0)` |
-| [set_header](#set_header) - `void set_header(const char* key, const char* value)` |
-| [get_error](#get_error) - `nsapi_error_t get_error()` |
+| [set_header](#set_header) - `void set_header(const char* key, const char* value)`       |
+| [get_error](#get_error) - `nsapi_error_t get_error()`                                   |
 
 ## Types
 
 ### Http_Response
 
-``` cpp
+```cpp
 typedef struct
 {
     int status_code;
@@ -52,38 +54,38 @@ typedef struct
 
 ### HTTPClient
 
-``` cpp
+```cpp
 HTTPClient(http_method method, const char* url, Callback<void(const char *at, size_t length)> body_callback = 0)
 ```
 
 > #### Parameters
-> 
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | http_method | method | Http method to use |
-> | const char* | url | The url the request is send to |
-> | Callback | body_callback | The callback function on which to retrieve chunks of the response body |
+>
+> | Type         | Name          | Description                                                            |
+> | :----------- | :------------ | :--------------------------------------------------------------------- |
+> | http_method  | method        | Http method to use                                                     |
+> | const char\* | url           | The url the request is send to                                         |
+> | Callback     | body_callback | The callback function on which to retrieve chunks of the response body |
 
 ### HTTPClient
 
-``` cpp
+```cpp
 HTTPClient(const char* ssl_ca_pem, http_method method, const char* url, Callback<void(const char *at, size_t length)> body_callback = 0)
 ```
 
 > #### Parameters
-> 
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | const char* | ssl_ca_pem | The message of the trusted CAs |
-> | http_method | method | Http method to use |
-> | const char* | url | The url the request is send to |
-> | Callback | body_callback | The callback function on which to retrieve chunks of the response body |
+>
+> | Type         | Name          | Description                                                            |
+> | :----------- | :------------ | :--------------------------------------------------------------------- |
+> | const char\* | ssl_ca_pem    | The message of the trusted CAs                                         |
+> | http_method  | method        | Http method to use                                                     |
+> | const char\* | url           | The url the request is send to                                         |
+> | Callback     | body_callback | The callback function on which to retrieve chunks of the response body |
 
 ## Destructors
 
 ### ~HTTPClient
 
-``` cpp
+```cpp
 virtual ~HTTPClient(void)
 ```
 
@@ -93,45 +95,45 @@ virtual ~HTTPClient(void)
 
 ### send
 
-``` cpp
+```cpp
  const Http_Response* send(const void* body = NULL, int body_size = 0)
 ```
 
 > Execute the HTTP request
 >
 > #### Parameters
-> 
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | const char * | body | Pointer to the request body |
-> | int | body_size | Size of request body |
+>
+> | Type          | Name      | Description                 |
+> | :------------ | :-------- | :-------------------------- |
+> | const char \* | body      | Pointer to the request body |
+> | int           | body_size | Size of request body        |
 >
 > #### Return value
-> 
+>
 > Returns an HttpResponse pointer on success, or NULL on failure
 
 ### set_header
 
-``` cpp
+```cpp
  void set_header(const char* key, const char* value)
 ```
 
 > Send a header for the HTTP request
 >
 > #### Parameters
-> 
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | const char* | key | the header key |
-> | const char* | value | the header value |
+>
+> | Type         | Name  | Description      |
+> | :----------- | :---- | :--------------- |
+> | const char\* | key   | the header key   |
+> | const char\* | value | the header value |
 >
 > #### Return value
-> 
+>
 > `void`
 
 ### get_error
 
-``` cpp
+```cpp
  nsapi_error_t get_error()
 ```
 
@@ -142,7 +144,7 @@ virtual ~HTTPClient(void)
 > None
 >
 > #### Return value
-> 
+>
 > Returns the error code
 
 ## Sample code
@@ -232,6 +234,6 @@ void setup() {
   }
 }
 
-void loop() {  
+void loop() {
 }
 ```

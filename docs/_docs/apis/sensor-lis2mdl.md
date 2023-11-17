@@ -15,20 +15,20 @@ LIS2MDLSensor.h
 
 ## Summary
 
-| Types |
-| :---- |
-| [DevI2C](#devi2c) |
+| Types                                           |
+| :---------------------------------------------- |
+| [DevI2C](#devi2c)                               |
 | [MAGNETO_StatusTypeDef](#magneto_statustypedef) |
 
-| Constructors |
-| :----------- |
+| Constructors                                 |
+| :------------------------------------------- |
 | [LIS2MDL](#lis2mdl) - `LIS2MDL(DevI2C &i2c)` |
 
-| Methods |
-| :------ |
-| [init](#init) - `int init()` |
+| Methods                                               |
+| :---------------------------------------------------- |
+| [init](#init) - `int init()`                          |
 | [readId](#readid) - `int readId(unsigned char *m_id)` |
-| [getMAxes](#getmaxes) - `int getMAxes(int *pData)` |
+| [getMAxes](#getmaxes) - `int getMAxes(int *pData)`    |
 
 ## Types
 
@@ -50,9 +50,9 @@ LIS2MDL(DevI2C &i2c)
 
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | DevI2C & | i2c | The object of an helper class which handles the I2C peripheral. |
+> | Type     | Name | Description                                                     |
+> | :------- | :--- | :-------------------------------------------------------------- |
+> | DevI2C & | i2c  | The object of an helper class which handles the I2C peripheral. |
 
 ## Methods
 
@@ -70,9 +70,9 @@ int init()
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
-> | int | 0 (`MAGNETO_OK`) in case of success, an error code otherwise. |
+> | Type | Description                                                   |
+> | :--- | :------------------------------------------------------------ |
+> | int  | 0 (`MAGNETO_OK`) in case of success, an error code otherwise. |
 
 ### readId
 
@@ -84,15 +84,15 @@ int readId(unsigned char *m_id)
 >
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | unsigned char * | m_id | The pointer where the ID of the device is stored. |
+> | Type             | Name | Description                                       |
+> | :--------------- | :--- | :------------------------------------------------ |
+> | unsigned char \* | m_id | The pointer where the ID of the device is stored. |
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
-> | int | 0 (`MAGNETO_OK`) in case of success, an error code otherwise. |
+> | Type | Description                                                   |
+> | :--- | :------------------------------------------------------------ |
+> | int  | 0 (`MAGNETO_OK`) in case of success, an error code otherwise. |
 
 ### getMAxes
 
@@ -104,15 +104,15 @@ int getMAxes(int *pData)
 >
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | int * | pData | The pointer where the magnetometer data are stored. |
+> | Type   | Name  | Description                                         |
+> | :----- | :---- | :-------------------------------------------------- |
+> | int \* | pData | The pointer where the magnetometer data are stored. |
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
-> | int | 0 (`MAGNETO_OK`) in case of success, an error code otherwise. |
+> | Type | Description                                                   |
+> | :--- | :------------------------------------------------------------ |
+> | int  | 0 (`MAGNETO_OK`) in case of success, an error code otherwise. |
 
 ## Sample code
 
