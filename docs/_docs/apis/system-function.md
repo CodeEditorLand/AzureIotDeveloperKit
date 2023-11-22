@@ -5,8 +5,8 @@ excerpt: "Library for system function on IoT DevKit"
 last_modified_at: 2018-05-22T08:08:30-04:00
 ---
 
-The `SystemFunc` class provides methods to reboot and restart after specific interval for power saving.
-
+The `SystemFunc` class provides methods to reboot and restart after specific
+interval for power saving.
 
 ## Assembly
 
@@ -14,9 +14,9 @@ Arduino.h
 
 ## Summary
 
-| Methods |
-| :------ |
-| [SystemReboot](#SystemReboot) - `void SystemReboot(void)` |
+| Methods                                                             |
+| :------------------------------------------------------------------ |
+| [SystemReboot](#SystemReboot) - `void SystemReboot(void)`           |
 | [SystemStandby](#SystemStandby) - `void SystemStandby(int timeout)` |
 
 ## Methods
@@ -28,13 +28,13 @@ void SystemReboot(void);
 ```
 
 > Reboot the system.
-> 
+>
 > #### Parameters
-> 
+>
 > None.
-> 
+>
 > #### Return value
-> 
+>
 > `void`
 
 ### SystemStandby
@@ -44,15 +44,15 @@ void SystemStandby(int timeout);
 ```
 
 > Enter sleep mode and restart after reset interval.
-> 
+>
 > #### Parameters
-> 
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | int | timeout | timeout interval in second |
-> 
+>
+> | Type | Name    | Description                |
+> | :--- | :------ | :------------------------- |
+> | int  | timeout | timeout interval in second |
+>
 > #### Return value
-> 
+>
 > `void`
 
 ## Sample code

@@ -1,38 +1,38 @@
 {
-	"name": "minimal-mistakes",
-	"version": "0.0.1",
-	"private": "false",
-	"description": "Minimal Mistakes Jekyll theme npm build scripts",
-	"homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-	},
-	"license": "MIT",
-	"author": {
-		"name": "Nikola Hristov",
-		"email": "nikola@nikolahristov.tech",
-		"url": "https://nikolahristov.tech"
-	},
-	"publisher": "playform",
-	"type": "module",
-	"scripts": {
-		"uglify": "uglifyjs assets/js/vendor/jquery/jquery-3.2.1.js assets/js/plugins/jquery.backstretch.js assets/js/plugins/jquery.fitvids.js assets/js/plugins/jquery.greedy-navigation.js assets/js/plugins/jquery.magnific-popup.js assets/js/plugins/jquery.smooth-scroll.js assets/js/plugins/jquery.devkit-extends.js assets/js/_main.js -o assets/js/main.min.js -c -m --source-map url=main.min.js.map",
-		"add-banner": "node banner.js",
-		"watch:js": "onchange \"assets/js/**/*.js\" -e \"assets/js/main.min.js\" -- npm run build:js",
-		"build:js": "npm run uglify && npm run add-banner",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
-	},
-	"devDependencies": {
-		"npm-run-all": "4.1.5",
-		"onchange": "7.1.0",
-		"typescript-esbuild": "0.3.1",
-		"uglify-js": "3.17.4"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "minimal-mistakes",
+  "version": "0.0.1",
+  "private": "false",
+  "description": "Minimal Mistakes Jekyll theme npm build scripts",
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
+  },
+  "publisher": "playform",
+  "type": "module",
+  "scripts": {
+    "uglify": "uglifyjs assets/js/vendor/jquery/jquery-3.2.1.js assets/js/plugins/jquery.backstretch.js assets/js/plugins/jquery.fitvids.js assets/js/plugins/jquery.greedy-navigation.js assets/js/plugins/jquery.magnific-popup.js assets/js/plugins/jquery.smooth-scroll.js assets/js/plugins/jquery.devkit-extends.js assets/js/_main.js -o assets/js/main.min.js -c -m --source-map url=main.min.js.map",
+    "add-banner": "node banner.js",
+    "watch:js": "onchange \"assets/js/**/*.js\" -e \"assets/js/main.min.js\" -- npm run build:js",
+    "build:js": "npm run uglify && npm run add-banner",
+    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
+  },
+  "devDependencies": {
+    "npm-run-all": "4.1.5",
+    "onchange": "7.1.0",
+    "typescript-esbuild": "0.3.1",
+    "uglify-js": "3.17.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

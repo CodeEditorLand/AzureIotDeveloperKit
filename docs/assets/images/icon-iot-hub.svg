@@ -1,61 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   version="1.1"
-   id="svg62"
-   width="81.919998"
-   height="81.919998"
-   viewBox="0 0 81.919998 81.919998"
-   sodipodi:docname="icon-iot-hub.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" id="svg62" width="81.919998"
+   height="81.919998" viewBox="0 0 81.919998 81.919998" sodipodi:docname="icon-iot-hub.svg"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
-  <metadata
-     id="metadata68">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs66" />
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="640"
-     inkscape:window-height="480"
-     id="namedview64"
-     showgrid="false"
-     inkscape:zoom="2.8808594"
-     inkscape:cx="40.959999"
-     inkscape:cy="40.959999"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="svg62" />
-  <image
-     width="81.919998"
-     height="81.919998"
-     preserveAspectRatio="none"
-     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAMAAADDpiTIAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+   <metadata id="metadata68">
+      <rdf:RDF>
+         <cc:Work rdf:about="">
+            <dc:format>image/svg+xml</dc:format>
+            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+            <dc:title></dc:title>
+         </cc:Work>
+      </rdf:RDF>
+   </metadata>
+   <defs id="defs66" />
+   <sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10"
+      gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2"
+      inkscape:window-width="640" inkscape:window-height="480" id="namedview64" showgrid="false"
+      inkscape:zoom="2.8808594" inkscape:cx="40.959999" inkscape:cy="40.959999" inkscape:window-x="0"
+      inkscape:window-y="0" inkscape:window-maximized="0" inkscape:current-layer="svg62" />
+   <image width="81.919998" height="81.919998" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAMAAADDpiTIAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
 jwv8YQUAAAMAUExURQBt1ghx1hB12hh52iB92iiF3jCJ3jiN3kCR4kiV4lCZ4lmh5mGl5mmq5nGu
 6nmy6n226oW66o2+7pXC7p3K7qXO8q7S8rbW8r7a9sbe9s7i9tbq+t7u+uby+u72//b6/////wAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -185,8 +153,5 @@ MQGUYwIoxwRQjgmgHBNAOSaActgKoKZmSGGOBIgqYUJIZDU040yOBIioYEKKotJhRTkSgLCodQwz
 6I6RmCMBSOva44mth2icyZEAdEWtY7gkK4hg+DkWoLuDm1CQC+Kc6MZJBgTo2hPpqrNxZ7//bAwJ
 0HXr9hkK+ebnzX79ORkWwFCDCaAcE0A5JoByTADlmADKMQGUYwIoxwRQjgmgHBNAOSaAckwA5ZgA
 yjEBlGMCKMcEUE3X/Q98abUcz3doHgAAAABJRU5ErkJggg==
-"
-     id="image70"
-     x="0"
-     y="0" />
+" id="image70" x="0" y="0" />
 </svg>

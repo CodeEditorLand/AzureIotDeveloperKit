@@ -13,31 +13,31 @@ AZ3166WiFiUdp.h
 
 ## Summary
 
-| Types |
-| :---- |
+| Types                   |
+| :---------------------- |
 | [IPAddress](#ipaddress) |
 
-| Constructors |
-| :----------- |
+| Constructors                      |
+| :-------------------------------- |
 | [WiFiUDP](#wifiudp) - `WiFiUDP()` |
 
-| Methods |
-| :------ |
-| [begin](#begin) - `int begin(unsigned short port)` |
-| [available](#available) - `int available()` |
-| [stop](#stop) - `void stop()` |
+| Methods                                                                                |
+| :------------------------------------------------------------------------------------- |
+| [begin](#begin) - `int begin(unsigned short port)`                                     |
+| [available](#available) - `int available()`                                            |
+| [stop](#stop) - `void stop()`                                                          |
 | [beginPacket](#beginpacket) - `int beginPacket(const char *host, unsigned short port)` |
-| [beginPacket](#beginpacket-1) - `int beginPacket(IPAddress ip, unsigned short port)` |
-| [endPacket](#endpacket) - `int endPacket()` |
-| [write](#write) - `size_t write(unsigned char byte)` |
-| [write](#write-1) - `size_t write(const unsigned char *buffer, size_t size)` |
-| [parsePacket](#parsepacket) - `int parsePacket()` |
-| [read](#read) - `int read()` |
-| [read](#read-1) - `int read(unsigned char* buffer, size_t len)` |
-| [peek](#peek) - `int peek()` |
-| [flush](#flush) - `void flush()` |
-| [remoteIP](#remoteip) - `IPAddress remoteIP()` |
-| [remotePort](#remoteport) - `unsigned char  remotePort()` |
+| [beginPacket](#beginpacket-1) - `int beginPacket(IPAddress ip, unsigned short port)`   |
+| [endPacket](#endpacket) - `int endPacket()`                                            |
+| [write](#write) - `size_t write(unsigned char byte)`                                   |
+| [write](#write-1) - `size_t write(const unsigned char *buffer, size_t size)`           |
+| [parsePacket](#parsepacket) - `int parsePacket()`                                      |
+| [read](#read) - `int read()`                                                           |
+| [read](#read-1) - `int read(unsigned char* buffer, size_t len)`                        |
+| [peek](#peek) - `int peek()`                                                           |
+| [flush](#flush) - `void flush()`                                                       |
+| [remoteIP](#remoteip) - `IPAddress remoteIP()`                                         |
+| [remotePort](#remoteport) - `unsigned char  remotePort()`                              |
 
 ## Types
 
@@ -69,20 +69,20 @@ int begin(uint16_t port)
 >
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
+> | Type           | Name | Description            |
+> | :------------- | :--- | :--------------------- |
 > | unsigned short | port | The port to listen on. |
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
-> | int | 1 for success, 0 for fail. |
+> | Type | Description                |
+> | :--- | :------------------------- |
+> | int  | 1 for success, 0 for fail. |
 
 ### available
 
 ```cpp
-int available() 
+int available()
 ```
 
 > Return number of bytes available in the current packet.
@@ -95,7 +95,7 @@ int available()
 >
 > | Type | Description |
 > | :--- | :---------- |
-> | int | Always 1. |
+> | int  | Always 1.   |
 
 ### stop
 
@@ -123,16 +123,16 @@ int beginPacket(const char *host, unsigned short port)
 >
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | const char * | host | The host name of the remote host. |
+> | Type           | Name | Description                        |
+> | :------------- | :--- | :--------------------------------- |
+> | const char \*  | host | The host name of the remote host.  |
 > | unsigned short | port | The port of the remote connection. |
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
-> | int | 1 for success, 0 for fail. |
+> | Type | Description                |
+> | :--- | :------------------------- |
+> | int  | 1 for success, 0 for fail. |
 
 ### beginPacket
 
@@ -144,16 +144,16 @@ int beginPacket(IPAddress ip, unsigned short port)
 >
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | IPAddress | host | The IP of the remote host. |
+> | Type           | Name | Description                        |
+> | :------------- | :--- | :--------------------------------- |
+> | IPAddress      | host | The IP of the remote host.         |
 > | unsigned short | port | The port of the remote connection. |
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
-> | int | 1 for success, 0 for fail. |
+> | Type | Description                |
+> | :--- | :------------------------- |
+> | int  | 1 for success, 0 for fail. |
 
 ### endPacket
 
@@ -171,7 +171,7 @@ int endPacket()
 >
 > | Type | Description |
 > | :--- | :---------- |
-> | int | Always 1. |
+> | int  | Always 1.   |
 
 ### write
 
@@ -183,14 +183,14 @@ size_t write(unsigned char byte)
 >
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
+> | Type          | Name | Description    |
+> | :------------ | :--- | :------------- |
 > | unsigned char | byte | Byte to write. |
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
+> | Type   | Description           |
+> | :----- | :-------------------- |
 > | size_t | Size of byte written. |
 
 ### write
@@ -203,15 +203,15 @@ size_t write(const unsigned char *buffer, size_t size)
 >
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | const uint8_t * | buffer | Pointer to data to write. |
-> | size_t | size | Size of data to write. |
+> | Type             | Name   | Description               |
+> | :--------------- | :----- | :------------------------ |
+> | const uint8_t \* | buffer | Pointer to data to write. |
+> | size_t           | size   | Size of data to write.    |
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
+> | Type   | Description           |
+> | :----- | :-------------------- |
 > | size_t | Size of byte written. |
 
 ### parsePacket
@@ -230,7 +230,7 @@ int parsePacket()
 >
 > | Type | Description |
 > | :--- | :---------- |
-> | int | Always 1. |
+> | int  | Always 1.   |
 
 ### read
 
@@ -246,9 +246,9 @@ int read()
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
-> | int | The next byte, or -1 if none is available. |
+> | Type | Description                                |
+> | :--- | :----------------------------------------- |
+> | int  | The next byte, or -1 if none is available. |
 
 ### read
 
@@ -260,16 +260,16 @@ int read(unsigned char *buffer, size_t len)
 >
 > #### Parameters
 >
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
-> | unsigned char * | buffer | Buffer to read. |
-> | size_t | len | Length of buffer to read. |
+> | Type             | Name   | Description               |
+> | :--------------- | :----- | :------------------------ |
+> | unsigned char \* | buffer | Buffer to read.           |
+> | size_t           | len    | Length of buffer to read. |
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
-> | int | The size of byte read, or -1 if none is available. |
+> | Type | Description                                        |
+> | :--- | :------------------------------------------------- |
+> | int  | The size of byte read, or -1 if none is available. |
 
 ### peek
 
@@ -277,7 +277,8 @@ int read(unsigned char *buffer, size_t len)
 int peek()
 ```
 
-> Returns the next byte (character) of incoming serial data without removing it from the internal serial buffer.
+> Returns the next byte (character) of incoming serial data without removing it
+> from the internal serial buffer.
 >
 > #### Parameters
 >
@@ -287,7 +288,7 @@ int peek()
 >
 > | Type | Description |
 > | :--- | :---------- |
-> | int | Always 1. |
+> | int  | Always 1.   |
 
 ### flush
 
@@ -295,7 +296,8 @@ int peek()
 void flush()
 ```
 
-> [Not implemented] Discard any bytes that have been written to the client but not yet read.
+> [Not implemented] Discard any bytes that have been written to the client but
+> not yet read.
 >
 > #### Parameters
 >
@@ -319,8 +321,8 @@ IPAddress remoteIP()
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
+> | Type      | Description                              |
+> | :-------- | :--------------------------------------- |
 > | IPAddress | The IP address of the remote connection. |
 
 ### remotePort
@@ -337,8 +339,8 @@ unsigned short remotePort()
 >
 > #### Return value
 >
-> | Type | Description |
-> | :--- | :---------- |
+> | Type           | Description                        |
+> | :------------- | :--------------------------------- |
 > | unsigned short | The port of the remote connection. |
 
 ## Sample code

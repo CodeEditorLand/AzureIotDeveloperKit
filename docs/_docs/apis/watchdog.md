@@ -5,8 +5,12 @@ excerpt: "Library for watchdog timer on IoT DevKit"
 last_modified_at: 2018-04-23T08:08:30-04:00
 ---
 
-The watchdog timer is a very useful feature for projects that are intended to run for extended periods of time or contain unstable loops of code. The watchdog is essentially a small timer that will force a full system restart if the timer is not updated within a preset time.  For more information and APIs about memory status, please visit [MbedOS](https://os.mbed.com/cookbook/WatchDog-Timer){:target="_blank"}.
-
+The watchdog timer is a very useful feature for projects that are intended to
+run for extended periods of time or contain unstable loops of code. The watchdog
+is essentially a small timer that will force a full system restart if the timer
+is not updated within a preset time. For more information and APIs about memory
+status, please visit
+[MbedOS](https://os.mbed.com/cookbook/WatchDog-Timer){:target="\_blank"}.
 
 ## Assembly
 
@@ -14,21 +18,21 @@ Arduino.h
 
 ## Summary
 
-| Constructors |
-| :----------- |
+| Constructors                         |
+| :----------------------------------- |
 | [Watchdog](#Watchdog) - `Watchdog()` |
 
-| Methods |
-| :------ |
+| Methods                                                       |
+| :------------------------------------------------------------ |
 | [configure](#configure) - `bool configure(float timeoutInMs)` |
-| [resetTimer](#resetTimer) - `void resetTimer()` |
-| [resetTriggered](#resetTriggered) - `bool resetTriggered();` |
+| [resetTimer](#resetTimer) - `void resetTimer()`               |
+| [resetTriggered](#resetTriggered) - `bool resetTriggered();`  |
 
 ## Constructor
 
 ### Watchdog
 
-``` cpp
+```cpp
 Watchdog()
 ```
 
@@ -45,14 +49,15 @@ bool configure(float timeoutInMs)
 > Configure Watchdog timer with reset interval.
 >
 > #### Parameters
-> 
-> | Type | Name | Description |
-> | :--- | :--- | :---------- |
+>
+> | Type  | Name        | Description                                  |
+> | :---- | :---------- | :------------------------------------------- |
 > | float | timeoutInMs | timeout interval in milliseconds, as a float |
 >
 > #### Return value
-> 
-> Returns true if the Watchdog is configured successfully, false for invalid input.
+>
+> Returns true if the Watchdog is configured successfully, false for invalid
+> input.
 
 ### resetTimer
 
@@ -63,11 +68,11 @@ void resetTimer()
 > Reset Watchdog timer to prevent it from a system reset.
 >
 > #### Parameters
-> 
+>
 > None
 >
 > #### Return value
-> 
+>
 > None
 
 ### resetTriggered
@@ -79,11 +84,11 @@ bool resetTriggered()
 > Get the flag to indicate if the Watchdog trigger a system reset.
 >
 > #### Parameters
-> 
+>
 > None
 >
 > #### Return value
-> 
+>
 > Returns true if the Watchdog reset is triggered, else return false.
 
 ## Sample code
@@ -105,7 +110,7 @@ void setup() {
 void loop() {
   // Main program loop - reset watchdog timer to prevent a system reset
   watchdog.resetTimer();
-  
+
   // Do other work
   Serial.println("loop");
   delay(1000);
