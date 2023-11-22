@@ -13,13 +13,13 @@ IrDASensor.h
 
 ## Summary
 
-| Constructors                               |
-| :----------------------------------------- |
+| Constructors |
+| :----------- |
 | [IRDASensor](#irdasensor) - `IRDASensor()` |
 
-| Methods                                                                                                    |
-| :--------------------------------------------------------------------------------------------------------- |
-| [init](#init) - `int init()`                                                                               |
+| Methods |
+| :------ |
+| [init](#init) - `int init()` |
 | [IRDATransmit](#irdatransmit) - `unsigned char IRDATransmit( unsigned char *pData, int size, int timeout)` |
 
 ## Constructors
@@ -31,7 +31,6 @@ IRDASensor()
 ```
 
 > #### Parameters
->
 > None.
 
 ## Methods
@@ -43,16 +42,16 @@ int init()
 ```
 
 > Initializing the component.
->
+> 
 > #### Parameters
->
+> 
 > None.
->
+> 
 > #### Return value
->
-> | Type | Description                                    |
-> | :--- | :--------------------------------------------- |
-> | int  | 0 in case of success, an error code otherwise. |
+> 
+> | Type | Description |
+> | :--- | :---------- |
+> | int | 0 in case of success, an error code otherwise. |
 
 ### IRDATransmit
 
@@ -64,8 +63,8 @@ unsigned char IRDATransmit( unsigned char *pData, int size, int timeout)
 >
 > #### Parameters
 >
-> | Type             | Name    | Description              |
-> | :--------------- | :------ | :----------------------- |
-> | unsigned char \* | pData   | Pointer of data to send. |
-> | int              | size    | Size of data to send.    |
-> | int              | timeout | Duration of the timeout. |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | unsigned char * | pData | Pointer of data to send. |
+> | int | size | Size of data to send. |
+> | int | timeout | Duration of the timeout. |

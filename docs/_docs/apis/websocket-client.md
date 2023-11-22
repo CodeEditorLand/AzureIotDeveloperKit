@@ -5,41 +5,37 @@ excerpt: "Library for WebSocket Client on AZ3166"
 last_modified_at: 2018-03-15T05:16:34-04:00
 ---
 
-`WebSocketClient` is a simple library that implements a WebSocket client running
-on an IoT DevKit. Currently, we only provide APIs of data transmission based on
-non-TLS connection. And we will support WebSocket communication based on SSL in
-future release.
+`WebSocketClient` is a simple library that implements a WebSocket client running on an IoT DevKit. Currently, we only provide APIs of data transmission based on non-TLS connection. And we will support WebSocket communication based on SSL in future release.
 
 ## Assembly
-
 WebSocketClient.h
 
 ## Summary
 
-| Types                                             |
-| :------------------------------------------------ |
-| [WebSocketReceiveResult](#WebSocketReceiveResult) |
+| Types |
+| :---- |
+| [WebSocketReceiveResult](#WebSocketReceiveResult)|
 
-| Constructors                                                        |
-| :------------------------------------------------------------------ |
+| Constructors |
+| :----------- |
 | [WebSocketClient](#WebSocketClient) - `WebSocketClient(char * url)` |
 
-| Destructors | | [~WebSocketClient](#~WebSocketClient)] - `~WebSocketClient()`
-|
+| Destructors |
+| [~WebSocketClient](#~WebSocketClient)] - `~WebSocketClient()` |
 
-| Methods                                                                             |
-| :---------------------------------------------------------------------------------- |
-| [connect](#connect) - `bool connect()`                                              |
-| [connected](#connected) - `bool connected()`                                        |
-| [send](#send) - `int send(char * str, long size)`                                   |
+| Methods |
+| :------ |
+| [connect](#connect) - `bool connect()` |
+| [connected](#connected) - `bool connected()` |
+| [send](#send) - `int send(char * str, long size)` |
 | [receive](#receive) - `WebSocketReceiveResult* receive(char * msgBuffer, int size)` |
-| [close](#close) - `bool close();`                                                   |
+| [close](#close) - `bool close();` |
 
 ## Types
 
 ### WebSocketReceiveResult
 
-```cpp
+``` cpp
 typedef struct
 {
     int length;
@@ -50,12 +46,13 @@ typedef struct
 ```
 
 > Struct that provide the information of data receive response.
+>
 
 ## Enums
 
 ### WS_Message_Type
 
-```cpp
+``` cpp
 typedef enum
 {
     WS_Message_Text = 0,        /* The message is clear text. */
@@ -67,23 +64,23 @@ typedef enum
 
 ### WebSocketClient
 
-```cpp
+``` cpp
 WebSocketClient(char * url)
 ```
 
 > Constructor of `WebSocketClient` class
 >
 > #### Parameters
->
-> | Type    | Name  | Description                                                                        |
-> | :------ | :---- | :--------------------------------------------------------------------------------- |
-> | char \* | stats | The Websocket url in the form "ws://ip_domain[:port]/path" (by default: port = 80) |
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | char * | stats | The Websocket url in the form "ws://ip_domain[:port]/path" (by default: port = 80) |
 
 ## Destructors
 
 ### ~WebSocketClient
 
-```cpp
+``` cpp
 ~WebSocketClient()
 ```
 
@@ -93,76 +90,75 @@ WebSocketClient(char * url)
 
 ### connect
 
-```cpp
+``` cpp
  bool connect()
 ```
 
 > Connect to the WebSocket url
 >
 > #### Parameters
->
+> 
 > None
 >
 > #### Return value
->
+> 
 > Returns true on success, or false on failure.
 
 ### connected
 
-```cpp
+``` cpp
 bool connected()
 ```
 
 > Check if the WebSocket client is on connected state.
 >
 > #### Return value
->
+> 
 > Returns true if the WebSocket connection is alive, false for connection lost.
 
 ### send
 
-```cpp
+``` cpp
 int send(const char * data, long size, WS_Message_Type messageType = WS_Message_Text, bool isFinal = true);
 ```
 
 > Send a data frame to WebSocket server
 >
 > #### Parameters
->
-> | Type            | Name        | Description                                                                                                                                                                                     |
-> | :-------------- | :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-> | const char \*   | data        | message payload of the data frame                                                                                                                                                               |
-> | long            | size        | length of the message payload in bytes                                                                                                                                                          |
-> | WS_Message_Type | messageType | data message type, can be _WS_Message_Text_ or _WS_Message_Binary_                                                                                                                              |
-> | bool            | isFinal     | Flag indicates whether this is a final data frame. By default it is true. For a message with a big payload you may need to send it with smaller pieces and mark the final piece with this flag. |
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | const char * | data | message payload of the data frame |
+> | long | size | length of the message payload in bytes |
+> | WS_Message_Type | messageType | data message type, can be *WS_Message_Text* or *WS_Message_Binary* |
+> | bool | isFinal | Flag indicates whether this is a final data frame. By default it is true. For a message with a big payload you may need to send it with smaller pieces and mark the final piece with this flag. |
 >
 > #### Return value
->
+> 
 > the number of bytes sent, or negative number on error.
 
 ### receive
 
-```cpp
+``` cpp
 WebSocketReceiveResult* receive(char * msgBuffer, int size)
 ```
 
 > Receive a WebSocker message and fill it into a given message buffer.
 >
 > #### Parameters
->
-> | Type    | Name      | Description                                    |
-> | :------ | :-------- | :--------------------------------------------- |
-> | char \* | msgBuffer | message buffer to fill in the received message |
-> | int     | size      | size of the message buffer in bytes            |
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | char * | msgBuffer | message buffer to fill in the received message |
+> | int | size | size of the message buffer in bytes |
 >
 > #### Return value
->
-> Return a `WebSocketReceiveResult` pointer contains the information of the
-> received message on success, or NULL on failure.
+> 
+> Return a `WebSocketReceiveResult` pointer contains the information of the received message on success, or NULL on failure.
 
 ### close
 
-```cpp
+``` cpp
 bool close()
 ```
 
@@ -175,6 +171,7 @@ bool close()
 > #### Return value
 >
 > Returns true on success, or false on failure.
+
 
 ## Sample code
 

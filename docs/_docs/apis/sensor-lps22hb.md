@@ -5,9 +5,7 @@ excerpt: "Library for LPS22HB pressure sensor on AZ3166"
 last_modified_at: 2017-06-28T00:01:52-04:00
 ---
 
-The
-[ST LPS22HB](http://www.st.com/en/mems-and-sensors/lps22hb.html){:target="\_blank"}
-is an ultra compact absolute piezoresistive pressure sensor.
+The [ST LPS22HB](http://www.st.com/en/mems-and-sensors/lps22hb.html){:target="_blank"} is an ultra compact absolute piezoresistive pressure sensor.
 
 Implementation file for the LPS22HB driver class.
 
@@ -17,23 +15,23 @@ LPS22HBSensor.h
 
 ## Summary
 
-| Types                                         |
-| :-------------------------------------------- |
-| [DevI2C](#devi2c)                             |
+| Types |
+| :---- |
+| [DevI2C](#devi2c) |
 | [PRESSURE_InitTypeDef](#pressure_inittypedef) |
 
-| Constructors                                                     |
-| :--------------------------------------------------------------- |
-| [LPS22HBSensor](#lps22hbsensor) - `LPS22HBSensor(DevI2C &i2c)`   |
+| Constructors |
+| :----------- |
+| [LPS22HBSensor](#lps22hbsensor) - `LPS22HBSensor(DevI2C &i2c)` |
 | [LPS22HBSensor](#lps22hbsensor-1) - `LPS22HBSensor(DevI2C &i2c)` |
 
-| Methods                                                                 |
-| :---------------------------------------------------------------------- |
-| [init](#init) - `int init(void *init)`                                  |
-| [deInit](#deinit) - `int deInit()`                                      |
-| [readId](#readid) - `int readId(uint8_t *p_id)`                         |
-| [reset](#reset) - `int reset(void)`                                     |
-| [getPressure](#getpressure) - `int getPressure(float *pfData)`          |
+| Methods |
+| :------ |
+| [init](#init) - `int init(void *init)` |
+| [deInit](#deinit) - `int deInit()` |
+| [readId](#readid) - `int readId(uint8_t *p_id)` |
+| [reset](#reset) - `int reset(void)` |
+| [getPressure](#getpressure) - `int getPressure(float *pfData)` |
 | [getTemperature](#gettemperature) - `int getTemperature(float *pfData)` |
 
 ## Types
@@ -56,9 +54,9 @@ LPS22HBSensor(DevI2C &i2c)
 
 > #### Parameters
 >
-> | Type     | Name | Description                                                     |
-> | :------- | :--- | :-------------------------------------------------------------- |
-> | DevI2C & | i2c  | The object of an helper class which handles the I2C peripheral. |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | DevI2C & | i2c | The object of an helper class which handles the I2C peripheral. |
 
 ### LPS22HBSensor
 
@@ -68,10 +66,10 @@ LPS22HBSensor(DevI2C &i2c, unsigned char address)
 
 > #### Parameters
 >
-> | Type          | Name    | Description                                                     |
-> | :------------ | :------ | :-------------------------------------------------------------- |
-> | DevI2C &      | i2c     | The object of an helper class which handles the I2C peripheral. |
-> | unsigned char | address | The address of the component's instance.                        |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | DevI2C & | i2c | The object of an helper class which handles the I2C peripheral. |
+> | unsigned char | address | The address of the component's instance. |
 
 ## Methods
 
@@ -85,15 +83,15 @@ int init(void *init)
 >
 > #### Parameters
 >
-> | Type    | Name | Description                                             |
-> | :------ | :--- | :------------------------------------------------------ |
-> | void \* | init | The pointer to device specific initalization structure. |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | void * | init | The pointer to device specific initalization structure. |
 >
 > #### Return value
 >
-> | Type | Description                                                    |
-> | :--- | :------------------------------------------------------------- |
-> | int  | 0 (`PRESSURE_OK`) in case of success, an error code otherwise. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | 0 (`PRESSURE_OK`) in case of success, an error code otherwise. |
 
 ### deInit
 
@@ -109,9 +107,9 @@ int deInit()
 >
 > #### Return value
 >
-> | Type | Description                                                    |
-> | :--- | :------------------------------------------------------------- |
-> | int  | 0 (`PRESSURE_OK`) in case of success, an error code otherwise. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | 0 (`PRESSURE_OK`) in case of success, an error code otherwise. |
 
 ### readId
 
@@ -123,15 +121,15 @@ int readId(uint8_t *p_id)
 >
 > #### Parameters
 >
-> | Type        | Name | Description                                       |
-> | :---------- | :--- | :------------------------------------------------ |
-> | uint8_t \*p | p_id | The pointer where the ID of the device is stored. |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | uint8_t *p | p_id | The pointer where the ID of the device is stored. |
 >
 > #### Return value
 >
-> | Type | Description                                                    |
-> | :--- | :------------------------------------------------------------- |
-> | int  | 0 (`PRESSURE_OK`) in case of success, an error code otherwise. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | 0 (`PRESSURE_OK`) in case of success, an error code otherwise. |
 
 ### reset
 
@@ -147,9 +145,9 @@ int reset(void)
 >
 > #### Return value
 >
-> | Type | Description                                                    |
-> | :--- | :------------------------------------------------------------- |
-> | int  | 0 (`PRESSURE_OK`) in case of success, an error code otherwise. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | 0 (`PRESSURE_OK`) in case of success, an error code otherwise. |
 
 ### getPressure
 
@@ -161,15 +159,15 @@ int getPressure(float *pfData)
 >
 > #### Parameters
 >
-> | Type     | Name   | Description                 |
-> | :------- | :----- | :-------------------------- |
-> | float \* | pfData | The pressure value in mbar. |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | float * | pfData | The pressure value in mbar. |
 >
 > #### Return value
 >
-> | Type | Description                                                    |
-> | :--- | :------------------------------------------------------------- |
-> | int  | 0 (`PRESSURE_OK`) in case of success, an error code otherwise. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | 0 (`PRESSURE_OK`) in case of success, an error code otherwise. |
 
 ### getTemperature
 
@@ -181,12 +179,12 @@ int getTemperature(float *pfData)
 >
 > #### Parameters
 >
-> | Type     | Name   | Description            |
-> | :------- | :----- | :--------------------- |
-> | float \* | pfData | The temperature value. |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | float * | pfData | The temperature value. |
 >
 > #### Return value
 >
-> | Type | Description                                                    |
-> | :--- | :------------------------------------------------------------- |
-> | int  | 0 (`PRESSURE_OK`) in case of success, an error code otherwise. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | 0 (`PRESSURE_OK`) in case of success, an error code otherwise. |

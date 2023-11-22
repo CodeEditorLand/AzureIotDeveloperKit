@@ -13,36 +13,36 @@ AZ3166WiFi.h
 
 ## Summary
 
-| Types                   |
-| :---------------------- |
+| Types |
+| :---- |
 | [IPAddress](#ipaddress) |
 
-| Constructors                            |
-| :-------------------------------------- |
+| Constructors |
+| :----------- |
 | [WiFiClass](#wificlass) - `WiFiClass()` |
 
-| Methods                                                                               |
-| :------------------------------------------------------------------------------------ |
-| [firmwareVersion](#firmwareversion) - `const char *firmwareVersion()`                 |
-| [begin](#begin) - `int begin(void)`                                                   |
-| [begin](#begin-1) - `int begin(char *ssid)`                                           |
-| [begin](#begin-2) - `int begin(char *ssid, const char *passphrase)`                   |
-| [disconnect](#disconnect) - `int disconnect()`                                        |
-| [beginAP](#beginap) - `int beginAP(char *ssid, const char *passphrase)`               |
-| [disconnectAP](#disconnectap) - `int disconnectAP()`                                  |
-| [macAddress](#macaddress) - `unsigned char *macAddress(unsigned char *mac)`           |
-| [localIP](#localip) - `IPAddress localIP()`                                           |
-| [subnetMask](#subnetmask) - `IPAddress subnetMask()`                                  |
-| [gatewayIP](#gatewayip) - `IPAddress gatewayIP()`                                     |
-| [SSID](#ssid) - `const char *SSID()`                                                  |
-| [SSID](#ssid-1) - `const char *SSID(unsigned char networkItem)`                       |
-| [BSSID](#bssid) - `unsigned char *BSSID(unsigned char *bssid)`                        |
-| [RSSI](#rssi) - `int RSSI()`                                                          |
-| [RSSI](#rssi-1) - `int RSSI(unsigned char networkItem)`                               |
-| [encryptionType](#encryptiontype) - `int encryptionType()`                            |
+| Methods |
+| :------ |
+| [firmwareVersion](#firmwareversion) - `const char *firmwareVersion()` |
+| [begin](#begin) - `int begin(void)` |
+| [begin](#begin-1) - `int begin(char *ssid)` |
+| [begin](#begin-2) - `int begin(char *ssid, const char *passphrase)` |
+| [disconnect](#disconnect) - `int disconnect()` |
+| [beginAP](#beginap) - `int beginAP(char *ssid, const char *passphrase)` |
+| [disconnectAP](#disconnectap) - `int disconnectAP()` |
+| [macAddress](#macaddress) - `unsigned char *macAddress(unsigned char *mac)` |
+| [localIP](#localip) - `IPAddress localIP()` |
+| [subnetMask](#subnetmask) - `IPAddress subnetMask()` |
+| [gatewayIP](#gatewayip) - `IPAddress gatewayIP()` |
+| [SSID](#ssid) - `const char *SSID()` |
+| [SSID](#ssid-1) - `const char *SSID(unsigned char networkItem)` |
+| [BSSID](#bssid) - `unsigned char *BSSID(unsigned char *bssid)` |
+| [RSSI](#rssi) - `int RSSI()` |
+| [RSSI](#rssi-1) - `int RSSI(unsigned char networkItem)` |
+| [encryptionType](#encryptiontype) - `int encryptionType()` |
 | [encryptionType](#encryptiontype-1) - `int encryptionType(unsigned char networkItem)` |
-| [scanNetworks](#scannetworks) - `int scanNetworks()`                                  |
-| [status](#status) - `unsigned char status()`                                          |
+| [scanNetworks](#scannetworks) - `int scanNetworks()` |
+| [status](#status) - `unsigned char status()` |
 
 ## Types
 
@@ -71,16 +71,16 @@ const char *firmwareVersion()
 ```
 
 > Get WiFi firmware version.
->
+> 
 > #### Parameters
->
+> 
 > None.
->
+> 
 > #### Return value
 >
-> | Type    | Description              |
-> | :------ | :----------------------- |
-> | char \* | Firmware version string. |
+> | Type | Description |
+> | :--- | :---------- |
+> | char * | Firmware version string. |
 
 ### begin
 
@@ -91,14 +91,14 @@ int begin(void)
 > Connect to Wifi.
 >
 > #### Parameters
->
+> 
 > None.
->
+> 
 > #### Return value
 >
-> | Type | Description                                                       |
-> | :--- | :---------------------------------------------------------------- |
-> | int  | 3 (`WL_CONNECTED`) for success, 4 (`WL_CONNECT_FAILED`) for fail. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | 3 (`WL_CONNECTED`) for success, 4 (`WL_CONNECT_FAILED`) for fail. |
 
 ### begin
 
@@ -110,15 +110,15 @@ int begin(char *ssid)
 >
 > #### Parameters
 >
-> | Type    | Name | Description             |
-> | :------ | :--- | :---------------------- |
-> | char \* | ssid | The specific WiFi SSID. |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | char * | ssid | The specific WiFi SSID. |
 >
 > #### Return value
 >
-> | Type | Description                                                       |
-> | :--- | :---------------------------------------------------------------- |
-> | int  | 3 (`WL_CONNECTED`) for success, 4 (`WL_CONNECT_FAILED`) for fail. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | 3 (`WL_CONNECTED`) for success, 4 (`WL_CONNECT_FAILED`) for fail. |
 
 ### begin
 
@@ -130,16 +130,16 @@ int begin(char* ssid, const char *passphrase)
 >
 > #### Parameters
 >
-> | Type    | Name       | Description                   |
-> | :------ | :--------- | :---------------------------- |
-> | char \* | ssid       | The specific WiFi SSID.       |
-> | char \* | passphrase | The specific WiFi passphrase. |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | char * | ssid | The specific WiFi SSID. |
+> | char * | passphrase | The specific WiFi passphrase. |
 >
 > #### Return value
 >
-> | Type | Description                                                       |
-> | :--- | :---------------------------------------------------------------- |
-> | int  | 3 (`WL_CONNECTED`) for success, 4 (`WL_CONNECT_FAILED`) for fail. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | 3 (`WL_CONNECTED`) for success, 4 (`WL_CONNECT_FAILED`) for fail. |
 
 ### disconnect
 
@@ -152,12 +152,12 @@ int disconnect()
 > #### Parameters
 >
 > None.
->
+> 
 > #### Return value
 >
-> | Type | Description              |
-> | :--- | :----------------------- |
-> | int  | Always 1 (`WL_SUCCESS`). |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | Always 1 (`WL_SUCCESS`). |
 
 ### beginAP
 
@@ -169,16 +169,16 @@ int beginAP(char *ssid, const char *passphrase)
 >
 > #### Parameters
 >
-> | Type    | Name       | Description                 |
-> | :------ | :--------- | :-------------------------- |
-> | char \* | ssid       | The specific AP SSID.       |
-> | char \* | passphrase | The specific AP passphrase. |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | char * | ssid | The specific AP SSID. |
+> | char * | passphrase | The specific AP passphrase. |
 >
 > #### Return value
 >
-> | Type | Description                                                       |
-> | :--- | :---------------------------------------------------------------- |
-> | int  | 3 (`WL_CONNECTED`) for success, 4 (`WL_CONNECT_FAILED`) for fail. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | 3 (`WL_CONNECTED`) for success, 4 (`WL_CONNECT_FAILED`) for fail. |
 
 ### disconnectAP
 
@@ -191,12 +191,12 @@ int disconnectAP()
 > #### Parameters
 >
 > None.
->
+> 
 > #### Return value
 >
-> | Type | Description              |
-> | :--- | :----------------------- |
-> | int  | Always 1 (`WL_SUCCESS`). |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | Always 1 (`WL_SUCCESS`). |
 
 ### macAddress
 
@@ -208,15 +208,15 @@ unsigned char *macAddress(unsigned char *mac)
 >
 > #### Parameters
 >
-> | Type             | Name | Description                      |
-> | :--------------- | :--- | :------------------------------- |
-> | unsigned char \* | mac  | The pointer to WiFi MAC address. |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | unsigned char * | mac | The pointer to WiFi MAC address. |
 >
 > #### Return value
 >
-> | Type             | Description                      |
-> | :--------------- | :------------------------------- |
-> | unsigned char \* | The pointer to WiFi MAC address. |
+> | Type | Description |
+> | :--- | :---------- |
+> | unsigned char * | The pointer to WiFi MAC address. |
 
 ### localIP
 
@@ -232,8 +232,8 @@ IPAddress localIP()
 >
 > #### Return value
 >
-> | Type      | Description                      |
-> | :-------- | :------------------------------- |
+> | Type | Description |
+> | :--- | :---------- |
 > | IPAddress | WiFi interface local IP address. |
 
 ### subnetMask
@@ -250,8 +250,8 @@ IPAddress subnetMask()
 >
 > #### Return value
 >
-> | Type      | Description                 |
-> | :-------- | :-------------------------- |
+> | Type | Description |
+> | :--- | :---------- |
 > | IPAddress | WiFi interface subnet mark. |
 
 ### gatewayIP
@@ -268,8 +268,8 @@ IPAddress gatewayIP()
 >
 > #### Return value
 >
-> | Type      | Description              |
-> | :-------- | :----------------------- |
+> | Type | Description |
+> | :--- | :---------- |
 > | IPAddress | WiFi gateway IP address. |
 
 ### SSID
@@ -286,9 +286,9 @@ const char *SSID()
 >
 > #### Return value
 >
-> | Type          | Description                      |
-> | :------------ | :------------------------------- |
-> | const char \* | Pointer to current network SSID. |
+> | Type | Description |
+> | :--- | :---------- |
+> | const char * | Pointer to current network SSID. |
 
 ### SSID
 
@@ -300,15 +300,15 @@ const char *SSID(unsigned char networkItem)
 >
 > #### Parameters
 >
-> | Type          | Name        | Description                            |
-> | :------------ | :---------- | :------------------------------------- |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
 > | unsigned char | networkItem | Specific network index in the AP list. |
 >
 > #### Return value
 >
-> | Type          | Description                      |
-> | :------------ | :------------------------------- |
-> | const char \* | Pointer to current network SSID. |
+> | Type | Description |
+> | :--- | :---------- |
+> | const char * | Pointer to current network SSID. |
 
 ### BSSID
 
@@ -320,15 +320,15 @@ unsigned char *BSSID(unsigned char *bssid)
 >
 > #### Parameters
 >
-> | Type             | Name  | Description                       |
-> | :--------------- | :---- | :-------------------------------- |
-> | unsigned char \* | bssid | Pointer to current network BSSID. |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | unsigned char * | bssid | Pointer to current network BSSID. |
 >
 > #### Return value
 >
-> | Type             | Description                       |
-> | :--------------- | :-------------------------------- |
-> | unsigned char \* | Pointer to current network BSSID. |
+> | Type | Description |
+> | :--- | :---------- |
+> | unsigned char * | Pointer to current network BSSID. |
 
 ### RSSI
 
@@ -344,9 +344,9 @@ int RSSI()
 >
 > #### Return value
 >
-> | Type | Description                  |
-> | :--- | :--------------------------- |
-> | int  | Current connected WiFi RSSI. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | Current connected WiFi RSSI. |
 
 ### RSSI
 
@@ -358,15 +358,15 @@ int RSSI(unsigned char networkItem)
 >
 > #### Parameters
 >
-> | Type          | Name        | Description                            |
-> | :------------ | :---------- | :------------------------------------- |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
 > | unsigned char | networkItem | Specific network index in the AP list. |
 >
 > #### Return value
 >
-> | Type | Description                  |
-> | :--- | :--------------------------- |
-> | int  | Current connected WiFi RSSI. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | Current connected WiFi RSSI. |
 
 ### encryptionType
 
@@ -382,9 +382,9 @@ int encryptionType()
 >
 > #### Return value
 >
-> | Type | Description                 |
-> | :--- | :-------------------------- |
-> | int  | Always 4 (`ENC_TYPE_CCMP`). |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | Always 4 (`ENC_TYPE_CCMP`). |
 
 ### encryptionType
 
@@ -396,14 +396,14 @@ int encryptionType(unsigned char networkItem)
 >
 > #### Parameters
 >
-> | Type | Name        | Description                            |
-> | :--- | :---------- | :------------------------------------- |
-> | int  | networkItem | Specific network index in the AP list. |
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | int | networkItem | Specific network index in the AP list. |
 >
 > #### Return value
 >
-> | Type          | Description                                                                                                                                                   |
-> | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> | Type | Description |
+> | :--- | :---------- |
 > | unsigned char | Specific network encryption type. Possible values: 5 (`ENC_TYPE_WEP`), 2 (`ENC_TYPE_TKIP`), 4 (`ENC_TYPE_CCMP`), 8 (`ENC_TYPE_AUTO`) and 7 (`ENC_TYPE_NONE`). |
 
 ### scanNetworks
@@ -420,9 +420,9 @@ int scanNetworks()
 >
 > #### Return value
 >
-> | Type | Description                     |
-> | :--- | :------------------------------ |
-> | int  | Total number of found networks. |
+> | Type | Description |
+> | :--- | :---------- |
+> | int | Total number of found networks. |
 
 ### status
 
@@ -438,8 +438,8 @@ unsigned char status()
 >
 > #### Return value
 >
-> | Type          | Description             |
-> | :------------ | :---------------------- |
+> | Type | Description |
+> | :--- | :---------- |
 > | unsigned char | Current network status. |
 
 ## Sample code
@@ -454,17 +454,17 @@ int status = WL_IDLE_STATUS;    // the Wifi radio's status
 void setup() {
     // Initialize serial and wait for port to open
     Serial.begin(115200);
-
+    
     // Check for the presence of the shield:
     if (WiFi.status() == WL_NO_SHIELD) {
         Serial.println("WiFi shield not present");
         // Don't continue:
         while (true);
     }
-
+    
     const char* fv = WiFi.firmwareVersion();
     Serial.printf("Wi-Fi firmware: %s\r\n", fv);
-
+    
     // attempt to connect to Wifi network:
     while (status != WL_CONNECTED) {
         Serial.print("Attempting to connect to WPA SSID: ");
@@ -474,7 +474,7 @@ void setup() {
         // Wait 10 seconds for connection:
         delay(10000);
     }
-
+    
     Serial.print("You're connected to the network");
     printCurrentNet();
     printWifiData();
@@ -492,7 +492,7 @@ void printWifiData() {
     Serial.print("IP Address: ");
     Serial.println(ip);
     Serial.println(ip);
-
+    
     // print your MAC address:
     byte mac[6];
     WiFi.macAddress(mac);
@@ -503,7 +503,7 @@ void printCurrentNet() {
     // print the SSID of the network you're attached to:
     Serial.print("SSID: ");
     Serial.println(WiFi.SSID());
-
+    
     // print the MAC address of the router you're attached to:
     byte bssid[6];
     WiFi.BSSID(bssid);
@@ -519,12 +519,12 @@ void printCurrentNet() {
     Serial.print(bssid[1], HEX);
     Serial.print(":");
     Serial.println(bssid[0], HEX);
-
+    
     // print the received signal strength:
     long rssi = WiFi.RSSI();
     Serial.print("signal strength (RSSI):");
     Serial.println(rssi);
-
+    
     // print the encryption type:
     byte encryption = WiFi.encryptionType();
     Serial.print("Encryption Type:");

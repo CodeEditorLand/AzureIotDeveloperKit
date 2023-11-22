@@ -5,11 +5,7 @@ excerpt: "Library for EEPROMInterface on AZ3166"
 last_modified_at: 2018-01-04T05:16:34-04:00
 ---
 
-EEPROMInterface class is used to store critical data like passwords, keys and
-other configurations need encrypted. Data is stored on the STSAFE secure chip on
-IoT DevKit. Security feature is not enabled by default. To enable it, refer to
-`enableHostSecureChannel()`. And our EEPROM supports secure channel between our
-MCU and secure chip after function called.
+EEPROMInterface class is used to store critical data like passwords, keys and other configurations need encrypted. Data is stored on the STSAFE secure chip on IoT DevKit. Security feature is not enabled by default. To enable it, refer to `enableHostSecureChannel()`. And our EEPROM supports secure channel between our MCU and secure chip after function  called.
 
 ## Assembly
 
@@ -17,11 +13,13 @@ EEPROMInterface.h
 
 ## Summary
 
-| Methods                                                                                                                 |
-| :---------------------------------------------------------------------------------------------------------------------- |
-| [write](#write) - `int write(uint8_t* dataBuff, int buffSize, uint8_t dataZoneIndex)`                                   |
-| [read](#read) - `int read(uint8_t* dataBuff, int buffSize, uint16_t offset, uint8_t dataZoneIndex)`                     |
+
+| Methods |
+| :------ |
+| [write](#write) - `int write(uint8_t* dataBuff, int buffSize, uint8_t dataZoneIndex)` |
+| [read](#read) - `int read(uint8_t* dataBuff, int buffSize, uint16_t offset, uint8_t dataZoneIndex)` |
 | [enableHostSecureChannel](#enablehostsecurechannel) - `int enableHostSecureChannel(int level = 1, uint8_t* key = NULL)` |
+
 
 ## Methods
 
@@ -34,32 +32,32 @@ int write(uint8_t* dataBuff, int buffSize, uint8_t dataZoneIndex);
 Write data to secure chip.
 
 > #### Parameters
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | uint8_t* | dataBuff | The data to be written secure chip. |
+> | int | buffSize | The size of written data. The valid range of different data zone is different. |
+> | uint8_t | dataZoneIndex | The index of zone written data to. The valid input is {0, 2, 3, 5, 6, 7, 8, 10}. We recommend to use {7, 8}. See below for the reserved zones.|
+> 
+>The following zones are used for:
 >
-> | Type      | Name          | Description                                                                                                                                    |
-> | :-------- | :------------ | :--------------------------------------------------------------------------------------------------------------------------------------------- |
-> | uint8_t\* | dataBuff      | The data to be written secure chip.                                                                                                            |
-> | int       | buffSize      | The size of written data. The valid range of different data zone is different.                                                                 |
-> | uint8_t   | dataZoneIndex | The index of zone written data to. The valid input is {0, 2, 3, 5, 6, 7, 8, 10}. We recommend to use {7, 8}. See below for the reserved zones. |
->
-> The following zones are used for:
->
-> | Zone    | Description                       |
-> | :------ | :-------------------------------- |
-> | 3       | wifi ssid                         |
-> | 10      | wifi password                     |
-> | 5       | IoT Hub connection string         |
+> | Zone | Description |
+> | :--- | :---------- |
+> | 3 | wifi ssid |
+> | 10 | wifi password |
+> | 5 | IoT Hub connection string |
 > | 0 and 2 | reserved for later mini solutions |
 >
 > #### Return value
+> 
+> | Type | Description |
+> | :--- | :---------- |
+> | int | Return 0 on success, otherwise return -1. The failure might be caused by input dataSize bigger than data zone could write. |
 >
-> | Type | Description                                                                                                                |
-> | :--- | :------------------------------------------------------------------------------------------------------------------------- |
-> | int  | Return 0 on success, otherwise return -1. The failure might be caused by input dataSize bigger than data zone could write. |
+>The max dataSize input for each data zone was defined in library like:
+>`const static int DATA_SEGMENT_LENGTH[11] = {976, 0, 192, 120, 0, 584, 680, 784, 880, 0, 88};`
+>For zone 7, the max dataSize is 784. For zone 8, the max dataSize is 880.
 >
-> The max dataSize input for each data zone was defined in library like:
-> `const static int DATA_SEGMENT_LENGTH[11] = {976, 0, 192, 120, 0, 584, 680, 784, 880, 0, 88};`
-> For zone 7, the max dataSize is 784. For zone 8, the max dataSize is 880.
-
 ### read
 
 ```cpp
@@ -69,19 +67,19 @@ int read(uint8_t* dataBuff, int buffSize, uint16_t offset, uint8_t dataZoneIndex
 Read data from secure chip.
 
 > #### Parameters
->
-> | Type      | Name          | Description                                                                               |
-> | :-------- | :------------ | :---------------------------------------------------------------------------------------- |
-> | uint8_t\* | dataBuff      | The buffer to store data read from secure chip.                                           |
-> | int       | buffSize      | The size of data need to be read.                                                         |
-> | uint16_t  | offset        | The offset of data in data zone to start read data from.                                  |
-> | uint8_t   | dataZoneIndex | The index of zone to read data from. Valid input is the same as that in write() function. |
->
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | uint8_t* | dataBuff | The buffer to store data read from secure chip. |
+> | int | buffSize | The size of data need to be read. |
+> | uint16_t | offset | The offset of data in data zone to start read data from. |
+> | uint8_t | dataZoneIndex | The index of zone to read data from. Valid input is the same as that in write() function. |
+> 
 > #### Return value
->
-> | Type | Description                                              |
-> | :--- | :------------------------------------------------------- |
-> | int  | Return read buffer size on success, otherwise return -1. |
+> 
+> | Type | Description |
+> | :--- | :---------- |
+> | int | Return read buffer size on success, otherwise return -1. |
 
 ### enableHostSecureChannel
 
@@ -93,29 +91,24 @@ Enable secure channel on STSAFE secure chip.
 
 Here are what will happen when enabling the security feature:
 
--   A symmetric key initiated by the chip will be set and stored on the secure
-    chip.
--   All existing data stored in EEPROM (e.g. WiFi password) will be automaticly
-    encrypted.
--   Once enabled, all data reading and writing on the device will be encrypted
-    from that moment.
+* A symmetric key initiated by the chip will be set and stored on the secure chip.
+* All existing data stored in EEPROM (e.g. WiFi password) will be automaticly encrypted.
+* Once enabled, all data reading and writing on the device will be encrypted from that moment.
 
-See [Understand security
-chip]({{"/docs/understand-security-chip/" | absolute_url }}) for more details.
+See [Understand security chip]({{"/docs/understand-security-chip/" | absolute_url }}) for more details.
 
-**Notice:** Use drag and drop to upgrade firmware will rewrite the entire flash
-that makes all existing data stored in EEPROM unreadable. This is a design with
-the security chip to ensure data can not be breached. {: .notice--warning}
+**Notice:** Use drag and drop to upgrade firmware will rewrite the entire flash that makes all existing data stored in EEPROM unreadable. This is a design with the security chip to ensure data can not be breached.
+{: .notice--warning}
 
 > #### Parameters
->
-> | Type      | Name  | Description                                                                                                                                                                                                                                       |
-> | :-------- | :---- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-> | int       | level | Secure level of secure channel. 1: Use security chip initiated key, 2: Use user defined key, 3: Use a random key generated by the chip. The key can never be changed by a user after set. Be very careful here. For now, we only support level 1. |
-> | uint8_t\* | key   | A 32 bytes array needed if choose level 2, user defined key.                                                                                                                                                                                      |
->
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | int | level | Secure level of secure channel. 1: Use security chip initiated key, 2: Use user defined key, 3: Use a random key generated by the chip. The key can never be changed by a user after set. Be very careful here. For now, we only support level 1. |
+> | uint8_t* | key | A 32 bytes array needed if choose level 2, user defined key. |
+> 
 > #### Return value
->
-> | Type | Description                                                                                                                                                           |
-> | :--- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-> | int  | Return 0 on success. Return 1 if the secure channel has already been enabled. Return -1 on fail. The failure might be caused by wrong parameter or key not available. |
+> 
+> | Type | Description |
+> | :--- | :---------- |
+> | int | Return 0 on success. Return 1 if the secure channel has already been enabled. Return -1 on fail. The failure might be caused by wrong parameter or key not available. |

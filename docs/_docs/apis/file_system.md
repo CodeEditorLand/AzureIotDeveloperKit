@@ -5,11 +5,8 @@ excerpt: "Library for FileSystem on AZ3166"
 last_modified_at: 2018-01-09T05:16:34-04:00
 ---
 
-The FATFileSystem class implemented on mbed OS APIs, provides the core API for
-file system operations on IoT DevKit. The SFlashBlockDevice class provides the
-underlying API for representing block-based storage that can be used to back a
-file system. For more information about File System, please visit
-[MbedOS](https://docs.mbed.com/docs/mbed-os-api-reference/en/latest/APIs/storage/filesystem/){:target="\_blank"}
+The FATFileSystem class implemented on mbed OS APIs, provides the core API for file system operations on IoT DevKit. The SFlashBlockDevice class provides the underlying API for representing block-based storage that can be used to back a file system.
+For more information about File System, please visit [MbedOS](https://docs.mbed.com/docs/mbed-os-api-reference/en/latest/APIs/storage/filesystem/){:target="_blank"}
 
 ## Assembly
 
@@ -21,23 +18,24 @@ fatfs_exfuns.h
 
 ## Summary
 
-| Constructors                                                                                         |
-| :--------------------------------------------------------------------------------------------------- |
+
+| Constructors |
+| :----------- |
 | [FATFileSystem](#FATFileSystem) - `FATFileSystem (const char *name = NULL, BlockDevice *bd = NULL) ` |
 
-| Methods                                                                                                      |
-| :----------------------------------------------------------------------------------------------------------- |
-| [format](#format) - `static int format(BlockDevice *bd, int allocation_unit = 0)`                            |
-| [mount(BlockDevice *)](#mount(BlockDevice *)) - `virtual int mount(BlockDevice *bd)`                         |
+| Methods |
+| :------ |
+| [format](#format) - `static int format(BlockDevice *bd, int allocation_unit = 0)` |
+| [mount(BlockDevice *)](#mount(BlockDevice *)) - `virtual int mount(BlockDevice *bd)` |
 | [mount(BlockDevice *, bool)](#mount(BlockDevice *, bool)) - `virtual int mount(BlockDevice *bd, bool force)` |
-| [unmount](#unmount) - `virtual int unmount()`                                                                |
-| [remove](#remove) - `virtual int remove(const char *path)`                                                   |
-| [rename](#rename) - `virtual int rename(const char *path, const char *newpath)`                              |
-| [stat](#stat) - `virtual int stat(const char *path, struct stat *st)`                                        |
-| [mkdir](#mkdir) - `virtual int mkdir(const char *path, mode_t mode)`                                         |
+| [unmount](#unmount) - `virtual int unmount()` |
+| [remove](#remove) - `virtual int remove(const char *path)` |
+| [rename](#rename) - `virtual int rename(const char *path, const char *newpath)` |
+| [stat](#stat) - `virtual int stat(const char *path, struct stat *st)` |
+| [mkdir](#mkdir) - `virtual int mkdir(const char *path, mode_t mode)` |
 
-| Extended Methods                                                       |
-| :--------------------------------------------------------------------- |
+| Extended Methods |
+| :------ |
 | [fatfs_get_info](#fatfs_get_info) - `filesystem_info fatfs_get_info()` |
 
 ## Constructors
@@ -47,13 +45,15 @@ fatfs_exfuns.h
 ```cpp
 FATFileSystem (const char *name = NULL, BlockDevice *bd = NULL)
 ```
-
 > #### Parameters
 
-> | Type          | Name | Description                                                    |
-> | :------------ | :--- | :------------------------------------------------------------- |
-> | const char \* | name | Name to add filesystem to tree.                                |
-> | BlockDevice   | bd   | BlockDevice to mount, could be passed in to avoid mount() call |
+> 
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | const char * | name | Name to add filesystem to tree. |
+> | BlockDevice | bd | BlockDevice to mount, could be passed in to avoid mount() call |
+> 
+
 
 ## Methods
 
@@ -62,144 +62,141 @@ FATFileSystem (const char *name = NULL, BlockDevice *bd = NULL)
 ```cpp
 static int format(BlockDevice *bd, int allocation_unit = 0)
 ```
-
-> Formats a logical drive, FDISK partitioning rule. The block device to format
-> should be mounted when this function is called.
+> Formats a logical drive, FDISK partitioning rule. The block device to format should be mounted when this function is called.
 
 > #### Parameters
 
-> | Type        | Name            | Description                                                                                                                                                                                                             |
-> | :---------- | :-------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-> | BlockDevice | bd              | Block device that will be formated.                                                                                                                                                                                     |
-> | int         | allocation_unit | This is the number of bytes per cluster size.The valid value is N times the sector size. If zero is given, the default allocation unit size is selected by the underlying filesystem, which depends on the volume size. |
->
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | BlockDevice | bd | Block device that will be formated. |
+> | int | allocation_unit | This is the number of bytes per cluster size.The valid value is N times the sector size. If zero is given, the default allocation unit size is selected by the underlying filesystem, which depends on the volume size. |
+> 
+> 
 > #### Return value
->
-> 0 on success, negative error code on failure.
+> 
+>  0 on success, negative error code on failure. 
 
-### mount(BlockDevice \*)
+### mount(BlockDevice *)
 
 ```cpp
 virtual int mount(BlockDevice *bd)
 ```
-
 > Mounts a filesystem to a block device.
+>
 
 > #### Parameters
 
-> | Type        | Name | Description                         |
-> | :---------- | :--- | :---------------------------------- |
-> | BlockDevice | bd   | Block device that will be formated. |
->
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | BlockDevice | bd | Block device that will be formated. |
+> 
 > #### Return value
->
-> 0 on success, negative error code on failure.
+> 
+>  0 on success, negative error code on failure. 
 
-### mount(BlockDevice \*, bool)
+
+### mount(BlockDevice *, bool)
 
 ```cpp
 virtual int mount(BlockDevice *bd, bool force)
 ```
-
 > Mounts a filesystem to a block device.
 
 > #### Parameters
 
-> | Type        | Name  | Description                                                               |
-> | :---------- | :---- | :------------------------------------------------------------------------ |
-> | BlockDevice | bd    | Block device that will be formated.                                       |
-> | bool        | force | Flag to force the underlying filesystem to force mounting the filesystem. |
->
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | BlockDevice | bd | Block device that will be formated. |
+> | bool | force | Flag to force the underlying filesystem to force mounting the filesystem. |
+> 
 > #### Return value
->
-> 0 on success, negative error code on failure.
+> 
+>  0 on success, negative error code on failure. 
+
 
 ### unmount
 
 ```cpp
 virtual int unmount();
 ```
-
 > Unmounts a filesystem from the underlying block device.
 
 > #### Return value
->
-> 0 on success, negative error code on failure.
+> 
+>  0 on success, negative error code on failure.
 
 ### remove
 
 ```cpp
 virtual int remove(const char *path)
 ```
-
 > Remove a file from the filesystem.
 
 > #### Parameters
 
-> | Type         | Name | Description                     |
-> | :----------- | :--- | :------------------------------ |
-> | const char\* | path | The name of the file to remove. |
->
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | const char* | path | The name of the file to remove. |
+> 
 > #### Return value
->
-> 0 on success, negative error code on failure.
+> 
+>  0 on success, negative error code on failure. 
 
 ### rename
 
 ```cpp
 virtual int rename(const char *path, const char *newpath);
 ```
-
 > Rename a file in the filesystem.
 
 > #### Parameters
 
-> | Type         | Name    | Description                        |
-> | :----------- | :------ | :--------------------------------- |
-> | const char\* | path    | The name of the file to rename.    |
-> | const char\* | newpath | The name of the file to rename to. |
->
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | const char* | path | The name of the file to rename. |
+> | const char* | newpath | The name of the file to rename to. |
+> 
 > #### Return value
->
-> 0 on success, negative error code on failure.
+> 
+>  0 on success, negative error code on failure. 
 
 ### stat
 
 ```cpp
 virtual int stat(const char *path, struct stat *st);
 ```
-
 > Store information about the file in a stat structure.
+
 
 > #### Parameters
 
-> | Type           | Name | Description                                     |
-> | :------------- | :--- | :---------------------------------------------- |
-> | const char\*   | path | The name of the file to find information about. |
-> | struct stat \* | st   | The stat buffer to write to.                    |
->
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | const char* | path | The name of the file to find information about. |
+> | struct stat * | st | The stat buffer to write to. |
+> 
 > #### Return value
->
-> 0 on success, negative error code on failure.
+> 
+>  0 on success, negative error code on failure. 
 
 ### mkdir
 
 ```cpp
 virtual int mkdir(const char *path, mode_t mode);
 ```
-
 > Create a directory in the filesystem.
+
 
 > #### Parameters
 
-> | Type         | Name | Description                                         |
-> | :----------- | :--- | :-------------------------------------------------- |
-> | const char\* | path | The name of the directory to create.                |
-> | mode_t       | mode | The permissions with which to create the directory. |
->
+> | Type | Name | Description |
+> | :--- | :--- | :---------- |
+> | const char* | path | The name of the directory to create. |
+> | mode_t | mode |The permissions with which to create the directory. |
+> 
 > #### Return value
->
-> 0 on success, negative error code on failure.
+> 
+>  0 on success, negative error code on failure. 
 
 ## Extended Methods
 
@@ -208,20 +205,18 @@ virtual int mkdir(const char *path, mode_t mode);
 ```cpp
 filesystem_info fatfs_get_info()
 ```
-
 > Get the information for file system.
 
 > #### Return value
->
-> file system information.
->
-> ```
-> typedef struct _filesystem_info_t {
+> 
+>  file system information.
+>```
+>typedef struct _filesystem_info_t {
 >  int total_space;
 >  int free_space;
 >  char unit;
-> } filesystem_info;
-> ```
+>} filesystem_info;
+>```
 
 ## Sample code
 
@@ -312,7 +307,7 @@ static int writeFile()
     Serial.printf("Open /fs/numbers.txt failed %d.\r\n", error);
     return -1;
   }
-
+  
   Serial.print("Writing decimal numbers 1~20 to the file...");
   for (int i = 0; i < 20; i++){
     fprintf(fd, "%d\r\n", i + 1);
@@ -374,7 +369,7 @@ void setup() {
   {
     return;
   }
-
+  
   Serial.println("All done.");
 }
 
@@ -384,3 +379,5 @@ void loop() {
 }
 
 ```
+
+
