@@ -1,7 +1,7 @@
 {
   "name": "minimal-mistakes",
   "version": "0.0.1",
-  "private": "false",
+  "private": false,
   "description": "Minimal Mistakes Jekyll theme npm build scripts",
   "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
   "bugs": {
