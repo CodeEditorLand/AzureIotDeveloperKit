@@ -43,7 +43,7 @@
 					// Call the method
 					var returnValue = obj[args[0]].apply(
 						obj,
-						Array.prototype.slice.call(args, 1)
+						Array.prototype.slice.call(args, 1),
 					);
 					if (returnValue === obj) {
 						// If a method is chaining
@@ -79,7 +79,7 @@
 					];
 				} else {
 					$.error(
-						"No images were supplied for Backstretch, or element must have a CSS-defined background image."
+						"No images were supplied for Backstretch, or element must have a CSS-defined background image.",
 					);
 				}
 			}
@@ -198,7 +198,7 @@
 		var selectBest = function (
 			containerWidth,
 			containerHeight,
-			imageSizes
+			imageSizes,
 		) {
 			var devicePixelRatio = window.devicePixelRatio || 1;
 			var deviceOrientation = getDeviceOrientation();
@@ -207,8 +207,8 @@
 				containerHeight > containerWidth
 					? "portrait"
 					: containerWidth > containerHeight
-					? "landscape"
-					: "square";
+					  ? "landscape"
+					  : "square";
 
 			var lastAllowedImage = 0;
 			var testWidth;
@@ -290,7 +290,7 @@
 					if (url[i].src) {
 						url[i].src = replaceTagsInUrl(
 							url[i].src,
-							templateReplacer
+							templateReplacer,
 						);
 					} else {
 						url[i] = replaceTagsInUrl(url[i], templateReplacer);
@@ -323,7 +323,7 @@
 					var chosen = selectBest(
 						containerWidth,
 						containerHeight,
-						images[i]
+						images[i],
 					);
 					chosenImages.push(chosen);
 				} else {
@@ -476,7 +476,7 @@
 		if (options.centeredX || options.centeredY) {
 			if (window.console && window.console.log) {
 				window.console.log(
-					"jquery.backstretch: `centeredX`/`centeredY` is deprecated, please use `alignX`/`alignY`"
+					"jquery.backstretch: `centeredX`/`centeredY` is deprecated, please use `alignX`/`alignY`",
 				);
 			}
 			if (options.centeredX) {
@@ -491,7 +491,7 @@
 		if (options.speed !== undefined) {
 			if (window.console && window.console.log) {
 				window.console.log(
-					"jquery.backstretch: `speed` is deprecated, please use `transitionDuration`"
+					"jquery.backstretch: `speed` is deprecated, please use `transitionDuration`",
 				);
 			}
 
@@ -560,10 +560,10 @@
 	};
 
 	var SUPPORTED_SCALE_OPTIONS = {
-		"cover": "cover",
-		"fit": "fit",
+		cover: "cover",
+		fit: "fit",
 		"fit-smaller": "fit-smaller",
-		"fill": "fill",
+		fill: "fill",
 	};
 
 	function validScale(scale) {
@@ -626,7 +626,7 @@
 		this.originalImages = this.images;
 		this.images = optimalSizeImages(
 			this.options.alwaysTestWindowResolution ? $window : this.$root,
-			this.originalImages
+			this.originalImages,
 		);
 
 		/**
@@ -636,7 +636,7 @@
 		preload(
 			this.images,
 			this.options.start || 0,
-			this.options.preload || 1
+			this.options.preload || 1,
 		);
 
 		// Don't create a new wrap if one already exists (from a previous instance of Backstretch)
@@ -684,7 +684,7 @@
 					window.scrollTo(0, 1);
 					this.resize();
 				}
-			}, this)
+			}, this),
 		);
 	};
 
@@ -758,15 +758,15 @@
 					transitionParts[2] === "left"
 						? "right"
 						: transitionParts[2] === "right"
-						? "left"
-						: transitionParts[2] === "down"
-						? "top"
-						: transitionParts[2] === "up"
-						? "bottom"
-						: "right";
+						  ? "left"
+						  : transitionParts[2] === "down"
+							  ? "top"
+							  : transitionParts[2] === "up"
+								  ? "bottom"
+								  : "right";
 
 				var newCssStart = {
-						"display": "",
+						display: "",
 					},
 					newCssAnim = {};
 				newCssStart[animProp] = "-100%";
@@ -834,7 +834,7 @@
 					// Big change: rebuild the entire images array
 					this.images = optimalSizeImages(
 						$resTest,
-						this.originalImages
+						this.originalImages,
 					);
 
 					// Preload them (they will be automatically inserted on the next cycle)
@@ -842,7 +842,7 @@
 						preload(
 							this.images,
 							(this.index + 1) % this.images.length,
-							this.options.preload
+							this.options.preload,
 						);
 					}
 
@@ -858,7 +858,7 @@
 							function () {
 								that.show(0);
 							},
-							this.options.resolutionRefreshRate
+							this.options.resolutionRefreshRate,
 						);
 					}
 				}
@@ -884,7 +884,7 @@
 							? this.options.alignY
 							: this._currentImage.alignY,
 					scale = validScale(
-						this._currentImage.scale || this.options.scale
+						this._currentImage.scale || this.options.scale,
 					);
 
 				var width, height;
@@ -985,19 +985,19 @@
 				that.videoWrapper = new VideoWrapper(selectedImage);
 				that.$item = that.videoWrapper.$video.css(
 					"pointer-events",
-					"none"
+					"none",
 				);
 			} else {
 				that.$item = $("<img />");
 			}
 
 			that.$itemWrapper = $('<div class="backstretch-item">').append(
-				that.$item
+				that.$item,
 			);
 
 			if (this.options.bypassCss) {
 				that.$itemWrapper.css({
-					"display": "none",
+					display: "none",
 				});
 			} else {
 				that.$itemWrapper.css(styles.itemWrapper);
@@ -1055,7 +1055,7 @@
 					$(["after", "show"]).each(function () {
 						that.$container.trigger(
 							$.Event("backstretch." + this, evtOptions),
-							[that, newIndex]
+							[that, newIndex],
 						);
 					});
 
@@ -1074,7 +1074,7 @@
 					bringInNextImage();
 				} else {
 					performTransition({
-						"new": $wrapper,
+						new: $wrapper,
 						old: $oldItemWrapper,
 						transition: transition,
 						duration: transitionDuration,
@@ -1110,7 +1110,7 @@
 		next: function () {
 			var args = Array.prototype.slice.call(arguments, 0);
 			args.unshift(
-				this.index < this.images.length - 1 ? this.index + 1 : 0
+				this.index < this.images.length - 1 ? this.index + 1 : 0,
 			);
 			return this.show.apply(this, args);
 		},
@@ -1118,7 +1118,7 @@
 		prev: function () {
 			var args = Array.prototype.slice.call(arguments, 0);
 			args.unshift(
-				this.index === 0 ? this.images.length - 1 : this.index - 1
+				this.index === 0 ? this.images.length - 1 : this.index - 1,
 			);
 			return this.show.apply(this, args);
 		},
@@ -1184,7 +1184,7 @@
 									},
 									(player.getDuration() -
 										player.getCurrentTime()) *
-										1000
+										1000,
 								);
 							})
 							.on("ended.cycle", function () {
@@ -1195,7 +1195,7 @@
 					// On error go to next
 					this.$item.on(
 						"error.cycle initerror.cycle",
-						$.proxy(callNext, this)
+						$.proxy(callNext, this),
 					);
 				}
 
@@ -1206,7 +1206,7 @@
 					// Cycling according to specified duration
 					this._cycleTimeout = setTimeout(
 						$.proxy(callNext, this),
-						duration
+						duration,
 					);
 				}
 			}
@@ -1303,8 +1303,8 @@
 			that.__ytStartMuted = !!options.mute || options.mute === undefined;
 
 			$video = $("<iframe />")
-				.attr({ "src_to_load": src })
-				.css({ "border": 0, "margin": 0, "padding": 0 })
+				.attr({ src_to_load: src })
+				.css({ border: 0, margin: 0, padding: 0 })
 				.data("player", that);
 
 			if (options.loop) {
@@ -1387,7 +1387,7 @@
 
 		var player = new YT.Player(that.video, {
 			events: {
-				"onReady": function () {
+				onReady: function () {
 					if (that.__ytStartMuted) {
 						player.mute();
 					}
@@ -1404,7 +1404,7 @@
 					that._updateYoutubeSize();
 					that.$video.trigger("canplay");
 				},
-				"onStateChange": function (event) {
+				onStateChange: function (event) {
 					switch (event.data) {
 						case YT.PlayerState.PLAYING:
 							that.$video.trigger("playing");
@@ -1423,13 +1423,13 @@
 							break;
 					}
 				},
-				"onPlaybackQualityChange": function () {
+				onPlaybackQualityChange: function () {
 					that._updateYoutubeSize();
 					that.$video.trigger("resize");
 				},
-				"onError": function (err) {
+				onError: function (err) {
 					that.hasError = true;
-					that.$video.trigger({ "type": "error", "error": err });
+					that.$video.trigger({ type: "error", error: err });
 				},
 			},
 		});
@@ -1588,7 +1588,7 @@
 		}
 		if (!$("script[src*=www\\.youtube\\.com\\/iframe_api]").length) {
 			$(
-				'<script type="text/javascript" src="https://www.youtube.com/iframe_api">'
+				'<script type="text/javascript" src="https://www.youtube.com/iframe_api">',
 			).appendTo("body");
 		}
 		var ytAPILoadInt = setInterval(function () {

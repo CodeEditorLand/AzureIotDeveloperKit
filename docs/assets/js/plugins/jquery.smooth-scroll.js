@@ -227,12 +227,12 @@
 				this.off("click.smoothscroll", options.delegateSelector).on(
 					"click.smoothscroll",
 					options.delegateSelector,
-					clickHandler
+					clickHandler,
 				);
 			} else {
 				this.off("click.smoothscroll").on(
 					"click.smoothscroll",
-					clickHandler
+					clickHandler,
 				);
 			}
 
@@ -286,14 +286,14 @@
 			opts = $.extend(
 				{ link: null },
 				$.fn.smoothScroll.defaults,
-				optionOverrides
+				optionOverrides,
 			);
 		} else {
 			opts = $.extend(
 				{ link: null },
 				$.fn.smoothScroll.defaults,
 				options || {},
-				optionOverrides
+				optionOverrides,
 			);
 
 			if (opts.scrollElement) {

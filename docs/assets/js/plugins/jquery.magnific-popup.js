@@ -81,7 +81,7 @@
 				if (mfp.st.callbacks[e]) {
 					mfp.st.callbacks[e].apply(
 						mfp,
-						$.isArray(data) ? data : [data]
+						$.isArray(data) ? data : [data],
 					);
 				}
 			}
@@ -89,7 +89,7 @@
 		_getCloseBtn = function (type) {
 			if (type !== _currPopupType || !mfp.currTemplate.closeBtn) {
 				mfp.currTemplate.closeBtn = $(
-					mfp.st.closeMarkup.replace("%title%", mfp.st.tClose)
+					mfp.st.closeMarkup.replace("%title%", mfp.st.tClose),
 				);
 				_currPopupType = type;
 			}
@@ -146,7 +146,7 @@
 				mfp.isAndroid ||
 				mfp.isIOS ||
 				/(Opera Mini)|Kindle|webOS|BlackBerry|(Opera Mobi)|(Windows Phone)|IEMobile/i.test(
-					navigator.userAgent
+					navigator.userAgent,
 				);
 			_document = $(document);
 
@@ -226,7 +226,7 @@
 					"click" + EVENT_NS,
 					function () {
 						mfp.close();
-					}
+					},
 				);
 
 				mfp.wrap = _getEl("wrap")
@@ -245,7 +245,7 @@
 				mfp.preloader = _getEl(
 					"preloader",
 					mfp.container,
-					mfp.st.tLoading
+					mfp.st.tLoading,
 				);
 			}
 
@@ -267,7 +267,7 @@
 						MARKUP_PARSE_EVENT,
 						function (e, template, values, item) {
 							values.close_replaceWith = _getCloseBtn(item.type);
-						}
+						},
 					);
 					_wrapClasses += " mfp-close-btn-in";
 				}
@@ -523,7 +523,7 @@
 
 			if (_prevContentType && _prevContentType !== item.type) {
 				mfp.container.removeClass(
-					"mfp-" + _prevContentType + "-holder"
+					"mfp-" + _prevContentType + "-holder",
 				);
 			}
 
@@ -826,7 +826,7 @@
 								el.replaceWith(
 									$("<img>")
 										.attr("src", value)
-										.attr("class", el.attr("class"))
+										.attr("class", el.attr("class")),
 								);
 							}
 						} else {
@@ -967,7 +967,7 @@
 				if (mfp.isOpen)
 					mfp[options].apply(
 						mfp,
-						Array.prototype.slice.call(arguments, 1)
+						Array.prototype.slice.call(arguments, 1),
 					);
 			}
 		} else {
@@ -1133,11 +1133,11 @@
 							item.finished = item.loadError = true;
 							mfp.updateStatus(
 								"error",
-								mfp.st.ajax.tError.replace("%url%", item.src)
+								mfp.st.ajax.tError.replace("%url%", item.src),
 							);
 						},
 					},
-					mfp.st.ajax.settings
+					mfp.st.ajax.settings,
 				);
 
 				mfp.req = $.ajax(opts);
@@ -1320,7 +1320,7 @@
 								mfp._onImageHasSize(item);
 								mfp.updateStatus(
 									"error",
-									imgSt.tError.replace("%url%", item.src)
+									imgSt.tError.replace("%url%", item.src),
 								);
 							}
 
@@ -1363,7 +1363,7 @@
 						title: _getTitle(item),
 						img_replaceWith: item.img,
 					},
-					item
+					item,
 				);
 
 				mfp.resizeImage();
@@ -1375,7 +1375,7 @@
 						template.addClass("mfp-loading");
 						mfp.updateStatus(
 							"error",
-							imgSt.tError.replace("%url%", item.src)
+							imgSt.tError.replace("%url%", item.src),
 						);
 					} else {
 						template.removeClass("mfp-loading");
@@ -1675,7 +1675,7 @@
 								embedSrc = embedSrc.substr(
 									embedSrc.lastIndexOf(this.id) +
 										this.id.length,
-									embedSrc.length
+									embedSrc.length,
 								);
 							} else {
 								embedSrc = this.id.call(this, embedSrc);
@@ -1769,7 +1769,7 @@
 						data.text = _replaceCurrTotal(
 							data.text,
 							mfp.currItem.index,
-							mfp.items.length
+							mfp.items.length,
 						);
 					}
 				});
@@ -1782,7 +1782,7 @@
 							l > 1
 								? _replaceCurrTotal(gSt.tCounter, item.index, l)
 								: "";
-					}
+					},
 				);
 
 				_mfpOn("BuildControls" + ns, function () {
@@ -1791,12 +1791,12 @@
 							arrowLeft = (mfp.arrowLeft = $(
 								markup
 									.replace(/%title%/gi, gSt.tPrev)
-									.replace(/%dir%/gi, "left")
+									.replace(/%dir%/gi, "left"),
 							).addClass(PREVENT_CLOSE_CLASS)),
 							arrowRight = (mfp.arrowRight = $(
 								markup
 									.replace(/%title%/gi, gSt.tNext)
-									.replace(/%dir%/gi, "right")
+									.replace(/%dir%/gi, "right"),
 							).addClass(PREVENT_CLOSE_CLASS));
 
 						arrowLeft.click(function () {
@@ -1923,15 +1923,15 @@
 								item.img.css({
 									"max-width":
 										item.img[0].naturalWidth / ratio,
-									"width": "100%",
+									width: "100%",
 								});
-							}
+							},
 						);
 						_mfpOn(
 							"ElementParse" + "." + RETINA_NS,
 							function (e, item) {
 								item.src = st.replaceSrc(item, ratio);
-							}
+							},
 						);
 					}
 				}
