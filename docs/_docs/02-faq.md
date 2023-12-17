@@ -21,7 +21,7 @@ If you choose to participate, you can stop at any time as described
 [here](https://code.visualstudio.com/docs/supporting/faq#_how-to-disable-telemetry-reporting).
 
 > If you are looking to disable the data collection for the old installation
-> package, please follow the steps in [this > >
+> package, please follow the steps in [this > > >
 > document]({{"/docs/legacy/disable-data-collection" | absolute_url}}) .
 
 ### Is the IoT DevKit Microsoft hardware

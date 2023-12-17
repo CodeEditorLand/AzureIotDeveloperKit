@@ -7,7 +7,7 @@ $(document).ready(function () {
 	var bumpIt = function () {
 			$("body").css(
 				"margin-bottom",
-				$(".page__footer").outerHeight(true),
+				$(".page__footer").outerHeight(true)
 			);
 		},
 		didResize = false;
@@ -43,7 +43,7 @@ $(document).ready(function () {
 
 	// add lightbox class to all image links
 	$(
-		"a[href$='.jpg'],a[href$='.jpeg'],a[href$='.JPG'],a[href$='.png'],a[href$='.gif']",
+		"a[href$='.jpg'],a[href$='.jpeg'],a[href$='.JPG'],a[href$='.png'],a[href$='.gif']"
 	).addClass("image-popup");
 
 	// Magnific-Popup options
@@ -73,7 +73,7 @@ $(document).ready(function () {
 				// just a hack that adds mfp-anim class to markup
 				this.st.image.markup = this.st.image.markup.replace(
 					"mfp-figure",
-					"mfp-figure mfp-with-anim",
+					"mfp-figure mfp-with-anim"
 				);
 			},
 		},
