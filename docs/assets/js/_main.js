@@ -2,22 +2,22 @@
    jQuery plugin settings and other scripts
    ========================================================================== */
 
-$(document).ready(function () {
+$(document).ready(() => {
 	// Sticky footer
-	var bumpIt = function () {
+	var bumpIt = () => {
 			$("body").css(
 				"margin-bottom",
-				$(".page__footer").outerHeight(true)
+				$(".page__footer").outerHeight(true),
 			);
 		},
 		didResize = false;
 
 	bumpIt();
 
-	$(window).resize(function () {
+	$(window).resize(() => {
 		didResize = true;
 	});
-	setInterval(function () {
+	setInterval(() => {
 		if (didResize) {
 			didResize = false;
 			bumpIt();
@@ -28,8 +28,8 @@ $(document).ready(function () {
 	$("#main").fitVids();
 
 	// Follow menu drop down
-	$(".author__urls-wrapper button").on("click", function () {
-		$(".author__urls").fadeToggle("fast", function () {});
+	$(".author__urls-wrapper button").on("click", () => {
+		$(".author__urls").fadeToggle("fast", () => {});
 		$(".author__urls-wrapper button").toggleClass("open");
 	});
 
@@ -43,7 +43,7 @@ $(document).ready(function () {
 
 	// add lightbox class to all image links
 	$(
-		"a[href$='.jpg'],a[href$='.jpeg'],a[href$='.JPG'],a[href$='.png'],a[href$='.gif']"
+		"a[href$='.jpg'],a[href$='.jpeg'],a[href$='.JPG'],a[href$='.png'],a[href$='.gif']",
 	).addClass("image-popup");
 
 	// Magnific-Popup options
@@ -73,7 +73,7 @@ $(document).ready(function () {
 				// just a hack that adds mfp-anim class to markup
 				this.st.image.markup = this.st.image.markup.replace(
 					"mfp-figure",
-					"mfp-figure mfp-with-anim"
+					"mfp-figure mfp-with-anim",
 				);
 			},
 		},

@@ -6,9 +6,7 @@
  * Licensed under the MIT license.
  */
 
-(function ($, window, undefined) {
-	"use strict";
-
+(($, window, undefined) => {
 	/** @const */
 	var YOUTUBE_REGEXP =
 		/^.*(youtu\.be\/|youtube\.com\/v\/|youtube\.com\/embed\/|youtube\.com\/watch\?v=|youtube\.com\/watch\?.*\&v=)([^#\&\?]*).*/i;
@@ -43,7 +41,7 @@
 					// Call the method
 					var returnValue = obj[args[0]].apply(
 						obj,
-						Array.prototype.slice.call(args, 1)
+						Array.prototype.slice.call(args, 1),
 					);
 					if (returnValue === obj) {
 						// If a method is chaining
@@ -79,7 +77,7 @@
 					];
 				} else {
 					$.error(
-						"No images were supplied for Backstretch, or element must have a CSS-defined background image."
+						"No images were supplied for Backstretch, or element must have a CSS-defined background image.",
 					);
 				}
 			}
@@ -96,15 +94,14 @@
 	};
 
 	// If no element is supplied, we'll attach to body
-	$.backstretch = function (images, options) {
+	$.backstretch = (images, options) => {
 		// Return the instance
 		return $("body").backstretch(images, options).data("backstretch");
 	};
 
 	// Custom selector
-	$.expr[":"].backstretch = function (elem) {
-		return $(elem).data("backstretch") !== undefined;
-	};
+	$.expr[":"].backstretch = (elem) =>
+		$(elem).data("backstretch") !== undefined;
 
 	/* DEFAULTS
 	 * ========================= */
@@ -173,9 +170,9 @@
 	 * Returns an array of urls optimized for the specified resolution.
 	 *
 	 */
-	var optimalSizeImages = (function () {
+	var optimalSizeImages = (() => {
 		/* Sorts the array of image sizes based on width */
-		var widthInsertSort = function (arr) {
+		var widthInsertSort = (arr) => {
 			for (var i = 1; i < arr.length; i++) {
 				var tmp = arr[i],
 					j = i;
@@ -195,11 +192,7 @@
 		/* Given an array of various sizes of the same image and a container width,
 		 * return the best image.
 		 */
-		var selectBest = function (
-			containerWidth,
-			containerHeight,
-			imageSizes
-		) {
+		var selectBest = (containerWidth, containerHeight, imageSizes) => {
 			var devicePixelRatio = window.devicePixelRatio || 1;
 			var deviceOrientation = getDeviceOrientation();
 			var windowOrientation = getWindowOrientation();
@@ -207,8 +200,8 @@
 				containerHeight > containerWidth
 					? "portrait"
 					: containerWidth > containerHeight
-						? "landscape"
-						: "square";
+					  ? "landscape"
+					  : "square";
 
 			var lastAllowedImage = 0;
 			var testWidth;
@@ -282,7 +275,7 @@
 			return imageSizes[Math.min(j, lastAllowedImage)];
 		};
 
-		var replaceTagsInUrl = function (url, templateReplacer) {
+		var replaceTagsInUrl = (url, templateReplacer) => {
 			if (typeof url === "string") {
 				// url = url.replace(/{{(width|height)}}/g, templateReplacer);
 			} else if (url instanceof Array) {
@@ -290,7 +283,7 @@
 					if (url[i].src) {
 						url[i].src = replaceTagsInUrl(
 							url[i].src,
-							templateReplacer
+							templateReplacer,
 						);
 					} else {
 						url[i] = replaceTagsInUrl(url[i], templateReplacer);
@@ -301,13 +294,13 @@
 			return url;
 		};
 
-		return function ($container, images) {
+		return ($container, images) => {
 			var containerWidth = $container.width(),
 				containerHeight = $container.height();
 
 			var chosenImages = [];
 
-			var templateReplacer = function (match, key) {
+			var templateReplacer = (match, key) => {
 				if (key === "width") {
 					return containerWidth;
 				}
@@ -323,7 +316,7 @@
 					var chosen = selectBest(
 						containerWidth,
 						containerHeight,
-						images[i]
+						images[i],
 					);
 					chosenImages.push(chosen);
 				} else {
@@ -342,17 +335,16 @@
 		};
 	})();
 
-	var isVideoSource = function (source) {
-		return YOUTUBE_REGEXP.test(source.url) || source.isVideo;
-	};
+	var isVideoSource = (source) =>
+		YOUTUBE_REGEXP.test(source.url) || source.isVideo;
 
 	/* Preload images */
-	var preload = (function (sources, startAt, count, batchSize, callback) {
+	var preload = ((sources, startAt, count, batchSize, callback) => {
 		// Plugin cache
 		var cache = [];
 
 		// Wrapper for cache
-		var caching = function (image) {
+		var caching = (image) => {
 			for (var i = 0; i < cache.length; i++) {
 				if (cache[i].src === image.src) {
 					return cache[i];
@@ -363,7 +355,7 @@
 		};
 
 		// Execute callback
-		var exec = function (sources, callback, last) {
+		var exec = (sources, callback, last) => {
 			if (typeof callback === "function") {
 				callback.call(sources, last);
 			}
@@ -416,7 +408,7 @@
 			// Image loading callback
 			var countLoaded = 0;
 
-			var loaded = function () {
+			var loaded = () => {
 				countLoaded++;
 				if (countLoaded !== count) {
 					return;
@@ -454,7 +446,7 @@
 	})();
 
 	/* Process images array */
-	var processImagesArray = function (images) {
+	var processImagesArray = (images) => {
 		var processed = [];
 		for (var i = 0; i < images.length; i++) {
 			if (typeof images[i] === "string") {
@@ -469,14 +461,14 @@
 	};
 
 	/* Process options */
-	var processOptions = function (options, required) {
+	var processOptions = (options, required) => {
 		// Convert old options
 
 		// centeredX/centeredY are deprecated
 		if (options.centeredX || options.centeredY) {
 			if (window.console && window.console.log) {
 				window.console.log(
-					"jquery.backstretch: `centeredX`/`centeredY` is deprecated, please use `alignX`/`alignY`"
+					"jquery.backstretch: `centeredX`/`centeredY` is deprecated, please use `alignX`/`alignY`",
 				);
 			}
 			if (options.centeredX) {
@@ -491,7 +483,7 @@
 		if (options.speed !== undefined) {
 			if (window.console && window.console.log) {
 				window.console.log(
-					"jquery.backstretch: `speed` is deprecated, please use `transitionDuration`"
+					"jquery.backstretch: `speed` is deprecated, please use `transitionDuration`",
 				);
 			}
 
@@ -525,19 +517,17 @@
 	};
 
 	/* Process align options */
-	var processAlignOptions = function (options, required) {
+	var processAlignOptions = (options, required) => {
 		if (options.alignX === "left") {
 			options.alignX = 0.0;
 		} else if (options.alignX === "center") {
 			options.alignX = 0.5;
 		} else if (options.alignX === "right") {
 			options.alignX = 1.0;
-		} else {
-			if (options.alignX !== undefined || required) {
-				options.alignX = parseFloat(options.alignX);
-				if (isNaN(options.alignX)) {
-					options.alignX = 0.5;
-				}
+		} else if (options.alignX !== undefined || required) {
+			options.alignX = parseFloat(options.alignX);
+			if (isNaN(options.alignX)) {
+				options.alignX = 0.5;
 			}
 		}
 
@@ -547,12 +537,10 @@
 			options.alignY = 0.5;
 		} else if (options.alignY === "bottom") {
 			options.alignY = 1.0;
-		} else {
-			if (options.alignX !== undefined || required) {
-				options.alignY = parseFloat(options.alignY);
-				if (isNaN(options.alignY)) {
-					options.alignY = 0.5;
-				}
+		} else if (options.alignX !== undefined || required) {
+			options.alignY = parseFloat(options.alignY);
+			if (isNaN(options.alignY)) {
+				options.alignY = 0.5;
 			}
 		}
 
@@ -626,7 +614,7 @@
 		this.originalImages = this.images;
 		this.images = optimalSizeImages(
 			this.options.alwaysTestWindowResolution ? $window : this.$root,
-			this.originalImages
+			this.originalImages,
 		);
 
 		/**
@@ -636,7 +624,7 @@
 		preload(
 			this.images,
 			this.options.start || 0,
-			this.options.preload || 1
+			this.options.preload || 1,
 		);
 
 		// Don't create a new wrap if one already exists (from a previous instance of Backstretch)
@@ -684,11 +672,11 @@
 					window.scrollTo(0, 1);
 					this.resize();
 				}
-			}, this)
+			}, this),
 		);
 	};
 
-	var performTransition = function (options) {
+	var performTransition = (options) => {
 		var transition = options.transition || "fade";
 
 		// Look for multiple options
@@ -716,7 +704,7 @@
 
 			case "fadeinout":
 			case "fade_in_out":
-				var fadeInNew = function () {
+				var fadeInNew = () => {
 					$new.fadeIn({
 						duration: options.duration / 2,
 						complete: options.complete,
@@ -758,12 +746,12 @@
 					transitionParts[2] === "left"
 						? "right"
 						: transitionParts[2] === "right"
-							? "left"
-							: transitionParts[2] === "down"
-								? "top"
-								: transitionParts[2] === "up"
-									? "bottom"
-									: "right";
+						  ? "left"
+						  : transitionParts[2] === "down"
+							  ? "top"
+							  : transitionParts[2] === "up"
+								  ? "bottom"
+								  : "right";
 
 				var newCssStart = {
 						display: "",
@@ -787,7 +775,7 @@
 
 					$old.animate(oldCssAnim, {
 						duration: options.duration,
-						complete: function () {
+						complete: () => {
 							$old.css("display", "none");
 						},
 						easing: options.easing || undefined,
@@ -834,7 +822,7 @@
 					// Big change: rebuild the entire images array
 					this.images = optimalSizeImages(
 						$resTest,
-						this.originalImages
+						this.originalImages,
 					);
 
 					// Preload them (they will be automatically inserted on the next cycle)
@@ -842,7 +830,7 @@
 						preload(
 							this.images,
 							(this.index + 1) % this.images.length,
-							this.options.preload
+							this.options.preload,
 						);
 					}
 
@@ -851,14 +839,12 @@
 						this.images.length === 1 &&
 						this._currentImage.url !== this.images[0].url
 					) {
-						// Wait a little an update the image being showed
-						var that = this;
-						clearTimeout(that._selectAnotherResolutionTimeout);
-						that._selectAnotherResolutionTimeout = setTimeout(
-							function () {
-								that.show(0);
+						clearTimeout(this._selectAnotherResolutionTimeout);
+						this._selectAnotherResolutionTimeout = setTimeout(
+							() => {
+								this.show(0);
 							},
-							this.options.resolutionRefreshRate
+							this.options.resolutionRefreshRate,
 						);
 					}
 				}
@@ -884,7 +870,7 @@
 							? this.options.alignY
 							: this._currentImage.alignY,
 					scale = validScale(
-						this._currentImage.scale || this.options.scale
+						this._currentImage.scale || this.options.scale,
 					);
 
 				var width, height;
@@ -985,14 +971,14 @@
 				that.videoWrapper = new VideoWrapper(selectedImage);
 				that.$item = that.videoWrapper.$video.css(
 					"pointer-events",
-					"none"
+					"none",
 				);
 			} else {
 				that.$item = $("<img />");
 			}
 
 			that.$itemWrapper = $('<div class="backstretch-item">').append(
-				that.$item
+				that.$item,
 			);
 
 			if (this.options.bypassCss) {
@@ -1021,18 +1007,17 @@
 				// Save the natural dimensions
 				$wrapper.data("width", imgWidth).data("height", imgHeight);
 
-				var getOption = function (opt) {
-					return options[opt] !== undefined
+				var getOption = (opt) =>
+					options[opt] !== undefined
 						? options[opt]
 						: that.options[opt];
-				};
 
 				var transition = getOption("transition");
 				var transitionEasing = getOption("transitionEasing");
 				var transitionDuration = getOption("transitionDuration");
 
 				// Show the image, then delete the old one
-				var bringInNextImage = function () {
+				var bringInNextImage = () => {
 					if (oldVideoWrapper) {
 						oldVideoWrapper.stop();
 						oldVideoWrapper.destroy();
@@ -1055,7 +1040,7 @@
 					$(["after", "show"]).each(function () {
 						that.$container.trigger(
 							$.Event("backstretch." + this, evtOptions),
-							[that, newIndex]
+							[that, newIndex],
 						);
 					});
 
@@ -1110,7 +1095,7 @@
 		next: function () {
 			var args = Array.prototype.slice.call(arguments, 0);
 			args.unshift(
-				this.index < this.images.length - 1 ? this.index + 1 : 0
+				this.index < this.images.length - 1 ? this.index + 1 : 0,
 			);
 			return this.show.apply(this, args);
 		},
@@ -1118,7 +1103,7 @@
 		prev: function () {
 			var args = Array.prototype.slice.call(arguments, 0);
 			args.unshift(
-				this.index === 0 ? this.images.length - 1 : this.index - 1
+				this.index === 0 ? this.images.length - 1 : this.index - 1,
 			);
 			return this.show.apply(this, args);
 		},
@@ -1178,16 +1163,16 @@
 
 								clearTimeout(lastFrameTimeout);
 								lastFrameTimeout = setTimeout(
-									function () {
+									() => {
 										player.pause();
 										player.$video.trigger("ended");
 									},
 									(player.getDuration() -
 										player.getCurrentTime()) *
-										1000
+										1000,
 								);
 							})
-							.on("ended.cycle", function () {
+							.on("ended.cycle", () => {
 								clearTimeout(lastFrameTimeout);
 							});
 					}
@@ -1195,7 +1180,7 @@
 					// On error go to next
 					this.$item.on(
 						"error.cycle initerror.cycle",
-						$.proxy(callNext, this)
+						$.proxy(callNext, this),
 					);
 				}
 
@@ -1206,7 +1191,7 @@
 					// Cycling according to specified duration
 					this._cycleTimeout = setTimeout(
 						$.proxy(callNext, this),
-						duration
+						duration,
 					);
 				}
 			}
@@ -1265,13 +1250,11 @@
 	 * loop, mute, poster
 	 */
 	VideoWrapper.prototype.init = function (options) {
-		var that = this;
-
 		var $video;
 
-		var setVideoElement = function () {
-			that.$video = $video;
-			that.video = $video[0];
+		var setVideoElement = () => {
+			this.$video = $video;
+			this.video = $video[0];
 		};
 
 		// Determine video type
@@ -1285,46 +1268,46 @@
 			videoType = "youtube";
 		}
 
-		that.type = videoType;
+		this.type = videoType;
 
 		if (videoType === "youtube") {
 			// Try to load the API in the meantime
 			VideoWrapper.loadYoutubeAPI();
 
-			that.ytId = options.url.match(YOUTUBE_REGEXP)[2];
+			this.ytId = options.url.match(YOUTUBE_REGEXP)[2];
 			var src =
 				"https://www.youtube.com/embed/" +
-				that.ytId +
+				this.ytId +
 				"?rel=0&autoplay=0&showinfo=0&controls=0&modestbranding=1" +
 				"&cc_load_policy=0&disablekb=1&iv_load_policy=3&loop=0" +
 				"&enablejsapi=1&origin=" +
 				encodeURIComponent(window.location.origin);
 
-			that.__ytStartMuted = !!options.mute || options.mute === undefined;
+			this.__ytStartMuted = !!options.mute || options.mute === undefined;
 
 			$video = $("<iframe />")
 				.attr({ src_to_load: src })
 				.css({ border: 0, margin: 0, padding: 0 })
-				.data("player", that);
+				.data("player", this);
 
 			if (options.loop) {
-				$video.on("ended.loop", function () {
-					if (!that.__manuallyStopped) {
-						that.play();
+				$video.on("ended.loop", () => {
+					if (!this.__manuallyStopped) {
+						this.play();
 					}
 				});
 			}
 
-			that.ytReady = false;
+			this.ytReady = false;
 
 			setVideoElement();
 
 			if (window["YT"]) {
-				that._initYoutube();
+				this._initYoutube();
 				$video.trigger("initsuccess");
 			} else {
-				$(window).one("youtube_api_load", function () {
-					that._initYoutube();
+				$(window).one("youtube_api_load", () => {
+					this._initYoutube();
 					$video.trigger("initsuccess");
 				});
 			}
@@ -1368,211 +1351,193 @@
 	};
 
 	VideoWrapper.prototype._initYoutube = function () {
-		var that = this;
-
 		var YT = window["YT"];
 
-		that.$video
-			.attr("src", that.$video.attr("src_to_load"))
+		this.$video
+			.attr("src", this.$video.attr("src_to_load"))
 			.removeAttr("src_to_load");
 
 		// It won't init if it's not in the DOM, so we emulate that
-		var hasParent = !!that.$video[0].parentNode;
+		var hasParent = !!this.$video[0].parentNode;
 		if (!hasParent) {
 			var $tmpParent = $("<div>")
 				.css("display", "none !important")
 				.appendTo(document.body);
-			that.$video.appendTo($tmpParent);
+			this.$video.appendTo($tmpParent);
 		}
 
-		var player = new YT.Player(that.video, {
+		var player = new YT.Player(this.video, {
 			events: {
-				onReady: function () {
-					if (that.__ytStartMuted) {
+				onReady: () => {
+					if (this.__ytStartMuted) {
 						player.mute();
 					}
 
 					if (!hasParent) {
 						// Restore parent to old state - without interrupting any changes
-						if (that.$video[0].parentNode === $tmpParent[0]) {
-							that.$video.detach();
+						if (this.$video[0].parentNode === $tmpParent[0]) {
+							this.$video.detach();
 						}
 						$tmpParent.remove();
 					}
 
-					that.ytReady = true;
-					that._updateYoutubeSize();
-					that.$video.trigger("canplay");
+					this.ytReady = true;
+					this._updateYoutubeSize();
+					this.$video.trigger("canplay");
 				},
-				onStateChange: function (event) {
+				onStateChange: (event) => {
 					switch (event.data) {
 						case YT.PlayerState.PLAYING:
-							that.$video.trigger("playing");
+							this.$video.trigger("playing");
 							break;
 						case YT.PlayerState.ENDED:
-							that.$video.trigger("ended");
+							this.$video.trigger("ended");
 							break;
 						case YT.PlayerState.PAUSED:
-							that.$video.trigger("pause");
+							this.$video.trigger("pause");
 							break;
 						case YT.PlayerState.BUFFERING:
-							that.$video.trigger("waiting");
+							this.$video.trigger("waiting");
 							break;
 						case YT.PlayerState.CUED:
-							that.$video.trigger("canplay");
+							this.$video.trigger("canplay");
 							break;
 					}
 				},
-				onPlaybackQualityChange: function () {
-					that._updateYoutubeSize();
-					that.$video.trigger("resize");
+				onPlaybackQualityChange: () => {
+					this._updateYoutubeSize();
+					this.$video.trigger("resize");
 				},
-				onError: function (err) {
-					that.hasError = true;
-					that.$video.trigger({ type: "error", error: err });
+				onError: (err) => {
+					this.hasError = true;
+					this.$video.trigger({ type: "error", error: err });
 				},
 			},
 		});
 
-		that.ytPlayer = player;
+		this.ytPlayer = player;
 
-		return that;
+		return this;
 	};
 
 	VideoWrapper.prototype._updateYoutubeSize = function () {
-		var that = this;
-
-		switch (that.ytPlayer.getPlaybackQuality() || "medium") {
+		switch (this.ytPlayer.getPlaybackQuality() || "medium") {
 			case "small":
-				that.video.videoWidth = 426;
-				that.video.videoHeight = 240;
+				this.video.videoWidth = 426;
+				this.video.videoHeight = 240;
 				break;
 			case "medium":
-				that.video.videoWidth = 640;
-				that.video.videoHeight = 360;
+				this.video.videoWidth = 640;
+				this.video.videoHeight = 360;
 				break;
 			default:
 			case "large":
-				that.video.videoWidth = 854;
-				that.video.videoHeight = 480;
+				this.video.videoWidth = 854;
+				this.video.videoHeight = 480;
 				break;
 			case "hd720":
-				that.video.videoWidth = 1280;
-				that.video.videoHeight = 720;
+				this.video.videoWidth = 1280;
+				this.video.videoHeight = 720;
 				break;
 			case "hd1080":
-				that.video.videoWidth = 1920;
-				that.video.videoHeight = 1080;
+				this.video.videoWidth = 1920;
+				this.video.videoHeight = 1080;
 				break;
 			case "highres":
-				that.video.videoWidth = 2560;
-				that.video.videoHeight = 1440;
+				this.video.videoWidth = 2560;
+				this.video.videoHeight = 1440;
 				break;
 		}
 
-		return that;
+		return this;
 	};
 
 	VideoWrapper.prototype.play = function () {
-		var that = this;
+		this.__manuallyStopped = false;
 
-		that.__manuallyStopped = false;
-
-		if (that.type === "youtube") {
-			if (that.ytReady) {
-				that.$video.trigger("play");
-				that.ytPlayer.playVideo();
+		if (this.type === "youtube") {
+			if (this.ytReady) {
+				this.$video.trigger("play");
+				this.ytPlayer.playVideo();
 			}
 		} else {
-			that.video.play();
+			this.video.play();
 		}
 
-		return that;
+		return this;
 	};
 
 	VideoWrapper.prototype.pause = function () {
-		var that = this;
+		this.__manuallyStopped = false;
 
-		that.__manuallyStopped = false;
-
-		if (that.type === "youtube") {
-			if (that.ytReady) {
-				that.ytPlayer.pauseVideo();
+		if (this.type === "youtube") {
+			if (this.ytReady) {
+				this.ytPlayer.pauseVideo();
 			}
 		} else {
-			that.video.pause();
+			this.video.pause();
 		}
 
-		return that;
+		return this;
 	};
 
 	VideoWrapper.prototype.stop = function () {
-		var that = this;
+		this.__manuallyStopped = true;
 
-		that.__manuallyStopped = true;
-
-		if (that.type === "youtube") {
-			if (that.ytReady) {
-				that.ytPlayer.pauseVideo();
-				that.ytPlayer.seekTo(0);
+		if (this.type === "youtube") {
+			if (this.ytReady) {
+				this.ytPlayer.pauseVideo();
+				this.ytPlayer.seekTo(0);
 			}
 		} else {
-			that.video.pause();
-			that.video.currentTime = 0;
+			this.video.pause();
+			this.video.currentTime = 0;
 		}
 
-		return that;
+		return this;
 	};
 
 	VideoWrapper.prototype.destroy = function () {
-		var that = this;
-
-		if (that.ytPlayer) {
-			that.ytPlayer.destroy();
+		if (this.ytPlayer) {
+			this.ytPlayer.destroy();
 		}
 
-		that.$video.remove();
+		this.$video.remove();
 
-		return that;
+		return this;
 	};
 
 	VideoWrapper.prototype.getCurrentTime = function (seconds) {
-		var that = this;
-
-		if (that.type === "youtube") {
-			if (that.ytReady) {
-				return that.ytPlayer.getCurrentTime();
+		if (this.type === "youtube") {
+			if (this.ytReady) {
+				return this.ytPlayer.getCurrentTime();
 			}
 		} else {
-			return that.video.currentTime;
+			return this.video.currentTime;
 		}
 
 		return 0;
 	};
 
 	VideoWrapper.prototype.setCurrentTime = function (seconds) {
-		var that = this;
-
-		if (that.type === "youtube") {
-			if (that.ytReady) {
-				that.ytPlayer.seekTo(seconds, true);
+		if (this.type === "youtube") {
+			if (this.ytReady) {
+				this.ytPlayer.seekTo(seconds, true);
 			}
 		} else {
-			that.video.currentTime = seconds;
+			this.video.currentTime = seconds;
 		}
 
-		return that;
+		return this;
 	};
 
 	VideoWrapper.prototype.getDuration = function () {
-		var that = this;
-
-		if (that.type === "youtube") {
-			if (that.ytReady) {
-				return that.ytPlayer.getDuration();
+		if (this.type === "youtube") {
+			if (this.ytReady) {
+				return this.ytPlayer.getDuration();
 			}
 		} else {
-			return that.video.duration;
+			return this.video.duration;
 		}
 
 		return 0;
@@ -1582,16 +1547,16 @@
 	 * This will load the youtube API (if not loaded yet)
 	 * Use $(window).one('youtube_api_load', ...) to listen for API loaded event
 	 */
-	VideoWrapper.loadYoutubeAPI = function () {
+	VideoWrapper.loadYoutubeAPI = () => {
 		if (window["YT"]) {
 			return;
 		}
 		if (!$("script[src*=www\\.youtube\\.com\\/iframe_api]").length) {
 			$(
-				'<script type="text/javascript" src="https://www.youtube.com/iframe_api">'
+				'<script type="text/javascript" src="https://www.youtube.com/iframe_api">',
 			).appendTo("body");
 		}
-		var ytAPILoadInt = setInterval(function () {
+		var ytAPILoadInt = setInterval(() => {
 			if (window["YT"] && window["YT"].loaded) {
 				$(window).trigger("youtube_api_load");
 				clearTimeout(ytAPILoadInt);
@@ -1599,7 +1564,7 @@
 		}, 50);
 	};
 
-	var getDeviceOrientation = function () {
+	var getDeviceOrientation = () => {
 		if ("matchMedia" in window) {
 			if (window.matchMedia("(orientation: portrait)").matches) {
 				return "portrait";
@@ -1618,7 +1583,7 @@
 		return "landscape";
 	};
 
-	var getWindowOrientation = function () {
+	var getWindowOrientation = () => {
 		if (window.innerHeight > window.innerWidth) {
 			return "portrait";
 		}
@@ -1642,7 +1607,7 @@
 	 * Modified to detect IE6
 	 * ========================= */
 
-	var supportsFixedPosition = (function () {
+	var supportsFixedPosition = (() => {
 		var ua = navigator.userAgent,
 			platform = navigator.platform,
 			// Rendering engine is Webkit, and capture major version

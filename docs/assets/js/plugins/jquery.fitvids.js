@@ -8,9 +8,7 @@
  *
  */
 
-(function ($) {
-	"use strict";
-
+(($) => {
 	$.fn.fitVids = function (options) {
 		var settings = {
 			customSelector: null,
@@ -83,9 +81,9 @@
 							!isNaN(parseInt($this.attr("height"), 10)))
 							? parseInt($this.attr("height"), 10)
 							: $this.height(),
-					width = !isNaN(parseInt($this.attr("width"), 10))
-						? parseInt($this.attr("width"), 10)
-						: $this.width(),
+					width = isNaN(parseInt($this.attr("width"), 10))
+						? $this.width()
+						: parseInt($this.attr("width"), 10),
 					aspectRatio = height / width;
 				if (!$this.attr("id")) {
 					var videoID = "fitvid" + count;

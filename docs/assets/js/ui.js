@@ -14,7 +14,7 @@ function typing(index, step) {
 	const content = features[index].substr(0, length - Math.abs(step - length));
 	document.getElementById("typing").innerHTML = content.replace(
 		/\s/g,
-		"&nbsp;"
+		"&nbsp;",
 	);
 	let timeout = 100;
 	if (step === length) {

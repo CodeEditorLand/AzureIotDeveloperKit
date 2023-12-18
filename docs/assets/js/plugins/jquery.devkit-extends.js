@@ -1,6 +1,6 @@
 // Extend functions
-(function ($, window, undefined) {
-	$.devKitExtends = function () {
+(($, window, undefined) => {
+	$.devKitExtends = () => {
 		mastheadFix();
 		menuScroll();
 
@@ -30,7 +30,7 @@
 									curLevel[1] <= switchLevel
 								) {
 									$("#" + platform + "_switch_result").html(
-										string
+										string,
 									);
 									curPlatform = false;
 								} else {
@@ -41,41 +41,39 @@
 										.html();
 									$(this).remove();
 								}
-							} else {
-								if (
-									curLevel[0] == "H" &&
-									curLevel[1] == switchLevel &&
-									id.search($(this).attr("id")) != -1
-								) {
-									curPlatform = true;
-									string += $(this)
-										.clone()
-										.wrap("<p>")
+							} else if (
+								curLevel[0] == "H" &&
+								curLevel[1] == switchLevel &&
+								id.search($(this).attr("id")) != -1
+							) {
+								curPlatform = true;
+								string += $(this)
+									.clone()
+									.wrap("<p>")
+									.parent()
+									.html();
+								platform = $(this).attr("id");
+								if (firstPlatform == "") {
+									firstPlatform = platform;
+									$(this).before(
+										'<div id = "' +
+											platform +
+											'_switch_result" class = "switch_result">',
+									);
+									$("#" + platform + "_switch").addClass(
+										"switch_active",
+									);
+								} else {
+									$(this).before(
+										'<div id = "' +
+											platform +
+											'_switch_result" class = "switch_result" style = "display: none">',
+									);
+									$("#markdown-toc-" + platform)
 										.parent()
-										.html();
-									platform = $(this).attr("id");
-									if (firstPlatform == "") {
-										firstPlatform = platform;
-										$(this).before(
-											'<div id = "' +
-												platform +
-												'_switch_result" class = "switch_result">'
-										);
-										$("#" + platform + "_switch").addClass(
-											"switch_active"
-										);
-									} else {
-										$(this).before(
-											'<div id = "' +
-												platform +
-												'_switch_result" class = "switch_result" style = "display: none">'
-										);
-										$("#markdown-toc-" + platform)
-											.parent()
-											.css("display", "none");
-									}
-									$(this).remove();
+										.css("display", "none");
 								}
+								$(this).remove();
 							}
 						});
 					if (curPlatform) {
@@ -100,22 +98,22 @@
 		landingPageConfig();
 	};
 
-	$.closeReportIssue = function () {
+	$.closeReportIssue = () => {
 		$("#surveypopup").remove();
 	};
 
-	$.reportIssuePopup = function (tutorial, step) {
+	$.reportIssuePopup = (tutorial, step) => {
 		$("body").append(
 			'<div id="surveypopup" class="overlay visible"><div class="surveypopup"><div id="surveytitle">Tell us more<a href="javascript:void(0)" onclick="$.closeReportIssue()">X</a></div><div id="surveydiv"><iframe frameBorder="0" scrolling="0" src="https://www.research.net/r/N9F3LCY?tutorial=' +
 				tutorial +
 				"&step=" +
 				step +
-				'"></iframe></div></div></div>'
+				'"></iframe></div></div></div>',
 		);
 	};
 
-	$.reportIssue = function () {
-		$(".feedback-btns").fadeOut(400, function () {
+	$.reportIssue = () => {
+		$(".feedback-btns").fadeOut(400, () => {
 			$(".survey-monkey").fadeIn(400);
 		});
 		$(".survey-monkey iframe").each(function () {
@@ -125,20 +123,20 @@
 		});
 	};
 
-	$.feedbackDisappeared = function () {
-		$(".feedback-btns").fadeOut(400, function () {
+	$.feedbackDisappeared = () => {
+		$(".feedback-btns").fadeOut(400, () => {
 			$(".feedback-btns")
 				.html(
-					"<h3> Thank you! </h3><p> We appreciate your feedback. </p>"
+					"<h3> Thank you! </h3><p> We appreciate your feedback. </p>",
 				)
 				.fadeIn(400);
 		});
-		setTimeout(function () {
+		setTimeout(() => {
 			$(".feedback-btns").fadeOut(400);
 		}, 2000);
 	};
 
-	$.feedbackButtonClick = function (projectName, eventName) {
+	$.feedbackButtonClick = (projectName, eventName) => {
 		try {
 			ga("send", "event", {
 				eventCategory: "stepFinished",
@@ -150,13 +148,13 @@
 		}
 	};
 
-	var feedbackButtonFixed = function () {
-		var feedbackButtonFixedCallback = function () {
+	var feedbackButtonFixed = () => {
+		var feedbackButtonFixedCallback = () => {
 			var articleTop = $(".page__content").position().top;
 			if (articleTop > $(window).scrollTop()) {
 				$(".feedback-btn-fixed").css(
 					"bottom",
-					26 - (articleTop - $(window).scrollTop())
+					26 - (articleTop - $(window).scrollTop()),
 				);
 			} else {
 				$(".feedback-btn-fixed").css("bottom", "");
@@ -183,7 +181,7 @@
 		});
 	};
 
-	var adjustResize = function () {
+	var adjustResize = () => {
 		// Resize page hero image container
 		vpw = $(window).width();
 		vph = $(window).height();
@@ -217,7 +215,7 @@
 			} else {
 				$(".sidebar__right_fix").css(
 					"top",
-					articleTop - $(this).scrollTop() + 30
+					articleTop - $(this).scrollTop() + 30,
 				);
 			}
 
@@ -234,7 +232,7 @@
 					"height",
 					$(window).height() -
 						$(".sidebar__right_fix").position().top -
-						30
+						30,
 				);
 				$(".sidebar__right_fix").css("overflow", "scroll");
 			} else {
@@ -246,7 +244,7 @@
 		}
 	};
 
-	var menuScroll = function () {
+	var menuScroll = () => {
 		var lastScrollTop = 0;
 		// var greedyNav = $('.masthead .greedy-nav');
 		$(window).bind("scroll", function () {
@@ -271,20 +269,20 @@
 		});
 	};
 
-	var mastheadFix = function () {
+	var mastheadFix = () => {
 		if ($(".masthead").next().attr("id") !== "main") {
 			$(".masthead .greedy-nav").addClass("reverse-color");
 		}
 	};
 
-	var trackClickNumber = function (element) {
+	var trackClickNumber = (element) => {
 		var url = $(element).attr("href");
 		var redirect = true;
 		try {
 			dataLayer.push({
 				event: "gtm.linkClick",
 				eventTimeout: 2000,
-				eventCallback: function () {
+				eventCallback: () => {
 					redirect = false;
 					document.location = url;
 				},
@@ -304,7 +302,7 @@
 			console.log("gtm error: " + e);
 		}
 
-		setTimeout(function () {
+		setTimeout(() => {
 			if (redirect) document.location = url;
 		}, 2000);
 		return false;
@@ -321,7 +319,7 @@
 		});
 		$(".switch").each(function () {
 			var tocElement = $(
-				"#markdown-toc-" + $(this).attr("href").substring(1)
+				"#markdown-toc-" + $(this).attr("href").substring(1),
 			).parent();
 			if ($(this).attr("href") == url) {
 				tocElement.css("display", "");
@@ -334,7 +332,7 @@
 		return false;
 	};
 
-	var projectCardClick = function () {
+	var projectCardClick = () => {
 		$(".grid__item").each(function () {
 			$(this).css("cursor", "pointer");
 			$(this).click(function (event) {
@@ -354,7 +352,7 @@
 		});
 	};
 
-	var projectCardDifficultyColor = function () {
+	var projectCardDifficultyColor = () => {
 		$("p.project-difficulty").each(function () {
 			var difficulty = $(this).html().trim().toLocaleLowerCase();
 			if (difficulty == "easy") {
@@ -369,7 +367,7 @@
 		});
 	};
 
-	var faqMenu = function () {
+	var faqMenu = () => {
 		if (
 			$("h1").length &&
 			$("h1").html().trim() == "Frequently Asked Questions"
@@ -382,7 +380,7 @@
 					.each(function () {
 						if ($(this).prop("tagName") == "H2") {
 							$(pageFront).before(
-								$(this).clone().removeAttr("id")
+								$(this).clone().removeAttr("id"),
 							);
 							$(pageFront).prev().addClass("faq-menu-h2");
 						} else {
@@ -390,7 +388,7 @@
 								'<li class="faq-menu-li"><a href="#' +
 									$(this).attr("id") +
 									'" class="faq-menu-a">' +
-									$(this).html()
+									$(this).html(),
 							);
 							$(pageFront)
 								.prev()
@@ -403,26 +401,26 @@
 			$(".faq-back-to-top").css(
 				"left",
 				$(".page__content").position().left +
-					$(".page__content").width()
+					$(".page__content").width(),
 			);
 			BackToTopDisplay();
-			$(window).resize(function () {
+			$(window).resize(() => {
 				$(".faq-back-to-top").css(
 					"left",
 					$(".page__content").position().left +
-						$(".page__content").width()
+						$(".page__content").width(),
 				);
 				BackToTopDisplay();
 			});
 			$(window).scroll(BackToTopDisplay);
-			$(".faq-back-to-top").click(function () {
+			$(".faq-back-to-top").click(() => {
 				$("body").animate({ scrollTop: 0 }, 500);
 				return false;
 			});
 		}
 	};
 
-	var BackToTopDisplay = function () {
+	var BackToTopDisplay = () => {
 		if ($(window).scrollTop() > 20 && window.innerWidth >= 1024) {
 			$(".faq-back-to-top").css("display", "block");
 		} else {
@@ -430,17 +428,17 @@
 		}
 	};
 
-	var landingPageConfig = function () {
-		var thirdProjectDisappear = function () {
+	var landingPageConfig = () => {
+		var thirdProjectDisappear = () => {
 			if (600 <= window.innerWidth && window.innerWidth < 768) {
 				$(".layout--splash .grid__item:nth-child(3)").css(
 					"display",
-					"none"
+					"none",
 				);
 			} else {
 				$(".layout--splash .grid__item:nth-child(3)").css(
 					"display",
-					"block"
+					"block",
 				);
 			}
 		};

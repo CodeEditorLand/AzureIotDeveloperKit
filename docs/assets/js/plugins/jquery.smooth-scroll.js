@@ -5,7 +5,7 @@
  * Licensed MIT
  */
 
-(function (factory) {
+((factory) => {
 	if (typeof define === "function" && define.amd) {
 		// AMD. Register as an anonymous module.
 		define(["jquery"], factory);
@@ -16,7 +16,7 @@
 		// Browser globals
 		factory(jQuery);
 	}
-})(function ($) {
+})(($) => {
 	var version = "2.2.0";
 	var optionOverrides = {};
 	var defaults = {
@@ -43,11 +43,11 @@
 
 		// fn(opts) function to be called before scrolling occurs.
 		// `this` is the element(s) being scrolled
-		beforeScroll: function () {},
+		beforeScroll: () => {},
 
 		// fn(opts) function to be called after scrolling occurs.
 		// `this` is the triggering element
-		afterScroll: function () {},
+		afterScroll: () => {},
 
 		// easing name. jQuery comes with "swing" and "linear." For others, you'll need an easing plugin
 		// from jQuery UI or elsewhere
@@ -165,11 +165,7 @@
 			var opts = $.extend({}, $.fn.smoothScroll.defaults, options);
 
 			var clickHandler = function (event) {
-				var escapeSelector = function (str) {
-					return str.replace(/(:|\.|\/)/g, "\\$1");
-				};
-
-				var link = this;
+				var escapeSelector = (str) => str.replace(/(:|\.|\/)/g, "\\$1");
 				var $link = $(this);
 				var thisOpts = $.extend({}, opts, $link.data("ssOpts") || {});
 				var exclude = opts.exclude;
@@ -179,12 +175,12 @@
 				var include = true;
 				var clickOpts = {};
 				var locationPath = $.smoothScroll.filterPath(location.pathname);
-				var linkPath = $.smoothScroll.filterPath(link.pathname);
+				var linkPath = $.smoothScroll.filterPath(this.pathname);
 				var hostMatch =
-					location.hostname === link.hostname || !link.hostname;
+					location.hostname === this.hostname || !this.hostname;
 				var pathMatch =
 					thisOpts.scrollTarget || linkPath === locationPath;
-				var thisHash = escapeSelector(link.hash);
+				var thisHash = escapeSelector(this.hash);
 
 				if (thisHash && !$(thisHash).length) {
 					include = false;
@@ -216,7 +212,7 @@
 
 					$.extend(clickOpts, thisOpts, {
 						scrollTarget: thisOpts.scrollTarget || thisHash,
-						link: link,
+						link: this,
 					});
 
 					$.smoothScroll(clickOpts);
@@ -227,12 +223,12 @@
 				this.off("click.smoothscroll", options.delegateSelector).on(
 					"click.smoothscroll",
 					options.delegateSelector,
-					clickHandler
+					clickHandler,
 				);
 			} else {
 				this.off("click.smoothscroll").on(
 					"click.smoothscroll",
-					clickHandler
+					clickHandler,
 				);
 			}
 
@@ -240,7 +236,7 @@
 		},
 	});
 
-	var getExplicitOffset = function (val) {
+	var getExplicitOffset = (val) => {
 		var explicit = { relative: "" };
 		var parts = typeof val === "string" && rRelative.exec(val);
 
@@ -254,7 +250,7 @@
 		return explicit;
 	};
 
-	var onAfterScroll = function (opts) {
+	var onAfterScroll = (opts) => {
 		var $tgt = $(opts.scrollTarget);
 
 		if (opts.autoFocus && $tgt.length) {
@@ -269,7 +265,7 @@
 		opts.afterScroll.call(opts.link, opts);
 	};
 
-	$.smoothScroll = function (options, px) {
+	$.smoothScroll = (options, px) => {
 		if (options === "options" && typeof px === "object") {
 			return $.extend(optionOverrides, px);
 		}
@@ -286,14 +282,14 @@
 			opts = $.extend(
 				{ link: null },
 				$.fn.smoothScroll.defaults,
-				optionOverrides
+				optionOverrides,
 			);
 		} else {
 			opts = $.extend(
 				{ link: null },
 				$.fn.smoothScroll.defaults,
 				options || {},
-				optionOverrides
+				optionOverrides,
 			);
 
 			if (opts.scrollElement) {
@@ -335,7 +331,7 @@
 						($(opts.scrollTarget)[offPos]() &&
 							$(opts.scrollTarget)[offPos]()[opts.direction]) ||
 						0,
-				};
+			  };
 
 		aniProps[scrollDir] =
 			scrollTargetOffset.relative +
@@ -356,7 +352,7 @@
 		aniOpts = {
 			duration: speed,
 			easing: opts.easing,
-			complete: function () {
+			complete: () => {
 				onAfterScroll(opts);
 			},
 		};
@@ -373,7 +369,7 @@
 	};
 
 	$.smoothScroll.version = version;
-	$.smoothScroll.filterPath = function (string) {
+	$.smoothScroll.filterPath = (string) => {
 		string = string || "";
 
 		return string

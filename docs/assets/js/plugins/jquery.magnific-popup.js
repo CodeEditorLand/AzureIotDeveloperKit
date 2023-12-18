@@ -1,7 +1,7 @@
 /*! Magnific Popup - v1.1.0 - 2016-02-20
  * http://dimsemenov.com/plugins/magnific-popup/
  * Copyright (c) 2016 Dmitry Semenov; */
-(function (factory) {
+((factory) => {
 	if (typeof define === "function" && define.amd) {
 		// AMD. Register as an anonymous module.
 		define(["jquery"], factory);
@@ -12,7 +12,7 @@
 		// Browser globals
 		factory(window.jQuery || window.Zepto);
 	}
-})(function ($) {
+})(($) => {
 	/*>>core*/
 	/**
 	 *
@@ -41,7 +41,7 @@
 	 */
 	/*jshint -W079 */
 	var mfp, // As we have only one instance of MagnificPopup object, we define it locally to not to use 'this'
-		MagnificPopup = function () {},
+		MagnificPopup = () => {},
 		_isJQ = !!window.jQuery,
 		_prevStatus,
 		_window = $(window),
@@ -53,10 +53,10 @@
 	/**
 	 * Private functions
 	 */
-	var _mfpOn = function (name, f) {
+	var _mfpOn = (name, f) => {
 			mfp.ev.on(NS + name + EVENT_NS, f);
 		},
-		_getEl = function (className, appendTo, html, raw) {
+		_getEl = (className, appendTo, html, raw) => {
 			var el = document.createElement("div");
 			el.className = "mfp-" + className;
 			if (html) {
@@ -72,7 +72,7 @@
 			}
 			return el;
 		},
-		_mfpTrigger = function (e, data) {
+		_mfpTrigger = (e, data) => {
 			mfp.ev.triggerHandler(NS + e, data);
 
 			if (mfp.st.callbacks) {
@@ -81,22 +81,22 @@
 				if (mfp.st.callbacks[e]) {
 					mfp.st.callbacks[e].apply(
 						mfp,
-						$.isArray(data) ? data : [data]
+						$.isArray(data) ? data : [data],
 					);
 				}
 			}
 		},
-		_getCloseBtn = function (type) {
+		_getCloseBtn = (type) => {
 			if (type !== _currPopupType || !mfp.currTemplate.closeBtn) {
 				mfp.currTemplate.closeBtn = $(
-					mfp.st.closeMarkup.replace("%title%", mfp.st.tClose)
+					mfp.st.closeMarkup.replace("%title%", mfp.st.tClose),
 				);
 				_currPopupType = type;
 			}
 			return mfp.currTemplate.closeBtn;
 		},
 		// Initialize Magnific Popup only when called at least once
-		_checkInstance = function () {
+		_checkInstance = () => {
 			if (!$.magnificPopup.instance) {
 				/*jshint -W020 */
 				mfp = new MagnificPopup();
@@ -105,7 +105,7 @@
 			}
 		},
 		// CSS transition detection, http://stackoverflow.com/questions/7264899/detect-css-transitions-using-javascript-and-without-modernizr
-		supportsTransitions = function () {
+		supportsTransitions = () => {
 			var s = document.createElement("p").style, // 's' for style. better to create an element if body yet to exist
 				v = ["ms", "O", "Moz", "Webkit"]; // 'v' for vendor
 
@@ -132,7 +132,7 @@
 		 * Initializes Magnific Popup plugin.
 		 * This function is triggered only once when $.fn.magnificPopup or $.magnificPopup is executed
 		 */
-		init: function () {
+		init: () => {
 			var appVersion = navigator.appVersion;
 			mfp.isLowIE = mfp.isIE8 =
 				document.all && !document.addEventListener;
@@ -146,7 +146,7 @@
 				mfp.isAndroid ||
 				mfp.isIOS ||
 				/(Opera Mini)|Kindle|webOS|BlackBerry|(Opera Mobi)|(Windows Phone)|IEMobile/i.test(
-					navigator.userAgent
+					navigator.userAgent,
 				);
 			_document = $(document);
 
@@ -157,7 +157,7 @@
 		 * Opens popup
 		 * @param  data [description]
 		 */
-		open: function (data) {
+		open: (data) => {
 			var i;
 
 			if (data.isObj === false) {
@@ -222,16 +222,13 @@
 			// main containers are created only once
 			if (!mfp.bgOverlay) {
 				// Dark overlay
-				mfp.bgOverlay = _getEl("bg").on(
-					"click" + EVENT_NS,
-					function () {
-						mfp.close();
-					}
-				);
+				mfp.bgOverlay = _getEl("bg").on("click" + EVENT_NS, () => {
+					mfp.close();
+				});
 
 				mfp.wrap = _getEl("wrap")
 					.attr("tabindex", -1)
-					.on("click" + EVENT_NS, function (e) {
+					.on("click" + EVENT_NS, (e) => {
 						if (mfp._checkIfClose(e.target)) {
 							mfp.close();
 						}
@@ -245,7 +242,7 @@
 				mfp.preloader = _getEl(
 					"preloader",
 					mfp.container,
-					mfp.st.tLoading
+					mfp.st.tLoading,
 				);
 			}
 
@@ -260,16 +257,13 @@
 
 			if (mfp.st.showCloseBtn) {
 				// Close button
-				if (!mfp.st.closeBtnInside) {
-					mfp.wrap.append(_getCloseBtn());
-				} else {
-					_mfpOn(
-						MARKUP_PARSE_EVENT,
-						function (e, template, values, item) {
-							values.close_replaceWith = _getCloseBtn(item.type);
-						}
-					);
+				if (mfp.st.closeBtnInside) {
+					_mfpOn(MARKUP_PARSE_EVENT, (e, template, values, item) => {
+						values.close_replaceWith = _getCloseBtn(item.type);
+					});
 					_wrapClasses += " mfp-close-btn-in";
+				} else {
+					mfp.wrap.append(_getCloseBtn());
 				}
 			}
 
@@ -301,14 +295,14 @@
 
 			if (mfp.st.enableEscapeKey) {
 				// Close on ESC key
-				_document.on("keyup" + EVENT_NS, function (e) {
+				_document.on("keyup" + EVENT_NS, (e) => {
 					if (e.keyCode === 27) {
 						mfp.close();
 					}
 				});
 			}
 
-			_window.on("resize" + EVENT_NS, function () {
+			_window.on("resize" + EVENT_NS, () => {
 				mfp.updateSize();
 			});
 
@@ -333,11 +327,11 @@
 			}
 
 			if (mfp.fixedContentPos) {
-				if (!mfp.isIE7) {
-					windowStyles.overflow = "hidden";
-				} else {
+				if (mfp.isIE7) {
 					// ie7 double-scroll bug
 					$("body, html").css("overflow", "hidden");
+				} else {
+					windowStyles.overflow = "hidden";
 				}
 			}
 
@@ -366,7 +360,7 @@
 			mfp._lastFocusedEl = document.activeElement;
 
 			// Wait for next cycle to allow CSS transition
-			setTimeout(function () {
+			setTimeout(() => {
 				if (mfp.content) {
 					mfp._addClassToMFP(READY_CLASS);
 					mfp._setFocus();
@@ -389,7 +383,7 @@
 		/**
 		 * Closes the popup
 		 */
-		close: function () {
+		close: () => {
 			if (!mfp.isOpen) return;
 			_mfpTrigger(BEFORE_CLOSE_EVENT);
 
@@ -397,7 +391,7 @@
 			// for CSS3 animation
 			if (mfp.st.removalDelay && !mfp.isLowIE && mfp.supportsTransition) {
 				mfp._addClassToMFP(REMOVING_CLASS);
-				setTimeout(function () {
+				setTimeout(() => {
 					mfp._close();
 				}, mfp.st.removalDelay);
 			} else {
@@ -408,7 +402,7 @@
 		/**
 		 * Helper for close() function
 		 */
-		_close: function () {
+		_close: () => {
 			_mfpTrigger(CLOSE_EVENT);
 
 			var classesToRemove = REMOVING_CLASS + " " + READY_CLASS + " ";
@@ -462,7 +456,7 @@
 			_mfpTrigger(AFTER_CLOSE_EVENT);
 		},
 
-		updateSize: function (winHeight) {
+		updateSize: (winHeight) => {
 			if (mfp.isIOS) {
 				// fixes iOS nav bars https://github.com/dimsemenov/Magnific-Popup/issues/2
 				var zoomLevel =
@@ -484,7 +478,7 @@
 		/**
 		 * Set content of popup based on current index
 		 */
-		updateItemHTML: function () {
+		updateItemHTML: () => {
 			var item = mfp.items[mfp.index];
 
 			// Detach and perform modifications
@@ -523,7 +517,7 @@
 
 			if (_prevContentType && _prevContentType !== item.type) {
 				mfp.container.removeClass(
-					"mfp-" + _prevContentType + "-holder"
+					"mfp-" + _prevContentType + "-holder",
 				);
 			}
 
@@ -546,7 +540,7 @@
 		/**
 		 * Set HTML content of popup
 		 */
-		appendContent: function (newContent, type) {
+		appendContent: (newContent, type) => {
 			mfp.content = newContent;
 
 			if (newContent) {
@@ -576,7 +570,7 @@
 		 * Creates Magnific Popup data object based on given data
 		 * @param  {int} index Index of item to parse
 		 */
-		parseEl: function (index) {
+		parseEl: (index) => {
 			var item = mfp.items[index],
 				type;
 
@@ -616,7 +610,7 @@
 		/**
 		 * Initializes single popup or a group of popups
 		 */
-		addGroup: function (el, options) {
+		addGroup: (el, options) => {
 			var eHandler = function (e) {
 				e.mfpEl = this;
 				mfp._openClick(e, el, options);
@@ -642,7 +636,7 @@
 				}
 			}
 		},
-		_openClick: function (e, el, options) {
+		_openClick: (e, el, options) => {
 			var midClick =
 				options.midClick !== undefined
 					? options.midClick
@@ -696,7 +690,7 @@
 		/**
 		 * Updates text on preloader
 		 */
-		updateStatus: function (status, text) {
+		updateStatus: (status, text) => {
 			if (mfp.preloader) {
 				if (_prevStatus !== status) {
 					mfp.container.removeClass("mfp-s-" + _prevStatus);
@@ -718,7 +712,7 @@
 
 				mfp.preloader.html(text);
 
-				mfp.preloader.find("a").on("click", function (e) {
+				mfp.preloader.find("a").on("click", (e) => {
 					e.stopImmediatePropagation();
 				});
 
@@ -732,7 +726,7 @@
 		 */
 		// Check to close popup or not
 		// "target" is an element that was clicked
-		_checkIfClose: function (target) {
+		_checkIfClose: (target) => {
 			if ($(target).hasClass(PREVENT_CLOSE_CLASS)) {
 				return;
 			}
@@ -769,7 +763,7 @@
 			}
 			return false;
 		},
-		_addClassToMFP: function (cName) {
+		_addClassToMFP: (cName) => {
 			mfp.bgOverlay.addClass(cName);
 			mfp.wrap.addClass(cName);
 		},
@@ -777,19 +771,16 @@
 			this.bgOverlay.removeClass(cName);
 			mfp.wrap.removeClass(cName);
 		},
-		_hasScrollBar: function (winHeight) {
-			return (
-				(mfp.isIE7 ? _document.height() : document.body.scrollHeight) >
-				(winHeight || _window.height())
-			);
-		},
-		_setFocus: function () {
+		_hasScrollBar: (winHeight) =>
+			(mfp.isIE7 ? _document.height() : document.body.scrollHeight) >
+			(winHeight || _window.height()),
+		_setFocus: () => {
 			(mfp.st.focus
 				? mfp.content.find(mfp.st.focus).eq(0)
 				: mfp.wrap
 			).focus();
 		},
-		_onFocusIn: function (e) {
+		_onFocusIn: (e) => {
 			if (
 				e.target !== mfp.wrap[0] &&
 				!$.contains(mfp.wrap[0], e.target)
@@ -798,14 +789,14 @@
 				return false;
 			}
 		},
-		_parseMarkup: function (template, values, item) {
+		_parseMarkup: (template, values, item) => {
 			var arr;
 			if (item.data) {
 				values = $.extend(item.data, values);
 			}
 			_mfpTrigger(MARKUP_PARSE_EVENT, [template, values, item]);
 
-			$.each(values, function (key, value) {
+			$.each(values, (key, value) => {
 				if (value === undefined || value === false) {
 					return true;
 				}
@@ -826,7 +817,7 @@
 								el.replaceWith(
 									$("<img>")
 										.attr("src", value)
-										.attr("class", el.attr("class"))
+										.attr("class", el.attr("class")),
 								);
 							}
 						} else {
@@ -839,7 +830,7 @@
 			});
 		},
 
-		_getScrollbarSize: function () {
+		_getScrollbarSize: () => {
 			// thx David
 			if (mfp.scrollbarSize === undefined) {
 				var scrollDiv = document.createElement("div");
@@ -865,10 +856,10 @@
 		open: function (options, index) {
 			_checkInstance();
 
-			if (!options) {
-				options = {};
-			} else {
+			if (options) {
 				options = $.extend(true, {}, options);
+			} else {
+				options = {};
 			}
 
 			options.isObj = true;
@@ -876,9 +867,8 @@
 			return this.instance.open(options);
 		},
 
-		close: function () {
-			return $.magnificPopup.instance && $.magnificPopup.instance.close();
-		},
+		close: () =>
+			$.magnificPopup.instance && $.magnificPopup.instance.close(),
 
 		registerModule: function (name, module) {
 			if (module.options) {
@@ -963,13 +953,11 @@
 					items = items.eq(index);
 				}
 				mfp._openClick({ mfpEl: items }, jqEl, itemOpts);
-			} else {
-				if (mfp.isOpen)
-					mfp[options].apply(
-						mfp,
-						Array.prototype.slice.call(arguments, 1)
-					);
-			}
+			} else if (mfp.isOpen)
+				mfp[options].apply(
+					mfp,
+					Array.prototype.slice.call(arguments, 1),
+				);
 		} else {
 			// clone options obj
 			options = $.extend(true, {}, options);
@@ -998,7 +986,7 @@
 		_hiddenClass,
 		_inlinePlaceholder,
 		_lastInlineElement,
-		_putInlineElementsBack = function () {
+		_putInlineElementsBack = () => {
 			if (_lastInlineElement) {
 				_inlinePlaceholder
 					.after(_lastInlineElement.addClass(_hiddenClass))
@@ -1014,15 +1002,15 @@
 			tNotFound: "Content not found",
 		},
 		proto: {
-			initInline: function () {
+			initInline: () => {
 				mfp.types.push(INLINE_NS);
 
-				_mfpOn(CLOSE_EVENT + "." + INLINE_NS, function () {
+				_mfpOn(CLOSE_EVENT + "." + INLINE_NS, () => {
 					_putInlineElementsBack();
 				});
 			},
 
-			getInline: function (item, template) {
+			getInline: (item, template) => {
 				_putInlineElementsBack();
 
 				if (item.src) {
@@ -1067,12 +1055,12 @@
 	/*>>ajax*/
 	var AJAX_NS = "ajax",
 		_ajaxCur,
-		_removeAjaxCursor = function () {
+		_removeAjaxCursor = () => {
 			if (_ajaxCur) {
 				$(document.body).removeClass(_ajaxCur);
 			}
 		},
-		_destroyAjaxRequest = function () {
+		_destroyAjaxRequest = () => {
 			_removeAjaxCursor();
 			if (mfp.req) {
 				mfp.req.abort();
@@ -1087,14 +1075,14 @@
 		},
 
 		proto: {
-			initAjax: function () {
+			initAjax: () => {
 				mfp.types.push(AJAX_NS);
 				_ajaxCur = mfp.st.ajax.cursor;
 
 				_mfpOn(CLOSE_EVENT + "." + AJAX_NS, _destroyAjaxRequest);
 				_mfpOn("BeforeChange." + AJAX_NS, _destroyAjaxRequest);
 			},
-			getAjax: function (item) {
+			getAjax: (item) => {
 				if (_ajaxCur) {
 					$(document.body).addClass(_ajaxCur);
 				}
@@ -1104,7 +1092,7 @@
 				var opts = $.extend(
 					{
 						url: item.src,
-						success: function (data, textStatus, jqXHR) {
+						success: (data, textStatus, jqXHR) => {
 							var temp = {
 								data: data,
 								xhr: jqXHR,
@@ -1120,7 +1108,7 @@
 
 							mfp._setFocus();
 
-							setTimeout(function () {
+							setTimeout(() => {
 								mfp.wrap.addClass(READY_CLASS);
 							}, 16);
 
@@ -1128,16 +1116,16 @@
 
 							_mfpTrigger("AjaxContentAdded");
 						},
-						error: function () {
+						error: () => {
 							_removeAjaxCursor();
 							item.finished = item.loadError = true;
 							mfp.updateStatus(
 								"error",
-								mfp.st.ajax.tError.replace("%url%", item.src)
+								mfp.st.ajax.tError.replace("%url%", item.src),
 							);
 						},
 					},
-					mfp.st.ajax.settings
+					mfp.st.ajax.settings,
 				);
 
 				mfp.req = $.ajax(opts);
@@ -1151,7 +1139,7 @@
 
 	/*>>image*/
 	var _imgInterval,
-		_getTitle = function (item) {
+		_getTitle = (item) => {
 			if (item.data && item.data.title !== undefined)
 				return item.data.title;
 
@@ -1189,19 +1177,19 @@
 		},
 
 		proto: {
-			initImage: function () {
+			initImage: () => {
 				var imgSt = mfp.st.image,
 					ns = ".image";
 
 				mfp.types.push("image");
 
-				_mfpOn(OPEN_EVENT + ns, function () {
+				_mfpOn(OPEN_EVENT + ns, () => {
 					if (mfp.currItem.type === "image" && imgSt.cursor) {
 						$(document.body).addClass(imgSt.cursor);
 					}
 				});
 
-				_mfpOn(CLOSE_EVENT + ns, function () {
+				_mfpOn(CLOSE_EVENT + ns, () => {
 					if (imgSt.cursor) {
 						$(document.body).removeClass(imgSt.cursor);
 					}
@@ -1213,7 +1201,7 @@
 					_mfpOn("AfterChange", mfp.resizeImage);
 				}
 			},
-			resizeImage: function () {
+			resizeImage: () => {
 				var item = mfp.currItem;
 				if (!item || !item.img) return;
 
@@ -1228,7 +1216,7 @@
 					item.img.css("max-height", mfp.wH - decr);
 				}
 			},
-			_onImageHasSize: function (item) {
+			_onImageHasSize: (item) => {
 				if (item.img) {
 					item.hasSize = true;
 
@@ -1251,15 +1239,15 @@
 			/**
 			 * Function that loops until the image has size to display elements that rely on it asap
 			 */
-			findImageSize: function (item) {
+			findImageSize: (item) => {
 				var counter = 0,
 					img = item.img[0],
-					mfpSetInterval = function (delay) {
+					mfpSetInterval = (delay) => {
 						if (_imgInterval) {
 							clearInterval(_imgInterval);
 						}
 						// decelerating interval that checks for size of an image
-						_imgInterval = setInterval(function () {
+						_imgInterval = setInterval(() => {
 							if (img.naturalWidth > 0) {
 								mfp._onImageHasSize(item);
 								return;
@@ -1283,10 +1271,10 @@
 				mfpSetInterval(1);
 			},
 
-			getImage: function (item, template) {
+			getImage: (item, template) => {
 				var guard = 0,
 					// image load complete handler
-					onLoadComplete = function () {
+					onLoadComplete = () => {
 						if (item) {
 							if (item.img[0].complete) {
 								item.img.off(".mfploader");
@@ -1313,14 +1301,14 @@
 						}
 					},
 					// image error handler
-					onLoadError = function () {
+					onLoadError = () => {
 						if (item) {
 							item.img.off(".mfploader");
 							if (item === mfp.currItem) {
 								mfp._onImageHasSize(item);
 								mfp.updateStatus(
 									"error",
-									imgSt.tError.replace("%url%", item.src)
+									imgSt.tError.replace("%url%", item.src),
 								);
 							}
 
@@ -1363,7 +1351,7 @@
 						title: _getTitle(item),
 						img_replaceWith: item.img,
 					},
-					item
+					item,
 				);
 
 				mfp.resizeImage();
@@ -1375,7 +1363,7 @@
 						template.addClass("mfp-loading");
 						mfp.updateStatus(
 							"error",
-							imgSt.tError.replace("%url%", item.src)
+							imgSt.tError.replace("%url%", item.src),
 						);
 					} else {
 						template.removeClass("mfp-loading");
@@ -1402,7 +1390,7 @@
 
 	/*>>zoom*/
 	var hasMozTransform,
-		getHasMozTransform = function () {
+		getHasMozTransform = () => {
 			if (hasMozTransform === undefined) {
 				hasMozTransform =
 					document.createElement("p").style.MozTransform !==
@@ -1416,13 +1404,12 @@
 			enabled: false,
 			easing: "ease-in-out",
 			duration: 300,
-			opener: function (element) {
-				return element.is("img") ? element : element.find("img");
-			},
+			opener: (element) =>
+				element.is("img") ? element : element.find("img"),
 		},
 
 		proto: {
-			initZoom: function () {
+			initZoom: () => {
 				var zoomSt = mfp.st.zoom,
 					ns = ".zoom",
 					image;
@@ -1432,7 +1419,7 @@
 				}
 
 				var duration = zoomSt.duration,
-					getElToAnimate = function (image) {
+					getElToAnimate = (image) => {
 						var newImg = image
 								.clone()
 								.removeAttr("style")
@@ -1461,13 +1448,13 @@
 						newImg.css(cssObj);
 						return newImg;
 					},
-					showMainContent = function () {
+					showMainContent = () => {
 						mfp.content.css("visibility", "visible");
 					},
 					openTimeout,
 					animatedImg;
 
-				_mfpOn("BuildControls" + ns, function () {
+				_mfpOn("BuildControls" + ns, () => {
 					if (mfp._allowZoom()) {
 						clearTimeout(openTimeout);
 						mfp.content.css("visibility", "hidden");
@@ -1487,12 +1474,12 @@
 
 						mfp.wrap.append(animatedImg);
 
-						openTimeout = setTimeout(function () {
+						openTimeout = setTimeout(() => {
 							animatedImg.css(mfp._getOffset(true));
-							openTimeout = setTimeout(function () {
+							openTimeout = setTimeout(() => {
 								showMainContent();
 
-								setTimeout(function () {
+								setTimeout(() => {
 									animatedImg.remove();
 									image = animatedImg = null;
 									_mfpTrigger("ZoomAnimationEnded");
@@ -1503,7 +1490,7 @@
 						// Lots of timeouts...
 					}
 				});
-				_mfpOn(BEFORE_CLOSE_EVENT + ns, function () {
+				_mfpOn(BEFORE_CLOSE_EVENT + ns, () => {
 					if (mfp._allowZoom()) {
 						clearTimeout(openTimeout);
 
@@ -1521,13 +1508,13 @@
 						mfp.wrap.append(animatedImg);
 						mfp.content.css("visibility", "hidden");
 
-						setTimeout(function () {
+						setTimeout(() => {
 							animatedImg.css(mfp._getOffset());
 						}, 16);
 					}
 				});
 
-				_mfpOn(CLOSE_EVENT + ns, function () {
+				_mfpOn(CLOSE_EVENT + ns, () => {
 					if (mfp._allowZoom()) {
 						showMainContent();
 						if (animatedImg) {
@@ -1538,11 +1525,9 @@
 				});
 			},
 
-			_allowZoom: function () {
-				return mfp.currItem.type === "image";
-			},
+			_allowZoom: () => mfp.currItem.type === "image",
 
-			_getItemToZoom: function () {
+			_getItemToZoom: () => {
 				if (mfp.currItem.hasSize) {
 					return mfp.currItem.img;
 				} else {
@@ -1551,7 +1536,7 @@
 			},
 
 			// Get element postion relative to viewport
-			_getOffset: function (isLarge) {
+			_getOffset: (isLarge) => {
 				var el;
 				if (isLarge) {
 					el = mfp.currItem.img;
@@ -1597,7 +1582,7 @@
 
 	var IFRAME_NS = "iframe",
 		_emptyPage = "//about:blank",
-		_fixIframeBugs = function (isShowing) {
+		_fixIframeBugs = (isShowing) => {
 			if (mfp.currTemplate[IFRAME_NS]) {
 				var el = mfp.currTemplate[IFRAME_NS].find("iframe");
 				if (el.length) {
@@ -1644,10 +1629,10 @@
 		},
 
 		proto: {
-			initIframe: function () {
+			initIframe: () => {
 				mfp.types.push(IFRAME_NS);
 
-				_mfpOn("BeforeChange", function (e, prevType, newType) {
+				_mfpOn("BeforeChange", (e, prevType, newType) => {
 					if (prevType !== newType) {
 						if (prevType === IFRAME_NS) {
 							_fixIframeBugs(); // iframe if removed
@@ -1659,12 +1644,12 @@
 					//}
 				});
 
-				_mfpOn(CLOSE_EVENT + "." + IFRAME_NS, function () {
+				_mfpOn(CLOSE_EVENT + "." + IFRAME_NS, () => {
 					_fixIframeBugs();
 				});
 			},
 
-			getIframe: function (item, template) {
+			getIframe: (item, template) => {
 				var embedSrc = item.src;
 				var iframeSt = mfp.st.iframe;
 
@@ -1675,7 +1660,7 @@
 								embedSrc = embedSrc.substr(
 									embedSrc.lastIndexOf(this.id) +
 										this.id.length,
-									embedSrc.length
+									embedSrc.length,
 								);
 							} else {
 								embedSrc = this.id.call(this, embedSrc);
@@ -1705,7 +1690,7 @@
 	/**
 	 * Get looped index depending on number of slides
 	 */
-	var _getLoopedId = function (index) {
+	var _getLoopedId = (index) => {
 			var numSlides = mfp.items.length;
 			if (index > numSlides - 1) {
 				return index - numSlides;
@@ -1714,11 +1699,8 @@
 			}
 			return index;
 		},
-		_replaceCurrTotal = function (text, curr, total) {
-			return text
-				.replace(/%curr%/gi, curr + 1)
-				.replace(/%total%/gi, total);
-		};
+		_replaceCurrTotal = (text, curr, total) =>
+			text.replace(/%curr%/gi, curr + 1).replace(/%total%/gi, total);
 
 	$.magnificPopup.registerModule("gallery", {
 		options: {
@@ -1735,7 +1717,7 @@
 		},
 
 		proto: {
-			initGallery: function () {
+			initGallery: () => {
 				var gSt = mfp.st.gallery,
 					ns = ".mfp-gallery";
 
@@ -1745,9 +1727,9 @@
 
 				_wrapClasses += " mfp-gallery";
 
-				_mfpOn(OPEN_EVENT + ns, function () {
+				_mfpOn(OPEN_EVENT + ns, () => {
 					if (gSt.navigateByImgClick) {
-						mfp.wrap.on("click" + ns, ".mfp-img", function () {
+						mfp.wrap.on("click" + ns, ".mfp-img", () => {
 							if (mfp.items.length > 1) {
 								mfp.next();
 								return false;
@@ -1755,7 +1737,7 @@
 						});
 					}
 
-					_document.on("keydown" + ns, function (e) {
+					_document.on("keydown" + ns, (e) => {
 						if (e.keyCode === 37) {
 							mfp.prev();
 						} else if (e.keyCode === 39) {
@@ -1764,45 +1746,42 @@
 					});
 				});
 
-				_mfpOn("UpdateStatus" + ns, function (e, data) {
+				_mfpOn("UpdateStatus" + ns, (e, data) => {
 					if (data.text) {
 						data.text = _replaceCurrTotal(
 							data.text,
 							mfp.currItem.index,
-							mfp.items.length
+							mfp.items.length,
 						);
 					}
 				});
 
-				_mfpOn(
-					MARKUP_PARSE_EVENT + ns,
-					function (e, element, values, item) {
-						var l = mfp.items.length;
-						values.counter =
-							l > 1
-								? _replaceCurrTotal(gSt.tCounter, item.index, l)
-								: "";
-					}
-				);
+				_mfpOn(MARKUP_PARSE_EVENT + ns, (e, element, values, item) => {
+					var l = mfp.items.length;
+					values.counter =
+						l > 1
+							? _replaceCurrTotal(gSt.tCounter, item.index, l)
+							: "";
+				});
 
-				_mfpOn("BuildControls" + ns, function () {
+				_mfpOn("BuildControls" + ns, () => {
 					if (mfp.items.length > 1 && gSt.arrows && !mfp.arrowLeft) {
 						var markup = gSt.arrowMarkup,
 							arrowLeft = (mfp.arrowLeft = $(
 								markup
 									.replace(/%title%/gi, gSt.tPrev)
-									.replace(/%dir%/gi, "left")
+									.replace(/%dir%/gi, "left"),
 							).addClass(PREVENT_CLOSE_CLASS)),
 							arrowRight = (mfp.arrowRight = $(
 								markup
 									.replace(/%title%/gi, gSt.tNext)
-									.replace(/%dir%/gi, "right")
+									.replace(/%dir%/gi, "right"),
 							).addClass(PREVENT_CLOSE_CLASS));
 
-						arrowLeft.click(function () {
+						arrowLeft.click(() => {
 							mfp.prev();
 						});
-						arrowRight.click(function () {
+						arrowRight.click(() => {
 							mfp.next();
 						});
 
@@ -1810,37 +1789,37 @@
 					}
 				});
 
-				_mfpOn(CHANGE_EVENT + ns, function () {
+				_mfpOn(CHANGE_EVENT + ns, () => {
 					if (mfp._preloadTimeout) clearTimeout(mfp._preloadTimeout);
 
-					mfp._preloadTimeout = setTimeout(function () {
+					mfp._preloadTimeout = setTimeout(() => {
 						mfp.preloadNearbyImages();
 						mfp._preloadTimeout = null;
 					}, 16);
 				});
 
-				_mfpOn(CLOSE_EVENT + ns, function () {
+				_mfpOn(CLOSE_EVENT + ns, () => {
 					_document.off(ns);
 					mfp.wrap.off("click" + ns);
 					mfp.arrowRight = mfp.arrowLeft = null;
 				});
 			},
-			next: function () {
+			next: () => {
 				mfp.direction = true;
 				mfp.index = _getLoopedId(mfp.index + 1);
 				mfp.updateItemHTML();
 			},
-			prev: function () {
+			prev: () => {
 				mfp.direction = false;
 				mfp.index = _getLoopedId(mfp.index - 1);
 				mfp.updateItemHTML();
 			},
-			goTo: function (newIndex) {
+			goTo: (newIndex) => {
 				mfp.direction = newIndex >= mfp.index;
 				mfp.index = newIndex;
 				mfp.updateItemHTML();
 			},
-			preloadNearbyImages: function () {
+			preloadNearbyImages: () => {
 				var p = mfp.st.gallery.preload,
 					preloadBefore = Math.min(p[0], mfp.items.length),
 					preloadAfter = Math.min(p[1], mfp.items.length),
@@ -1861,7 +1840,7 @@
 					mfp._preloadItem(mfp.index - i);
 				}
 			},
-			_preloadItem: function (index) {
+			_preloadItem: (index) => {
 				index = _getLoopedId(index);
 
 				if (mfp.items[index].preloaded) {
@@ -1877,10 +1856,10 @@
 
 				if (item.type === "image") {
 					item.img = $('<img class="mfp-img" />')
-						.on("load.mfploader", function () {
+						.on("load.mfploader", () => {
 							item.hasSize = true;
 						})
-						.on("error.mfploader", function () {
+						.on("error.mfploader", () => {
 							item.hasSize = true;
 							item.loadError = true;
 							_mfpTrigger("LazyLoadError", item);
@@ -1901,38 +1880,27 @@
 
 	$.magnificPopup.registerModule(RETINA_NS, {
 		options: {
-			replaceSrc: function (item) {
-				return item.src.replace(/\.\w+$/, function (m) {
-					return "@2x" + m;
-				});
-			},
+			replaceSrc: (item) => item.src.replace(/\.\w+$/, (m) => "@2x" + m),
 			ratio: 1, // Function or number.  Set to 1 to disable.
 		},
 		proto: {
-			initRetina: function () {
+			initRetina: () => {
 				if (window.devicePixelRatio > 1) {
 					var st = mfp.st.retina,
 						ratio = st.ratio;
 
-					ratio = !isNaN(ratio) ? ratio : ratio();
+					ratio = isNaN(ratio) ? ratio() : ratio;
 
 					if (ratio > 1) {
-						_mfpOn(
-							"ImageHasSize" + "." + RETINA_NS,
-							function (e, item) {
-								item.img.css({
-									"max-width":
-										item.img[0].naturalWidth / ratio,
-									width: "100%",
-								});
-							}
-						);
-						_mfpOn(
-							"ElementParse" + "." + RETINA_NS,
-							function (e, item) {
-								item.src = st.replaceSrc(item, ratio);
-							}
-						);
+						_mfpOn("ImageHasSize" + "." + RETINA_NS, (e, item) => {
+							item.img.css({
+								"max-width": item.img[0].naturalWidth / ratio,
+								width: "100%",
+							});
+						});
+						_mfpOn("ElementParse" + "." + RETINA_NS, (e, item) => {
+							item.src = st.replaceSrc(item, ratio);
+						});
 					}
 				}
 			},
