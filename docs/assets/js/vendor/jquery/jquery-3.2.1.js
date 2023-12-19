@@ -3647,15 +3647,15 @@
 				? createOptions(options)
 				: jQuery.extend({}, options);
 
-		let // Flag to know if list is currently firingfiring;
+		const // Flag to know if list is currently firingfiring;
 		// Last fire value for non-forgettable lists
 		let // Flag to know if list is currently firingmemory;
 		// Flag to know if list was already fired
-		let // Flag to know if list is currently firingfired;
+		const // Flag to know if list is currently firingfired;
 		// Flag to prevent firing
 		let // Flag to know if list is currently firinglocked;
 		// Actual callback list
-		let // Flag to know if list is currently firinglist = [];
+		const // Flag to know if list is currently firinglist = [];
 		// Queue of execution data for repeatable lists
 		let // Flag to know if list is currently firingqueue = [];
 		// Index of currently firing callback (modified by add/remove as needed)
@@ -4187,7 +4187,7 @@ jQuery.extend({
 
 	// Deferred helper
 	when: (singleValue) => {
-		let // count of uncompleted subordinatesremaining = arguments.length;
+		const // count of uncompleted subordinatesremaining = arguments.length;
 			// count of unprocessed arguments
 			let; // count of uncompleted subordinatesi = remaining;
 		// subordinate fulfillment data
