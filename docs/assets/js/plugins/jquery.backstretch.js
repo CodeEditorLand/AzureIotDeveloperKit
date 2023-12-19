@@ -8,14 +8,14 @@
 
 (($, window, undefined) => {
 	/** @const */
-	var YOUTUBE_REGEXP =
+	const YOUTUBE_REGEXP =
 		/^.*(youtu\.be\/|youtube\.com\/v\/|youtube\.com\/embed\/|youtube\.com\/watch\?v=|youtube\.com\/watch\?.*\&v=)([^#\&\?]*).*/i;
 
 	/* PLUGIN DEFINITION
 	 * ========================= */
 
 	$.fn.backstretch = function (images, options) {
-		var args = arguments;
+		const args = arguments;
 
 		/*
 		 * Scroll the page one pixel to get the right window height on iOS
@@ -25,11 +25,11 @@
 			window.scrollTo(0, 0);
 		}
 
-		var returnValues;
+		let returnValues;
 
 		this.each(function (eachIndex) {
-			var $this = $(this),
-				obj = $this.data("backstretch");
+			const $this = $(this);
+			let obj = $this.data("backstretch");
 
 			// Do we already have an instance attached to this element?
 			if (obj) {
@@ -39,7 +39,7 @@
 					typeof obj[args[0]] === "function"
 				) {
 					// Call the method
-					var returnValue = obj[args[0]].apply(
+					let returnValue = obj[args[0]].apply(
 						obj,
 						Array.prototype.slice.call(args, 1),
 					);
@@ -66,7 +66,7 @@
 
 			// We need at least one image
 			if (!images || (images && images.length === 0)) {
-				var cssBackgroundImage = $this.css("background-image");
+				const cssBackgroundImage = $this.css("background-image");
 				if (cssBackgroundImage && cssBackgroundImage !== "none") {
 					images = [
 						{
@@ -127,7 +127,7 @@
 	 * In an effort to keep the plugin simple, these are not exposed as options.
 	 * That said, anyone can override these in their own stylesheet.
 	 * ========================= */
-	var styles = {
+	const styles = {
 		wrap: {
 			left: 0,
 			top: 0,
@@ -170,12 +170,12 @@
 	 * Returns an array of urls optimized for the specified resolution.
 	 *
 	 */
-	var optimalSizeImages = (() => {
+	const optimalSizeImages = (() => {
 		/* Sorts the array of image sizes based on width */
-		var widthInsertSort = (arr) => {
-			for (var i = 1; i < arr.length; i++) {
-				var tmp = arr[i],
-					j = i;
+		const widthInsertSort = (arr) => {
+			for (let i = 1; i < arr.length; i++) {
+				const tmp = arr[i];
+				let j = i;
 				while (
 					arr[j - 1] &&
 					parseInt(arr[j - 1].width, 10) > parseInt(tmp.width, 10)
@@ -192,21 +192,21 @@
 		/* Given an array of various sizes of the same image and a container width,
 		 * return the best image.
 		 */
-		var selectBest = (containerWidth, containerHeight, imageSizes) => {
-			var devicePixelRatio = window.devicePixelRatio || 1;
-			var deviceOrientation = getDeviceOrientation();
-			var windowOrientation = getWindowOrientation();
-			var wrapperOrientation =
+		const selectBest = (containerWidth, containerHeight, imageSizes) => {
+			const devicePixelRatio = window.devicePixelRatio || 1;
+			const deviceOrientation = getDeviceOrientation();
+			const windowOrientation = getWindowOrientation();
+			const wrapperOrientation =
 				containerHeight > containerWidth
 					? "portrait"
 					: containerWidth > containerHeight
 					  ? "landscape"
 					  : "square";
 
-			var lastAllowedImage = 0;
-			var testWidth;
+			let lastAllowedImage = 0;
+			let testWidth;
 
-			for (var j = 0, image; j < imageSizes.length; j++) {
+			for (let j = 0, image; j < imageSizes.length; j++) {
 				image = imageSizes[j];
 
 				// In case a new image was pushed in, process it:
@@ -275,11 +275,11 @@
 			return imageSizes[Math.min(j, lastAllowedImage)];
 		};
 
-		var replaceTagsInUrl = (url, templateReplacer) => {
+		const replaceTagsInUrl = (url, templateReplacer) => {
 			if (typeof url === "string") {
 				// url = url.replace(/{{(width|height)}}/g, templateReplacer);
-			} else if (url instanceof Array) {
-				for (var i = 0; i < url.length; i++) {
+			} else if (Array.isArray(url)) {
+				for (let i = 0; i < url.length; i++) {
 					if (url[i].src) {
 						url[i].src = replaceTagsInUrl(
 							url[i].src,
@@ -295,12 +295,12 @@
 		};
 
 		return ($container, images) => {
-			var containerWidth = $container.width(),
-				containerHeight = $container.height();
+			const containerWidth = $container.width();
+			const containerHeight = $container.height();
 
-			var chosenImages = [];
+			const chosenImages = [];
 
-			var templateReplacer = (match, key) => {
+			const templateReplacer = (match, key) => {
 				if (key === "width") {
 					return containerWidth;
 				}
@@ -310,10 +310,10 @@
 				return match;
 			};
 
-			for (var i = 0; i < images.length; i++) {
+			for (let i = 0; i < images.length; i++) {
 				if ($.isArray(images[i])) {
 					images[i] = widthInsertSort(images[i]);
-					var chosen = selectBest(
+					const chosen = selectBest(
 						containerWidth,
 						containerHeight,
 						images[i],
@@ -325,7 +325,7 @@
 						images[i] = { url: images[i] };
 					}
 
-					var item = $.extend({}, images[i]);
+					const item = $.extend({}, images[i]);
 					// Liya modified here.
 					item.url = replaceTagsInUrl(item.url, templateReplacer);
 					chosenImages.push(item);
@@ -335,17 +335,17 @@
 		};
 	})();
 
-	var isVideoSource = (source) =>
+	const isVideoSource = (source) =>
 		YOUTUBE_REGEXP.test(source.url) || source.isVideo;
 
 	/* Preload images */
-	var preload = ((sources, startAt, count, batchSize, callback) => {
+	const preload = ((sources, startAt, count, batchSize, callback) => {
 		// Plugin cache
-		var cache = [];
+		const cache = [];
 
 		// Wrapper for cache
-		var caching = (image) => {
-			for (var i = 0; i < cache.length; i++) {
+		const caching = (image) => {
+			for (let i = 0; i < cache.length; i++) {
 				if (cache[i].src === image.src) {
 					return cache[i];
 				}
@@ -355,7 +355,7 @@
 		};
 
 		// Execute callback
-		var exec = (sources, callback, last) => {
+		const exec = (sources, callback, last) => {
 			if (typeof callback === "function") {
 				callback.call(sources, last);
 			}
@@ -395,7 +395,7 @@
 			}
 			batchSize = Math.min(batchSize, count);
 
-			var next = sources.slice(startAt + batchSize, count - batchSize);
+			const next = sources.slice(startAt + batchSize, count - batchSize);
 			sources = sources.slice(startAt, batchSize);
 			count = sources.length;
 
@@ -406,9 +406,9 @@
 			}
 
 			// Image loading callback
-			var countLoaded = 0;
+			let countLoaded = 0;
 
-			var loaded = () => {
+			const loaded = () => {
 				countLoaded++;
 				if (countLoaded !== count) {
 					return;
@@ -419,16 +419,10 @@
 			};
 
 			// Loop sources to preload
-			var image;
+			let image;
 
-			for (var i = 0; i < sources.length; i++) {
+			for (let i = 0; i < sources.length; i++) {
 				if (isVideoSource(sources[i])) {
-					// Do not preload videos. There are issues with that.
-					// First - we need to keep an instance of the preloaded and use that exactly, not a copy.
-					// Second - there are memory issues.
-					// If there will be a requirement from users - I'll try to implement this.
-
-					continue;
 				} else {
 					image = new Image();
 					image.src = sources[i].url;
@@ -446,9 +440,9 @@
 	})();
 
 	/* Process images array */
-	var processImagesArray = (images) => {
-		var processed = [];
-		for (var i = 0; i < images.length; i++) {
+	const processImagesArray = (images) => {
+		const processed = [];
+		for (let i = 0; i < images.length; i++) {
 			if (typeof images[i] === "string") {
 				processed.push({ url: images[i] });
 			} else if ($.isArray(images[i])) {
@@ -461,12 +455,12 @@
 	};
 
 	/* Process options */
-	var processOptions = (options, required) => {
+	const processOptions = (options, required) => {
 		// Convert old options
 
 		// centeredX/centeredY are deprecated
 		if (options.centeredX || options.centeredY) {
-			if (window.console && window.console.log) {
+			if (window.console?.log) {
 				window.console.log(
 					"jquery.backstretch: `centeredX`/`centeredY` is deprecated, please use `alignX`/`alignY`",
 				);
@@ -481,7 +475,7 @@
 
 		// Deprecated spec
 		if (options.speed !== undefined) {
-			if (window.console && window.console.log) {
+			if (window.console?.log) {
 				window.console.log(
 					"jquery.backstretch: `speed` is deprecated, please use `transitionDuration`",
 				);
@@ -517,7 +511,7 @@
 	};
 
 	/* Process align options */
-	var processAlignOptions = (options, required) => {
+	const processAlignOptions = (options, required) => {
 		if (options.alignX === "left") {
 			options.alignX = 0.0;
 		} else if (options.alignX === "center") {
@@ -526,7 +520,7 @@
 			options.alignX = 1.0;
 		} else if (options.alignX !== undefined || required) {
 			options.alignX = parseFloat(options.alignX);
-			if (isNaN(options.alignX)) {
+			if (Number.isNaN(options.alignX)) {
 				options.alignX = 0.5;
 			}
 		}
@@ -539,7 +533,7 @@
 			options.alignY = 1.0;
 		} else if (options.alignX !== undefined || required) {
 			options.alignY = parseFloat(options.alignY);
-			if (isNaN(options.alignY)) {
+			if (Number.isNaN(options.alignY)) {
 				options.alignY = 0.5;
 			}
 		}
@@ -547,7 +541,7 @@
 		return options;
 	};
 
-	var SUPPORTED_SCALE_OPTIONS = {
+	const SUPPORTED_SCALE_OPTIONS = {
 		cover: "cover",
 		fit: "fit",
 		"fit-smaller": "fit-smaller",
@@ -563,7 +557,7 @@
 
 	/* CLASS DEFINITION
 	 * ========================= */
-	var Backstretch = function (container, images, options) {
+	const Backstretch = function (container, images, options) {
 		this.options = $.extend({}, $.fn.backstretch.defaults, options || {});
 
 		this.firstShow = true;
@@ -603,7 +597,7 @@
 		 * Wrap: a DIV that we place the image into, so we can hide the overflow.
 		 * Root: Convenience reference to help calculate the correct height.
 		 */
-		var $window = $(window);
+		const $window = $(window);
 		this.$container = $(container);
 		this.$root = this.isBody
 			? supportsFixedPosition
@@ -628,7 +622,7 @@
 		);
 
 		// Don't create a new wrap if one already exists (from a previous instance of Backstretch)
-		var $existing = this.$container.children(".backstretch").first();
+		const $existing = this.$container.children(".backstretch").first();
 		this.$wrap = $existing.length
 			? $existing
 			: $('<div class="backstretch"></div>')
@@ -640,8 +634,8 @@
 			if (!this.isBody) {
 				// If the container is statically positioned, we need to make it relative,
 				// and if no zIndex is defined, we should set it to zero.
-				var position = this.$container.css("position"),
-					zIndex = this.$container.css("zIndex");
+				const position = this.$container.css("position");
+				const zIndex = this.$container.css("zIndex");
 
 				this.$container.css({
 					position: position === "static" ? "relative" : position,
@@ -676,35 +670,35 @@
 		);
 	};
 
-	var performTransition = (options) => {
-		var transition = options.transition || "fade";
+	const performTransition = (options) => {
+		let transition = options.transition || "fade";
 
 		// Look for multiple options
 		if (typeof transition === "string" && transition.indexOf("|") > -1) {
 			transition = transition.split("|");
 		}
 
-		if (transition instanceof Array) {
+		if (Array.isArray(transition)) {
 			transition =
 				transition[Math.round(Math.random() * (transition.length - 1))];
 		}
 
-		var $new = options["new"];
-		var $old = options["old"] ? options["old"] : $([]);
+		const $new = options["new"];
+		const $old = options["old"] ? options["old"] : $([]);
 
 		switch (transition.toString().toLowerCase()) {
-			default:
-			case "fade":
+			default: {
 				$new.fadeIn({
 					duration: options.duration,
 					complete: options.complete,
 					easing: options.easing || undefined,
 				});
 				break;
+			}
 
 			case "fadeinout":
-			case "fade_in_out":
-				var fadeInNew = () => {
+			case "fade_in_out": {
+				const fadeInNew = () => {
 					$new.fadeIn({
 						duration: options.duration / 2,
 						complete: options.complete,
@@ -723,6 +717,7 @@
 				}
 
 				break;
+			}
 
 			case "pushleft":
 			case "push_left":
@@ -739,10 +734,11 @@
 			case "coverup":
 			case "cover_up":
 			case "coverdown":
-			case "cover_down":
-				var transitionParts = transition.match(/^(cover|push)_?(.*)$/);
+			case "cover_down": {
+				const transitionParts =
+					transition.match(/^(cover|push)_?(.*)$/);
 
-				var animProp =
+				const animProp =
 					transitionParts[2] === "left"
 						? "right"
 						: transitionParts[2] === "right"
@@ -753,10 +749,10 @@
 								  ? "bottom"
 								  : "right";
 
-				var newCssStart = {
-						display: "",
-					},
-					newCssAnim = {};
+				const newCssStart = {
+					display: "",
+				};
+				const newCssAnim = {};
 				newCssStart[animProp] = "-100%";
 				newCssAnim[animProp] = 0;
 
@@ -770,7 +766,7 @@
 				});
 
 				if (transitionParts[1] === "push" && $old.length) {
-					var oldCssAnim = {};
+					const oldCssAnim = {};
 					oldCssAnim[animProp] = "100%";
 
 					$old.animate(oldCssAnim, {
@@ -783,6 +779,7 @@
 				}
 
 				break;
+			}
 		}
 	};
 
@@ -792,16 +789,16 @@
 		resize: function () {
 			try {
 				// Check for a better suited image after the resize
-				var $resTest = this.options.alwaysTestWindowResolution
+				const $resTest = this.options.alwaysTestWindowResolution
 					? $(window)
 					: this.$root;
-				var newContainerWidth = $resTest.width();
-				var newContainerHeight = $resTest.height();
-				var changeRatioW =
+				const newContainerWidth = $resTest.width();
+				const newContainerHeight = $resTest.height();
+				const changeRatioW =
 					newContainerWidth / (this._lastResizeContainerWidth || 0);
-				var changeRatioH =
+				const changeRatioH =
 					newContainerHeight / (this._lastResizeContainerHeight || 0);
-				var resolutionChangeRatioThreshold =
+				const resolutionChangeRatioThreshold =
 					this.options.resolutionChangeRatioThreshold || 0.0;
 
 				// check for big changes in container size
@@ -811,10 +808,10 @@
 							this._lastResizeContainerHeight) &&
 					(Math.abs(changeRatioW - 1) >=
 						resolutionChangeRatioThreshold ||
-						isNaN(changeRatioW) ||
+						Number.isNaN(changeRatioW) ||
 						Math.abs(changeRatioH - 1) >=
 							resolutionChangeRatioThreshold ||
-						isNaN(changeRatioH))
+						Number.isNaN(changeRatioH))
 				) {
 					this._lastResizeContainerWidth = newContainerWidth;
 					this._lastResizeContainerHeight = newContainerHeight;
@@ -849,31 +846,37 @@
 					}
 				}
 
-				var bgCSS = { left: 0, top: 0, right: "auto", bottom: "auto" },
-					boxWidth = this.isBody
-						? this.$root.width()
-						: this.$root.innerWidth(),
-					boxHeight = this.isBody
+				const bgCSS = {
+					left: 0,
+					top: 0,
+					right: "auto",
+					bottom: "auto",
+				};
+				const boxWidth = this.isBody
+					? this.$root.width()
+					: this.$root.innerWidth();
+				const boxHeight = this.isBody
+					? window.innerHeight
 						? window.innerHeight
-							? window.innerHeight
-							: this.$root.height()
-						: this.$root.innerHeight(),
-					naturalWidth = this.$itemWrapper.data("width"),
-					naturalHeight = this.$itemWrapper.data("height"),
-					ratio = naturalWidth / naturalHeight || 1,
-					alignX =
-						this._currentImage.alignX === undefined
-							? this.options.alignX
-							: this._currentImage.alignX,
-					alignY =
-						this._currentImage.alignY === undefined
-							? this.options.alignY
-							: this._currentImage.alignY,
-					scale = validScale(
-						this._currentImage.scale || this.options.scale,
-					);
+						: this.$root.height()
+					: this.$root.innerHeight();
+				const naturalWidth = this.$itemWrapper.data("width");
+				const naturalHeight = this.$itemWrapper.data("height");
+				const ratio = naturalWidth / naturalHeight || 1;
+				const alignX =
+					this._currentImage.alignX === undefined
+						? this.options.alignX
+						: this._currentImage.alignX;
+				const alignY =
+					this._currentImage.alignY === undefined
+						? this.options.alignY
+						: this._currentImage.alignY;
+				const scale = validScale(
+					this._currentImage.scale || this.options.scale,
+				);
 
-				var width, height;
+				let width;
+				let height;
 
 				if (scale === "fit" || scale === "fit-smaller") {
 					width = naturalWidth;
@@ -884,7 +887,7 @@
 						height > boxHeight ||
 						scale === "fit-smaller"
 					) {
-						var boxRatio = boxWidth / boxHeight;
+						const boxRatio = boxWidth / boxHeight;
 						if (boxRatio > ratio) {
 							width = Math.floor(boxHeight * ratio);
 							height = boxHeight;
@@ -917,12 +920,12 @@
 						.find(">.backstretch-item")
 						.not(".deleteable")
 						.each(function () {
-							var $wrapper = $(this);
+							const $wrapper = $(this);
 							$wrapper.find("img,video,iframe").css(bgCSS);
 						});
 				}
 
-				var evt = $.Event("backstretch.resize", {
+				const evt = $.Event("backstretch.resize", {
 					relatedTarget: this.$container[0],
 				});
 				this.$container.trigger(evt, this);
@@ -942,12 +945,12 @@
 			}
 
 			// Vars
-			var that = this,
-				$oldItemWrapper = that.$wrap
-					.find(">.backstretch-item")
-					.addClass("deleteable"),
-				oldVideoWrapper = that.videoWrapper,
-				evtOptions = { relatedTarget: that.$container[0] };
+			const that = this;
+			const $oldItemWrapper = that.$wrap
+				.find(">.backstretch-item")
+				.addClass("deleteable");
+			const oldVideoWrapper = that.videoWrapper;
+			const evtOptions = { relatedTarget: that.$container[0] };
 
 			// Trigger the "before" event
 			that.$container.trigger($.Event("backstretch.before", evtOptions), [
@@ -957,16 +960,16 @@
 
 			// Set the new frame index
 			this.index = newIndex;
-			var selectedImage = that.images[newIndex];
+			const selectedImage = that.images[newIndex];
 
 			// Pause the slideshow
 			clearTimeout(that._cycleTimeout);
 
 			// New image
 
-			delete that.videoWrapper; // Current item may not be a video
+			that.videoWrapper = undefined; // Current item may not be a video
 
-			var isVideo = isVideoSource(selectedImage);
+			const isVideo = isVideoSource(selectedImage);
 			if (isVideo) {
 				that.videoWrapper = new VideoWrapper(selectedImage);
 				that.$item = that.videoWrapper.$video.css(
@@ -991,33 +994,33 @@
 			}
 
 			that.$item.bind(isVideo ? "canplay" : "load", function (e) {
-				var $this = $(this),
-					$wrapper = $this.parent(),
-					options = $wrapper.data("options");
+				const $this = $(this);
+				const $wrapper = $this.parent();
+				let options = $wrapper.data("options");
 
 				if (overrideOptions) {
 					options = $.extend({}, options, overrideOptions);
 				}
 
-				var imgWidth =
-						this.naturalWidth || this.videoWidth || this.width,
-					imgHeight =
-						this.naturalHeight || this.videoHeight || this.height;
+				const imgWidth =
+					this.naturalWidth || this.videoWidth || this.width;
+				const imgHeight =
+					this.naturalHeight || this.videoHeight || this.height;
 
 				// Save the natural dimensions
 				$wrapper.data("width", imgWidth).data("height", imgHeight);
 
-				var getOption = (opt) =>
+				const getOption = (opt) =>
 					options[opt] !== undefined
 						? options[opt]
 						: that.options[opt];
 
-				var transition = getOption("transition");
-				var transitionEasing = getOption("transitionEasing");
-				var transitionDuration = getOption("transitionDuration");
+				const transition = getOption("transition");
+				const transitionEasing = getOption("transitionEasing");
+				const transitionDuration = getOption("transitionDuration");
 
 				// Show the image, then delete the old one
-				var bringInNextImage = () => {
+				const bringInNextImage = () => {
 					if (oldVideoWrapper) {
 						oldVideoWrapper.stop();
 						oldVideoWrapper.destroy();
@@ -1031,7 +1034,7 @@
 					}
 
 					// Now we can clear the background on the element, to spare memory
-					if (!that.options.bypassCss && !that.isBody) {
+					if (!(that.options.bypassCss || that.isBody)) {
 						that.$container.css("background-image", "none");
 					}
 
@@ -1039,7 +1042,7 @@
 					// "show" is being deprecated
 					$(["after", "show"]).each(function () {
 						that.$container.trigger(
-							$.Event("backstretch." + this, evtOptions),
+							$.Event(`backstretch.${this}`, evtOptions),
 							[that, newIndex],
 						);
 					});
@@ -1093,7 +1096,7 @@
 		},
 
 		next: function () {
-			var args = Array.prototype.slice.call(arguments, 0);
+			const args = Array.prototype.slice.call(arguments, 0);
 			args.unshift(
 				this.index < this.images.length - 1 ? this.index + 1 : 0,
 			);
@@ -1101,7 +1104,7 @@
 		},
 
 		prev: function () {
-			var args = Array.prototype.slice.call(arguments, 0);
+			const args = Array.prototype.slice.call(arguments, 0);
 			args.unshift(
 				this.index === 0 ? this.images.length - 1 : this.index - 1,
 			);
@@ -1137,12 +1140,11 @@
 				// Clear the timeout, just in case
 				clearTimeout(this._cycleTimeout);
 
-				var duration =
-					(this._currentImage && this._currentImage.duration) ||
-					this.options.duration;
-				var isVideo = isVideoSource(this._currentImage);
+				const duration =
+					this._currentImage?.duration || this.options.duration;
+				const isVideo = isVideoSource(this._currentImage);
 
-				var callNext = function () {
+				const callNext = function () {
 					this.$item.off(".cycle");
 
 					// Check for paused slideshow
@@ -1155,11 +1157,11 @@
 				if (isVideo) {
 					// Leave video at last frame
 					if (!this._currentImage.loop) {
-						var lastFrameTimeout = 0;
+						let lastFrameTimeout = 0;
 
 						this.$item
 							.on("playing.cycle", function () {
-								var player = $(this).data("player");
+								const player = $(this).data("player");
 
 								clearTimeout(lastFrameTimeout);
 								lastFrameTimeout = setTimeout(
@@ -1237,7 +1239,7 @@
 	 * > player.ytReady is a flag telling whether the youtube source is ready for playback
 	 * */
 
-	var VideoWrapper = function () {
+	const VideoWrapper = function () {
 		this.init.apply(this, arguments);
 	};
 
@@ -1250,21 +1252,18 @@
 	 * loop, mute, poster
 	 */
 	VideoWrapper.prototype.init = function (options) {
-		var $video;
+		let $video;
 
-		var setVideoElement = () => {
+		const setVideoElement = () => {
 			this.$video = $video;
 			this.video = $video[0];
 		};
 
 		// Determine video type
 
-		var videoType = "video";
+		let videoType = "video";
 
-		if (
-			!(options.url instanceof Array) &&
-			YOUTUBE_REGEXP.test(options.url)
-		) {
+		if (!Array.isArray(options.url) && YOUTUBE_REGEXP.test(options.url)) {
 			videoType = "youtube";
 		}
 
@@ -1275,13 +1274,11 @@
 			VideoWrapper.loadYoutubeAPI();
 
 			this.ytId = options.url.match(YOUTUBE_REGEXP)[2];
-			var src =
-				"https://www.youtube.com/embed/" +
-				this.ytId +
-				"?rel=0&autoplay=0&showinfo=0&controls=0&modestbranding=1" +
-				"&cc_load_policy=0&disablekb=1&iv_load_policy=3&loop=0" +
-				"&enablejsapi=1&origin=" +
-				encodeURIComponent(window.location.origin);
+			const src = `https://www.youtube.com/embed/${
+				this.ytId
+			}?rel=0&autoplay=0&showinfo=0&controls=0&modestbranding=1&cc_load_policy=0&disablekb=1&iv_load_policy=3&loop=0&enablejsapi=1&origin=${encodeURIComponent(
+				window.location.origin,
+			)}`;
 
 			this.__ytStartMuted = !!options.mute || options.mute === undefined;
 
@@ -1324,11 +1321,12 @@
 				.prop("preload", "auto")
 				.prop("poster", options.poster || "");
 
-			var sources =
-				options.url instanceof Array ? options.url : [options.url];
+			const sources = Array.isArray(options.url)
+				? options.url
+				: [options.url];
 
-			for (var i = 0; i < sources.length; i++) {
-				var sourceItem = sources[i];
+			for (let i = 0; i < sources.length; i++) {
+				let sourceItem = sources[i];
 				if (typeof sourceItem === "string") {
 					sourceItem = { src: sourceItem };
 				}
@@ -1340,10 +1338,10 @@
 					.appendTo($video);
 			}
 
-			if (!$video[0].canPlayType || !sources.length) {
-				$video.trigger("initerror");
-			} else {
+			if ($video[0].canPlayType && sources.length) {
 				$video.trigger("initsuccess");
+			} else {
+				$video.trigger("initerror");
 			}
 
 			setVideoElement();
@@ -1351,22 +1349,22 @@
 	};
 
 	VideoWrapper.prototype._initYoutube = function () {
-		var YT = window["YT"];
+		const YT = window["YT"];
 
 		this.$video
 			.attr("src", this.$video.attr("src_to_load"))
 			.removeAttr("src_to_load");
 
 		// It won't init if it's not in the DOM, so we emulate that
-		var hasParent = !!this.$video[0].parentNode;
+		const hasParent = !!this.$video[0].parentNode;
 		if (!hasParent) {
-			var $tmpParent = $("<div>")
+			const $tmpParent = $("<div>")
 				.css("display", "none !important")
 				.appendTo(document.body);
 			this.$video.appendTo($tmpParent);
 		}
 
-		var player = new YT.Player(this.video, {
+		const player = new YT.Player(this.video, {
 			events: {
 				onReady: () => {
 					if (this.__ytStartMuted) {
@@ -1387,21 +1385,26 @@
 				},
 				onStateChange: (event) => {
 					switch (event.data) {
-						case YT.PlayerState.PLAYING:
+						case YT.PlayerState.PLAYING: {
 							this.$video.trigger("playing");
 							break;
-						case YT.PlayerState.ENDED:
+						}
+						case YT.PlayerState.ENDED: {
 							this.$video.trigger("ended");
 							break;
-						case YT.PlayerState.PAUSED:
+						}
+						case YT.PlayerState.PAUSED: {
 							this.$video.trigger("pause");
 							break;
-						case YT.PlayerState.BUFFERING:
+						}
+						case YT.PlayerState.BUFFERING: {
 							this.$video.trigger("waiting");
 							break;
-						case YT.PlayerState.CUED:
+						}
+						case YT.PlayerState.CUED: {
 							this.$video.trigger("canplay");
 							break;
+						}
 					}
 				},
 				onPlaybackQualityChange: () => {
@@ -1422,31 +1425,36 @@
 
 	VideoWrapper.prototype._updateYoutubeSize = function () {
 		switch (this.ytPlayer.getPlaybackQuality() || "medium") {
-			case "small":
+			case "small": {
 				this.video.videoWidth = 426;
 				this.video.videoHeight = 240;
 				break;
-			case "medium":
+			}
+			case "medium": {
 				this.video.videoWidth = 640;
 				this.video.videoHeight = 360;
 				break;
-			default:
-			case "large":
+			}
+			default: {
 				this.video.videoWidth = 854;
 				this.video.videoHeight = 480;
 				break;
-			case "hd720":
+			}
+			case "hd720": {
 				this.video.videoWidth = 1280;
 				this.video.videoHeight = 720;
 				break;
-			case "hd1080":
+			}
+			case "hd1080": {
 				this.video.videoWidth = 1920;
 				this.video.videoHeight = 1080;
 				break;
-			case "highres":
+			}
+			case "highres": {
 				this.video.videoWidth = 2560;
 				this.video.videoHeight = 1440;
 				break;
+			}
 		}
 
 		return this;
@@ -1556,15 +1564,15 @@
 				'<script type="text/javascript" src="https://www.youtube.com/iframe_api">',
 			).appendTo("body");
 		}
-		var ytAPILoadInt = setInterval(() => {
-			if (window["YT"] && window["YT"].loaded) {
+		const ytAPILoadInt = setInterval(() => {
+			if (window["YT"]?.loaded) {
 				$(window).trigger("youtube_api_load");
 				clearTimeout(ytAPILoadInt);
 			}
 		}, 50);
 	};
 
-	var getDeviceOrientation = () => {
+	const getDeviceOrientation = () => {
 		if ("matchMedia" in window) {
 			if (window.matchMedia("(orientation: portrait)").matches) {
 				return "portrait";
@@ -1583,7 +1591,7 @@
 		return "landscape";
 	};
 
-	var getWindowOrientation = () => {
+	const getWindowOrientation = () => {
 		if (window.innerHeight > window.innerWidth) {
 			return "portrait";
 		}
@@ -1607,18 +1615,18 @@
 	 * Modified to detect IE6
 	 * ========================= */
 
-	var supportsFixedPosition = (() => {
-		var ua = navigator.userAgent,
-			platform = navigator.platform,
-			// Rendering engine is Webkit, and capture major version
-			wkmatch = ua.match(/AppleWebKit\/([0-9]+)/),
-			wkversion = !!wkmatch && wkmatch[1],
-			ffmatch = ua.match(/Fennec\/([0-9]+)/),
-			ffversion = !!ffmatch && ffmatch[1],
-			operammobilematch = ua.match(/Opera Mobi\/([0-9]+)/),
-			omversion = !!operammobilematch && operammobilematch[1],
-			iematch = ua.match(/MSIE ([0-9]+)/),
-			ieversion = !!iematch && iematch[1];
+	const supportsFixedPosition = (() => {
+		const ua = navigator.userAgent;
+		const platform = navigator.platform;
+		// Rendering engine is Webkit, and capture major version
+		const wkmatch = ua.match(/AppleWebKit\/([0-9]+)/);
+		const wkversion = !!wkmatch && wkmatch[1];
+		const ffmatch = ua.match(/Fennec\/([0-9]+)/);
+		const ffversion = !!ffmatch && ffmatch[1];
+		const operammobilematch = ua.match(/Opera Mobi\/([0-9]+)/);
+		const omversion = !!operammobilematch && operammobilematch[1];
+		const iematch = ua.match(/MSIE ([0-9]+)/);
+		const ieversion = !!iematch && iematch[1];
 
 		return !(
 			// iOS 4.3 and older : Platform is iPhone/Pad/Touch and Webkit version is less than 534 (ios5)

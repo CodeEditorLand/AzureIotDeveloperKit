@@ -8,28 +8,28 @@
 		adjustResize();
 		$(window).resize(adjustResize);
 
-		var firstPlatform = "";
+		let firstPlatform = "";
 		if ($(".switcher").length > 0) {
-			var switchLevel = $(".switcher").next().prop("tagName");
-			if (switchLevel[0] != "H") {
+			let switchLevel = $(".switcher").next().prop("tagName");
+			if (switchLevel[0] !== "H") {
 				$(".switcher").remove();
 			} else {
 				switchLevel = switchLevel[1];
 				$(".switch").each(function () {
-					var id = $(this).attr("id");
-					var platform = "";
-					var curPlatform = false;
-					var string = "";
+					const id = $(this).attr("id");
+					let platform = "";
+					let curPlatform = false;
+					let string = "";
 					$(".page__content")
 						.children()
 						.each(function () {
-							var curLevel = $(this).prop("tagName");
+							const curLevel = $(this).prop("tagName");
 							if (curPlatform) {
 								if (
-									curLevel[0] == "H" &&
+									curLevel[0] === "H" &&
 									curLevel[1] <= switchLevel
 								) {
-									$("#" + platform + "_switch_result").html(
+									$(`#${platform}_switch_result`).html(
 										string,
 									);
 									curPlatform = false;
@@ -42,9 +42,9 @@
 									$(this).remove();
 								}
 							} else if (
-								curLevel[0] == "H" &&
-								curLevel[1] == switchLevel &&
-								id.search($(this).attr("id")) != -1
+								curLevel[0] === "H" &&
+								curLevel[1] === switchLevel &&
+								id.search($(this).attr("id")) !== -1
 							) {
 								curPlatform = true;
 								string += $(this)
@@ -53,23 +53,19 @@
 									.parent()
 									.html();
 								platform = $(this).attr("id");
-								if (firstPlatform == "") {
+								if (firstPlatform === "") {
 									firstPlatform = platform;
 									$(this).before(
-										'<div id = "' +
-											platform +
-											'_switch_result" class = "switch_result">',
+										`<div id = "${platform}_switch_result" class = "switch_result">`,
 									);
-									$("#" + platform + "_switch").addClass(
+									$(`#${platform}_switch`).addClass(
 										"switch_active",
 									);
 								} else {
 									$(this).before(
-										'<div id = "' +
-											platform +
-											'_switch_result" class = "switch_result" style = "display: none">',
+										`<div id = "${platform}_switch_result" class = "switch_result" style = "display: none">`,
 									);
-									$("#markdown-toc-" + platform)
+									$(`#markdown-toc-${platform}`)
 										.parent()
 										.css("display", "none");
 								}
@@ -77,7 +73,7 @@
 							}
 						});
 					if (curPlatform) {
-						$("#" + platform + "_switch_result").html(string);
+						$(`#${platform}_switch_result`).html(string);
 						curPlatform = false;
 					}
 				});
@@ -104,11 +100,7 @@
 
 	$.reportIssuePopup = (tutorial, step) => {
 		$("body").append(
-			'<div id="surveypopup" class="overlay visible"><div class="surveypopup"><div id="surveytitle">Tell us more<a href="javascript:void(0)" onclick="$.closeReportIssue()">X</a></div><div id="surveydiv"><iframe frameBorder="0" scrolling="0" src="https://www.research.net/r/N9F3LCY?tutorial=' +
-				tutorial +
-				"&step=" +
-				step +
-				'"></iframe></div></div></div>',
+			`<div id="surveypopup" class="overlay visible"><div class="surveypopup"><div id="surveytitle">Tell us more<a href="javascript:void(0)" onclick="$.closeReportIssue()">X</a></div><div id="surveydiv"><iframe frameBorder="0" scrolling="0" src="https://www.research.net/r/N9F3LCY?tutorial=${tutorial}&step=${step}"></iframe></div></div></div>`,
 		);
 	};
 
@@ -141,16 +133,16 @@
 			ga("send", "event", {
 				eventCategory: "stepFinished",
 				eventAction: "click",
-				eventLabel: projectName + "-" + eventName,
+				eventLabel: `${projectName}-${eventName}`,
 			});
 		} catch (e) {
-			console.log("ga error: " + e);
+			console.log(`ga error: ${e}`);
 		}
 	};
 
-	var feedbackButtonFixed = () => {
-		var feedbackButtonFixedCallback = () => {
-			var articleTop = $(".page__content").position().top;
+	const feedbackButtonFixed = () => {
+		const feedbackButtonFixedCallback = () => {
+			const articleTop = $(".page__content").position().top;
 			if (articleTop > $(window).scrollTop()) {
 				$(".feedback-btn-fixed").css(
 					"bottom",
@@ -168,12 +160,12 @@
 		}
 	};
 
-	var tocScroll = function () {
+	const tocScroll = function () {
 		$(".toc__menu a").removeClass("toc__menu_active");
-		var scrollTop = $(this).scrollTop();
+		const scrollTop = $(this).scrollTop();
 		$(".toc__menu a").each(function () {
-			var id = $(this).attr("href");
-			var target = $(id).position().top;
+			const id = $(this).attr("href");
+			const target = $(id).position().top;
 			if (scrollTop >= target) {
 				$(".toc__menu a").removeClass("toc__menu_active");
 				$(this).addClass("toc__menu_active");
@@ -181,26 +173,27 @@
 		});
 	};
 
-	var adjustResize = () => {
+	const adjustResize = () => {
 		// Resize page hero image container
 		vpw = $(window).width();
 		vph = $(window).height();
-		$(".page__hero--overlay-full").css({ height: vph + "px" });
+		$(".page__hero--overlay-full").css({ height: `${vph}px` });
 
 		sidebarFix();
 	};
 
-	var sidebarFix = function () {
+	const sidebarFix = function () {
 		if (!$(".sidebar__right_fix").length) {
 			return;
 		}
 		if (window.innerWidth >= 1024) {
-			var position = $(".page__content").position();
-			var articleRight = position.left + $(".page__content").width();
+			const position = $(".page__content").position();
+			const articleRight = position.left + $(".page__content").width();
 
 			//if the window is not so width, the width of the toc would depend on the width of window
 			if (window.innerWidth < 1280) {
-				var sidebarWid = document.body.clientWidth - articleRight - 30;
+				const sidebarWid =
+					document.body.clientWidth - articleRight - 30;
 				$(".sidebar__right_fix").css("width", sidebarWid);
 			} else {
 				$(".sidebar__right_fix").removeAttr("style");
@@ -208,8 +201,8 @@
 
 			//calculate the left position and the top position for the toc fixed in the window
 			$(".sidebar__right_fix").css("left", articleRight);
-			var articleTop = position.top;
-			var menuHeight = $(".masthead").height();
+			const articleTop = position.top;
+			const menuHeight = $(".masthead").height();
 			if (articleTop < $(this).scrollTop() + menuHeight) {
 				$(".sidebar__right_fix").css("top", menuHeight + 30);
 			} else {
@@ -221,7 +214,7 @@
 
 			//when the toc is used to show, it would use scroll for overflow
 			$(".sidebar__right_fix").css("height", "");
-			var sidebarBottom =
+			const sidebarBottom =
 				$(".sidebar__right_fix").position().top +
 				$(".sidebar__right_fix").height();
 			if (
@@ -244,14 +237,14 @@
 		}
 	};
 
-	var menuScroll = () => {
-		var lastScrollTop = 0;
+	const menuScroll = () => {
+		let lastScrollTop = 0;
 		// var greedyNav = $('.masthead .greedy-nav');
 		$(window).bind("scroll", function () {
 			if (!$(".masthead").length) {
 				return;
 			}
-			var scrollTop = $(this).scrollTop();
+			const scrollTop = $(this).scrollTop();
 
 			if (scrollTop > 50) {
 				if (scrollTop > lastScrollTop) {
@@ -269,15 +262,15 @@
 		});
 	};
 
-	var mastheadFix = () => {
+	const mastheadFix = () => {
 		if ($(".masthead").next().attr("id") !== "main") {
 			$(".masthead .greedy-nav").addClass("reverse-color");
 		}
 	};
 
-	var trackClickNumber = (element) => {
-		var url = $(element).attr("href");
-		var redirect = true;
+	const trackClickNumber = (element) => {
+		const url = $(element).attr("href");
+		let redirect = true;
 		try {
 			dataLayer.push({
 				event: "gtm.linkClick",
@@ -299,29 +292,31 @@
 					: "",
 			});
 		} catch (e) {
-			console.log("gtm error: " + e);
+			console.log(`gtm error: ${e}`);
 		}
 
 		setTimeout(() => {
-			if (redirect) document.location = url;
+			if (redirect) {
+				document.location = url;
+			}
 		}, 2000);
 		return false;
 	};
 
-	var platformSwitcher = function () {
-		var url = $(this).attr("href");
+	const platformSwitcher = function () {
+		const url = $(this).attr("href");
 		$(".switch_result").each(function () {
-			if ($(this).attr("id").search(url.substring(1)) != -1) {
+			if ($(this).attr("id").search(url.substring(1)) !== -1) {
 				$(this).css("display", "");
 			} else {
 				$(this).css("display", "none");
 			}
 		});
 		$(".switch").each(function () {
-			var tocElement = $(
-				"#markdown-toc-" + $(this).attr("href").substring(1),
+			const tocElement = $(
+				`#markdown-toc-${$(this).attr("href").substring(1)}`,
 			).parent();
-			if ($(this).attr("href") == url) {
+			if ($(this).attr("href") === url) {
 				tocElement.css("display", "");
 				$(this).addClass("switch_active");
 			} else {
@@ -332,18 +327,18 @@
 		return false;
 	};
 
-	var projectCardClick = () => {
+	const projectCardClick = () => {
 		$(".grid__item").each(function () {
 			$(this).css("cursor", "pointer");
 			$(this).click(function (event) {
-				var target = event.target;
+				const target = event.target;
 				if (
 					!(
-						$(target).prop("className") == "project-icon" ||
-						$(target).prop("className") == "archive__version"
+						$(target).prop("className") === "project-icon" ||
+						$(target).prop("className") === "archive__version"
 					)
 				) {
-					var projectTitle = $(this).find(".archive__item-title a");
+					const projectTitle = $(this).find(".archive__item-title a");
 					if (projectTitle.length) {
 						trackClickNumber(projectTitle[0]);
 					}
@@ -352,43 +347,44 @@
 		});
 	};
 
-	var projectCardDifficultyColor = () => {
+	const projectCardDifficultyColor = () => {
 		$("p.project-difficulty").each(function () {
-			var difficulty = $(this).html().trim().toLocaleLowerCase();
-			if (difficulty == "easy") {
+			const difficulty = $(this).html().trim().toLocaleLowerCase();
+			if (difficulty === "easy") {
 				$(this).css("background", "#8fc31f");
-			} else if (difficulty == "medium") {
+			} else if (difficulty === "medium") {
 				$(this).css("background", "#f98f40");
-			} else if (difficulty == "hard") {
+			} else if (difficulty === "hard") {
 				$(this).css("background", "#f05a2d");
-			} else if (difficulty == "archived") {
+			} else if (difficulty === "archived") {
 				$(this).css("background", "#696969");
 			}
 		});
 	};
 
-	var faqMenu = () => {
+	const faqMenu = () => {
 		if (
 			$("h1").length &&
-			$("h1").html().trim() == "Frequently Asked Questions"
+			$("h1").html().trim() === "Frequently Asked Questions"
 		) {
-			var pageContent = $(".page__content").children();
+			const pageContent = $(".page__content").children();
 			if (pageContent.length) {
-				var pageFront = pageContent[0];
+				const pageFront = pageContent[0];
 				$(".page__content")
 					.children("h2, h3")
 					.each(function () {
-						if ($(this).prop("tagName") == "H2") {
+						if ($(this).prop("tagName") === "H2") {
 							$(pageFront).before(
 								$(this).clone().removeAttr("id"),
 							);
 							$(pageFront).prev().addClass("faq-menu-h2");
 						} else {
 							$(pageFront).before(
-								'<li class="faq-menu-li"><a href="#' +
-									$(this).attr("id") +
-									'" class="faq-menu-a">' +
-									$(this).html(),
+								`<li class="faq-menu-li"><a href="#${$(
+									this,
+								).attr("id")}" class="faq-menu-a">${$(
+									this,
+								).html()}`,
 							);
 							$(pageFront)
 								.prev()
@@ -420,7 +416,7 @@
 		}
 	};
 
-	var BackToTopDisplay = () => {
+	const BackToTopDisplay = () => {
 		if ($(window).scrollTop() > 20 && window.innerWidth >= 1024) {
 			$(".faq-back-to-top").css("display", "block");
 		} else {
@@ -428,8 +424,8 @@
 		}
 	};
 
-	var landingPageConfig = () => {
-		var thirdProjectDisappear = () => {
+	const landingPageConfig = () => {
+		const thirdProjectDisappear = () => {
 			if (600 <= window.innerWidth && window.innerWidth < 768) {
 				$(".layout--splash .grid__item:nth-child(3)").css(
 					"display",

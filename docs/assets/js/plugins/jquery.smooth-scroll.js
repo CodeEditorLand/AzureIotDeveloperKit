@@ -17,9 +17,9 @@
 		factory(jQuery);
 	}
 })(($) => {
-	var version = "2.2.0";
-	var optionOverrides = {};
-	var defaults = {
+	const version = "2.2.0";
+	const optionOverrides = {};
+	const defaults = {
 		exclude: [],
 		excludeWithin: [],
 		offset: 0,
@@ -65,13 +65,14 @@
 		preventDefault: true,
 	};
 
-	var getScrollable = function (opts) {
-		var scrollable = [];
-		var scrolled = false;
-		var dir = opts.dir && opts.dir === "left" ? "scrollLeft" : "scrollTop";
+	const getScrollable = function (opts) {
+		let scrollable = [];
+		let scrolled = false;
+		const dir =
+			opts.dir && opts.dir === "left" ? "scrollLeft" : "scrollTop";
 
 		this.each(function () {
-			var el = $(this);
+			const el = $(this);
 
 			if (this === document || this === window) {
 				return;
@@ -132,16 +133,16 @@
 		return scrollable;
 	};
 
-	var rRelative = /^([\-\+]=)(\d+)/;
+	const rRelative = /^([\-\+]=)(\d+)/;
 
 	$.fn.extend({
 		scrollable: function (dir) {
-			var scrl = getScrollable.call(this, { dir: dir });
+			const scrl = getScrollable.call(this, { dir: dir });
 
 			return this.pushStack(scrl);
 		},
 		firstScrollable: function (dir) {
-			var scrl = getScrollable.call(this, { el: "first", dir: dir });
+			const scrl = getScrollable.call(this, { el: "first", dir: dir });
 
 			return this.pushStack(scrl);
 		},
@@ -155,43 +156,44 @@
 				}
 
 				return this.each(function () {
-					var $this = $(this);
-					var opts = $.extend($this.data("ssOpts") || {}, extra);
+					const $this = $(this);
+					const opts = $.extend($this.data("ssOpts") || {}, extra);
 
 					$(this).data("ssOpts", opts);
 				});
 			}
 
-			var opts = $.extend({}, $.fn.smoothScroll.defaults, options);
+			const opts = $.extend({}, $.fn.smoothScroll.defaults, options);
 
-			var clickHandler = function (event) {
-				var escapeSelector = (str) => str.replace(/(:|\.|\/)/g, "\\$1");
-				var $link = $(this);
-				var thisOpts = $.extend({}, opts, $link.data("ssOpts") || {});
-				var exclude = opts.exclude;
-				var excludeWithin = thisOpts.excludeWithin;
-				var elCounter = 0;
-				var ewlCounter = 0;
-				var include = true;
-				var clickOpts = {};
-				var locationPath = $.smoothScroll.filterPath(location.pathname);
-				var linkPath = $.smoothScroll.filterPath(this.pathname);
-				var hostMatch =
+			const clickHandler = function (event) {
+				const escapeSelector = (str) =>
+					str.replace(/(:|\.|\/)/g, "\\$1");
+				const $link = $(this);
+				const thisOpts = $.extend({}, opts, $link.data("ssOpts") || {});
+				const exclude = opts.exclude;
+				const excludeWithin = thisOpts.excludeWithin;
+				let elCounter = 0;
+				let ewlCounter = 0;
+				let include = true;
+				const clickOpts = {};
+				const locationPath = $.smoothScroll.filterPath(
+					location.pathname,
+				);
+				const linkPath = $.smoothScroll.filterPath(this.pathname);
+				const hostMatch =
 					location.hostname === this.hostname || !this.hostname;
-				var pathMatch =
+				const pathMatch =
 					thisOpts.scrollTarget || linkPath === locationPath;
-				var thisHash = escapeSelector(this.hash);
+				const thisHash = escapeSelector(this.hash);
 
 				if (thisHash && !$(thisHash).length) {
 					include = false;
 				}
 
 				if (
-					!thisOpts.scrollTarget &&
-					(!hostMatch || !pathMatch || !thisHash)
+					thisOpts.scrollTarget ||
+					(hostMatch && pathMatch && thisHash)
 				) {
-					include = false;
-				} else {
 					while (include && elCounter < exclude.length) {
 						if ($link.is(escapeSelector(exclude[elCounter++]))) {
 							include = false;
@@ -203,6 +205,8 @@
 							include = false;
 						}
 					}
+				} else {
+					include = false;
 				}
 
 				if (include) {
@@ -236,9 +240,9 @@
 		},
 	});
 
-	var getExplicitOffset = (val) => {
-		var explicit = { relative: "" };
-		var parts = typeof val === "string" && rRelative.exec(val);
+	const getExplicitOffset = (val) => {
+		const explicit = { relative: "" };
+		const parts = typeof val === "string" && rRelative.exec(val);
 
 		if (typeof val === "number") {
 			explicit.px = val;
@@ -250,8 +254,8 @@
 		return explicit;
 	};
 
-	var onAfterScroll = (opts) => {
-		var $tgt = $(opts.scrollTarget);
+	const onAfterScroll = (opts) => {
+		const $tgt = $(opts.scrollTarget);
 
 		if (opts.autoFocus && $tgt.length) {
 			$tgt[0].focus();
@@ -269,14 +273,17 @@
 		if (options === "options" && typeof px === "object") {
 			return $.extend(optionOverrides, px);
 		}
-		var opts, $scroller, speed, delta;
-		var explicitOffset = getExplicitOffset(options);
-		var scrollTargetOffset = {};
-		var scrollerOffset = 0;
-		var offPos = "offset";
-		var scrollDir = "scrollTop";
-		var aniProps = {};
-		var aniOpts = {};
+		let opts;
+		let $scroller;
+		let speed;
+		let delta;
+		let explicitOffset = getExplicitOffset(options);
+		let scrollTargetOffset = {};
+		let scrollerOffset = 0;
+		let offPos = "offset";
+		let scrollDir = "scrollTop";
+		const aniProps = {};
+		let aniOpts = {};
 
 		if (explicitOffset.px) {
 			opts = $.extend(
@@ -311,8 +318,10 @@
 			$scroller = opts.scrollElement;
 
 			if (
-				!explicitOffset.px &&
-				!/^(?:HTML|BODY)$/.test($scroller[0].nodeName)
+				!(
+					explicitOffset.px ||
+					/^(?:HTML|BODY)$/.test($scroller[0].nodeName)
+				)
 			) {
 				scrollerOffset = $scroller[scrollDir]();
 			}
@@ -327,10 +336,7 @@
 			? explicitOffset
 			: {
 					relative: "",
-					px:
-						($(opts.scrollTarget)[offPos]() &&
-							$(opts.scrollTarget)[offPos]()[opts.direction]) ||
-						0,
+					px: $(opts.scrollTarget)[offPos]()?.[opts.direction] || 0,
 			  };
 
 		aniProps[scrollDir] =

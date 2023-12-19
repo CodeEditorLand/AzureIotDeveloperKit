@@ -4,13 +4,10 @@
 
 $(document).ready(() => {
 	// Sticky footer
-	var bumpIt = () => {
-			$("body").css(
-				"margin-bottom",
-				$(".page__footer").outerHeight(true),
-			);
-		},
-		didResize = false;
+	const bumpIt = () => {
+		$("body").css("margin-bottom", $(".page__footer").outerHeight(true));
+	};
+	let didResize = false;
 
 	bumpIt();
 

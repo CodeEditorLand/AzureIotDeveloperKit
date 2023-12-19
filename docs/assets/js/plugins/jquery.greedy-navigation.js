@@ -5,14 +5,14 @@ Copyright (c) 2015 Luke Jackson
 */
 
 $(document).ready(() => {
-	var $btn = $("nav.greedy-nav button");
-	var $vlinks = $("nav.greedy-nav .visible-links");
-	var $hlinks = $("nav.greedy-nav .hidden-links");
+	const $btn = $("nav.greedy-nav button");
+	const $vlinks = $("nav.greedy-nav .visible-links");
+	const $hlinks = $("nav.greedy-nav .hidden-links");
 
-	var numOfItems = 0;
-	var totalSpace = 0;
-	var closingTime = 1000;
-	var breakWidths = [];
+	let numOfItems = 0;
+	let totalSpace = 0;
+	const closingTime = 1000;
+	const breakWidths = [];
 
 	// Get initial state
 	$vlinks.children().outerWidth((i, w) => {
@@ -21,7 +21,10 @@ $(document).ready(() => {
 		breakWidths.push(totalSpace);
 	});
 
-	var availableSpace, numOfVisibleItems, requiredSpace, timer;
+	let availableSpace;
+	let numOfVisibleItems;
+	let requiredSpace;
+	let timer;
 
 	function check() {
 		// Get instant state
@@ -42,7 +45,9 @@ $(document).ready(() => {
 		$btn.attr("count", numOfItems - numOfVisibleItems);
 		if (numOfVisibleItems === numOfItems) {
 			$btn.addClass("hidden");
-		} else $btn.removeClass("hidden");
+		} else {
+			$btn.removeClass("hidden");
+		}
 	}
 
 	// Window listeners
