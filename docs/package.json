@@ -32,9 +32,9 @@
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
-		"npm-run-all": "^4.0.2",
-		"onchange": "^6.0.0",
-		"uglify-js": "^3.0.25"
+		"npm-run-all": "4.1.5",
+		"onchange": "7.1.0",
+		"uglify-js": "3.17.4"
 	},
 	"publishConfig": {
 		"access": "public"
