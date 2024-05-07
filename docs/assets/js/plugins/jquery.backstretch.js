@@ -9,7 +9,7 @@
 ;(function ($, window, undefined) {
     'use strict';
   
-    /** @const */
+    
     var YOUTUBE_REGEXP = /^.*(youtu\.be\/|youtube\.com\/v\/|youtube\.com\/embed\/|youtube\.com\/watch\?v=|youtube\.com\/watch\?.*\&v=)([^#\&\?]*).*/i;
     
     /* PLUGIN DEFINITION
