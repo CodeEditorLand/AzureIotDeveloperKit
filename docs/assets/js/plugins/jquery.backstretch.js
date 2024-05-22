@@ -9,7 +9,11 @@
 ;(function ($, window, undefined) {
     'use strict';
   
+<<<<<<< HEAD
     /** @const */
+=======
+    
+>>>>>>> d2d31d889ca2ef1e56ba877ce9cd1471dae1a416
     var YOUTUBE_REGEXP = /^.*(youtu\.be\/|youtube\.com\/v\/|youtube\.com\/embed\/|youtube\.com\/watch\?v=|youtube\.com\/watch\?.*\&v=)([^#\&\?]*).*/i;
     
     /* PLUGIN DEFINITION
