@@ -5,7 +5,6 @@
 docs/_site
 
 # Node.js
-node_modules/
 *.map
 
 # Object files
