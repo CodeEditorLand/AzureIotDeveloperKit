@@ -1,3 +1,7 @@
+@use "../minimal-mistakes/variables";
+@use "../minimal-mistakes/vendor/breakpoint/breakpoint";
+@use "../minimal-mistakes/vendor/susy/susy/unprefix";
+
 .layout--splash {
 
   .page__hero--overlay {
@@ -17,7 +21,7 @@
         font-size: 16px;
       }
 
-      @include breakpoint($medium) {
+      @include breakpoint.breakpoint(variables.$medium) {
         .page__title {
           font-size: 40px;
         }
@@ -32,7 +36,7 @@
       }
     }
 
-    @include breakpoint($small) {
+    @include breakpoint.breakpoint(variables.$small) {
       .page__hero-teaser {
         width: 80%;
         margin-left: 10%;
@@ -45,7 +49,7 @@
       }
     }
 
-    @include breakpoint($large) {
+    @include breakpoint.breakpoint(variables.$large) {
       .page__hero-teaser {
         position: relative;
         width: 60%;
@@ -117,16 +121,16 @@
       animation: intro 0.3s both;
       -webkit-animation: intro 0.3s both;
       padding: 0 2em;
-      max-width: $x-large;
+      max-width: variables.$x-large;
       margin: 1em auto;
 
-      @include breakpoint($large) {
+      @include breakpoint.breakpoint(variables.$large) {
         padding: 0 1em;
 
         p {
           margin: 0;
           // @include prefix(0.5 of 12);
-          padding-left: gutter(0.5 of 12);
+          padding-left: unprefix.gutter(0.5 of 12);
         }
       }
     }
@@ -135,14 +139,14 @@
       font-size: 16px;
 
       .tag {
-        font-size: $type-size-6;
-        background: $warning-color;
-        color: $background-color;
+        font-size: variables.$type-size-6;
+        background: variables.$warning-color;
+        color: variables.$background-color;
         margin-right: 0.42em;
         padding: 0.2em 0.75em;
       }
 
-      @include breakpoint($large) {
+      @include breakpoint.breakpoint(variables.$large) {
         display: flex;
         justify-content: space-between;
 
@@ -157,7 +161,7 @@
     }
 
     .feature__wrapper {
-      max-width: $x-large;
+      max-width: variables.$x-large;
       margin: auto;
       padding-left: 1em;
       padding-right: 1em;
@@ -195,7 +199,7 @@
         }
       }
 
-      @include breakpoint($large) {
+      @include breakpoint.breakpoint(variables.$large) {
         > * > .archive__item {
           padding: 0;
 
@@ -253,7 +257,7 @@
   }
 
   .landing-page-project {
-    max-width: $x-large;
+    max-width: variables.$x-large;
     text-align: center;
     margin: auto;
     padding: 0 1em 2em;
@@ -301,7 +305,7 @@
         margin: 0 auto 1em;
       }
 
-      @include breakpoint($large) {
+      @include breakpoint.breakpoint(variables.$large) {
         text-align: left;
 
         .landing-page-final-teaser {

@@ -1,8 +1,10 @@
+@use "../minimal-mistakes/variables";
+
 .switcher{
     margin: 2rem 0;
     padding: 0;
     overflow: hidden;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid variables.$border-color;
 }
 
 .switch_tag{
@@ -36,7 +38,7 @@ a.switch:hover{
 
 .switch_active{
     font-weight: bold;
-    border-bottom: 2px solid $primary-color;
+    border-bottom: 2px solid variables.$primary-color;
 }
 
 a.switch:focus{

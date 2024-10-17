@@ -1,3 +1,4 @@
+@use "sass:color";
 /* ==========================================================================
    BASE ELEMENTS
    ========================================================================== */
@@ -46,13 +47,13 @@ h3 {
 h4 {
   font-size: $type-size-5;
   font-weight: 400;
-  color: mix($primary-color, $gray, 45%);
+  color: color.mix($primary-color, $gray, 45%);
 }
 
 h5 {
   font-size: $type-size-5;
   font-weight: 400;
-  color: mix($primary-color, $gray, 45%);
+  color: color.mix($primary-color, $gray, 45%);
 }
 
 h6 {
@@ -103,7 +104,7 @@ blockquote {
   padding-left: 1em;
   padding-right: 1em;
   color: $gray;
-  border-left: 0.25em solid mix(#fff, $primary-color, 40%);
+  border-left: 0.25em solid color.mix(#fff, $primary-color, 40%);
 
   cite {
     font-style: italic;
@@ -242,7 +243,7 @@ figure {
 
 figcaption {
   margin-bottom: 0.5em;
-  color: mix(#fff, $text-color, 25%);
+  color: color.mix(#fff, $text-color, 25%);
   font-family: $caption-font-family;
   font-size: $type-size-6;
 

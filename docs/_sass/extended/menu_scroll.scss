@@ -1,18 +1,20 @@
+@use "../minimal-mistakes/variables";
+
 .masthead_fixed{
-    background-color: $lightest-gray;
-    border-bottom: 1px solid $border-color;
+    background-color: variables.$lightest-gray;
+    border-bottom: 1px solid variables.$border-color;
 
     .greedy-nav {
         a {
-            color: $masthead-link-color;
+            color: variables.$masthead-link-color;
         }
 
         .navicon {
-            background: $primary-color;
+            background: variables.$primary-color;
 
             &:before,
             &:after {
-                background: $primary-color;
+                background: variables.$primary-color;
             }
         }
 
@@ -21,7 +23,7 @@
         }
 
         .masthead-circle {
-            border: 1px solid $masthead-link-color;
+            border: 1px solid variables.$masthead-link-color;
         }
 
         .hidden-links {

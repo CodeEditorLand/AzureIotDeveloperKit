@@ -1,3 +1,4 @@
+@use "sass:color";
 /* ==========================================================================
    Forms
    ========================================================================== */
@@ -19,7 +20,7 @@ form {
     padding: 0;
     color: $text-color;
     border: 0;
-    border-bottom: 1px solid mix(#fff, #000, 80%);
+    border-bottom: 1px solid color.mix(#fff, #000, 80%);
     white-space: normal;
   }
 
@@ -81,12 +82,12 @@ select {
   margin-bottom: 0.5em;
   color: $text-color;
   background-color: #fff;
-  border: 1px solid mix(#fff, #000, 80%);
+  border: 1px solid color.mix(#fff, #000, 80%);
   border-radius: $border-radius;
   box-shadow: $box-shadow;
 
   &:hover {
-    border-color: mix(#fff, $primary-color, 50%);
+    border-color: color.mix(#fff, $primary-color, 50%);
   }
 }
 
@@ -382,7 +383,7 @@ select:focus {
   color: #000;
   border-width: 2px !important;
   border-style: solid !important;
-  border-color: lighten(#000,50);
+  border-color: color.adjust(#000,$lightness: 50);
   border-radius: $border-radius;
 }
 

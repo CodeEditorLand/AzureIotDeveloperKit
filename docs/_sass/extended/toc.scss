@@ -1,15 +1,18 @@
+@use "../minimal-mistakes/variables";
+@use "../minimal-mistakes/vendor/breakpoint/breakpoint";
+
 .sidebar__right_fix {
 
-  @include breakpoint($large) {
+  @include breakpoint.breakpoint(variables.$large) {
     position: fixed;
   }
 
-  @include breakpoint($x-large) {
-    width: $right-sidebar-width-narrow;
+  @include breakpoint.breakpoint(variables.$x-large) {
+    width: variables.$right-sidebar-width-narrow;
   }
 
-  @include breakpoint(1440px) {
-    width: $right-sidebar-width;
+  @include breakpoint.breakpoint(1440px) {
+    width: variables.$right-sidebar-width;
   }
 }
 

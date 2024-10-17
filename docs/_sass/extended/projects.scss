@@ -1,3 +1,6 @@
+@use "../minimal-mistakes/variables";
+@use "../minimal-mistakes/vendor/breakpoint/breakpoint";
+
 .archive {
   > h3 {
     margin-bottom: 1rem;
@@ -40,9 +43,9 @@ div.project-icons-div {
 
 .grid__item .archive__item {
   position: relative;
-  box-shadow: inset 0 0 1px $muted-text-color;
+  box-shadow: inset 0 0 1px variables.$muted-text-color;
 
-  @include breakpoint($large) {
+  @include breakpoint.breakpoint(variables.$large) {
     height: 346px;
   }
 }
@@ -67,7 +70,7 @@ img.project-icon:hover + p.project-icon-title {
   span {
     margin-left: 3px;
     font-weight: 600;
-    color: $primary-color;
+    color: variables.$primary-color;
     line-height: 24px;
   }
 }

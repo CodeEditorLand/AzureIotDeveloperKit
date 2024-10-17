@@ -1,3 +1,6 @@
+@use "../minimal-mistakes/variables";
+@use "../minimal-mistakes/vendor/breakpoint/breakpoint";
+
 .page__content {
   h2.faq-menu-h2 {
     padding: 0;
@@ -6,7 +9,7 @@
 
   li.faq-menu-li {
     font-size: 16px;
-    color: $primary-color;
+    color: variables.$primary-color;
   }
 
   a.faq-menu-a {
@@ -15,10 +18,10 @@
   hr.faq-menu-hr {
     visibility: hidden;
 
-    @include breakpoint($large) {
+    @include breakpoint.breakpoint(variables.$large) {
       visibility: visible;
       margin: 26px 0 0 0;
-      border-top: 1px solid $primary-color;
+      border-top: 1px solid variables.$primary-color;
     }
   }
 
@@ -44,7 +47,7 @@
       opacity: 1.0;
     }
 
-    @include breakpoint($large) {
+    @include breakpoint.breakpoint(variables.$large) {
       display: block;
     }
   }

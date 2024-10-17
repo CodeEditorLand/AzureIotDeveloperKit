@@ -1,3 +1,6 @@
+@use "../minimal-mistakes/variables";
+@use "../minimal-mistakes/vendor/breakpoint/breakpoint";
+
 .feedback-btns {
   display: block;
   padding: 20px;
@@ -18,7 +21,7 @@
     font-size: 14px;
     padding: 5px 20px;
     margin-right: 5px;
-    background: $primary-color;
+    background: variables.$primary-color;
     border: 1px solid #f1f1f1;
     color: #f1f1f1;
   }
@@ -48,13 +51,13 @@
   bottom: 26px;
   font-size: 16px;
   padding: 20px 5px;
-  background: $primary-color;
+  background: variables.$primary-color;
   border: 1px solid #f1f1f1;
   color: #f1f1f1;
 
   display: none;
 
-  @include breakpoint($large) {
+  @include breakpoint.breakpoint(variables.$large) {
     display: block;
   }
 }
